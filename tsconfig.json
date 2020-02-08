@@ -4,6 +4,7 @@
     "esModuleInterop": true
   },
   "files": [
-    "test.ts"
+    "test.ts",
+    "models/userModel.ts"
   ]
 }
