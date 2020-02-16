@@ -5,6 +5,9 @@
   },
   "files": [
     "test.ts",
-    "models/userModel.ts"
+    "main.ts",
+    "models/connection.ts",
+    "models/degree.ts",
+    "models/semester.ts"
   ]
 }
