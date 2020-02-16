@@ -4,8 +4,8 @@
     "esModuleInterop": true
   },
   "files": [
+    "main.ts",
     "models/userModel.ts",
-    "models/connection.ts",
-    "main.ts"
+    "models/connection.ts"
   ]
 }
