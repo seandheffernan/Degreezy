@@ -5,7 +5,8 @@
   },
   "files": [
     "main.ts",
-    "test.ts",
+    "models/class.ts",
+    "models/program.ts",
     "models/connection.ts"
   ]
 }
