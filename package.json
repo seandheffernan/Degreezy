@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "start": "node main.js",
-    "node" : "node models/connection.js"
+    "connect": "node models/connection.js"
   },
   "keywords": [],
   "author": "",
