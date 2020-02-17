@@ -4,6 +4,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const Semester = require('semester.ts');
 
-const degree = new Schema({
-    semesters: [semester]
+export const degree = new Schema({
+    semesters: [
+        {
+            semester: semester
+        }
+    ]
 });
