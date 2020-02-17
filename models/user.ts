@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import {Programs} from "./program";
 import {course} from "./course";
-import {schedule} from "./degree";
+import {schedule} from "./schedule";
 
 export const userModel = mongoose.Schema({
     username: String,
