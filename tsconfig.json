@@ -4,8 +4,8 @@
     "esModuleInterop": true
   },
   "files": [
-    "test.ts",
     "main.ts",
+    "models/userModel.ts",
     "models/connection.ts",
     "models/degree.ts",
     "models/semester.ts"
