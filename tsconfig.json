@@ -7,7 +7,7 @@
     "main.ts",
     "models/userModel.ts",
     "models/connection.ts",
-    "models/degree.ts",
+    "models/schedule.ts",
     "models/semester.ts"
   ]
 }
