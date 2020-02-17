@@ -1,11 +1,11 @@
-import course from 'course.ts';
-const mongoose = require('mongoose');
+import {course} from './course';
+import mongoose, {Schema} from 'mongoose';
 const Schema = mongoose.Schema;
 
-export const Degrees = new Schema({
+export const semester: Schema = new Schema({
     courses: [
         {
-            course: course,
+            course: String,
         }
     ],
     semester: String

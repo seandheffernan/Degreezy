@@ -1,10 +1,8 @@
-import semester from 'semester.ts';
-
-const mongoose = require('mongoose');
+import {semester} from './semester';
+import mongoose, {Schema} from 'mongoose';
 const Schema = mongoose.Schema;
-const Semester = require('semester.ts');
 
-export const degree = new Schema({
+export const degree:Schema = new Schema({
     semesters: [
         {
             semester: semester
