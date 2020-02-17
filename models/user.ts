@@ -1,21 +1,16 @@
 import mongoose from 'mongoose';
+import {Programs} from "./program";
+import {course} from "./course";
+import {schedule} from "./degree";
 
 export const userModel = mongoose.Schema({
     username: String,
     password: String,
     year: Number,
-    classes_taken: [
-        {
-            course: String
-        }
-    ],
-    programs: [
-        {
-            major: String
-        }
-    ],
+    classes_taken: [course],
+    programs: [Programs],
     concentration: String,
     name: String,
-    degree: String
+    schedule: schedule
 });
 
