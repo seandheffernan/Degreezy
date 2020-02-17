@@ -5,7 +5,8 @@
   },
   "files": [
     "main.ts",
-    "models/userModel.ts",
+    "models/course.ts",
+    "models/program.ts",
     "models/connection.ts",
     "models/degree.ts",
     "models/semester.ts"
