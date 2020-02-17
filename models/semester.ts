@@ -1,8 +1,10 @@
-var mongoose = require('mongoose');
-import { course } from "course"
-var Schema = mongoose.Schema;
+import course from 'course.ts';
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-var degree = new Schema({
+const degreeSchema = new Schema({
     courses: [course],
     semester: String
 });
+
+export const semester = mongoose.model('semester', degreeSchema);

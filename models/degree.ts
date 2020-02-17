@@ -1,7 +1,9 @@
-var mongoose = require('mongoose');
-import {Semester} from "semester";
-var Schema = mongoose.Schema;
+import semester from 'semester.ts';
 
-var degree = new Schema({
-    semesters: [Semester]
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const Semester = require('semester.ts');
+
+const degree = new Schema({
+    semesters: [semester]
 });
