@@ -4,17 +4,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 exports.__esModule = true;
 var mongoose_1 = __importDefault(require("mongoose"));
-exports.Classes = mongoose_1["default"].Schema({
+exports.course = mongoose_1["default"].Schema({
     coursecode: Number,
     coursenumber: Number,
     prerequisites: [
         {
-            course: String
+            course: mongoose_1["default"].Schema.Types.ObjectID
         }
     ],
     corequisites: [
         {
-            course: String
+            course: mongoose_1["default"].Schema.Types.ObjectID
         }
     ],
     name: String,

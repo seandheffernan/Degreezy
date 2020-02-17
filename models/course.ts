@@ -1,16 +1,16 @@
 import mongoose from 'mongoose';
 
-export const Classes = mongoose.Schema({
+export const course = mongoose.Schema({
     coursecode: Number,
     coursenumber: Number,
     prerequisites: [
         {
-            course: String
+            course: mongoose.Schema.Types.ObjectID
         }
     ],
     corequisites: [
         {
-            course: String
+            course: mongoose.Schema.Types.ObjectID
         }
     ],
     name: String,
