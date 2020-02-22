@@ -5,6 +5,7 @@
   },
   "files": [
     "main.ts",
+    "import.ts",
     "models/user.ts",
     "models/course.ts",
     "models/program.ts",

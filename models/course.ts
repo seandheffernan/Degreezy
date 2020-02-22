@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 export const course = mongoose.Schema({
-    coursecode: Number,
+    coursecode: String,
     coursenumber: Number,
     prerequisites: [
         {
@@ -14,5 +14,5 @@ export const course = mongoose.Schema({
         }
     ],
     name: String,
-    requiredmajor: String
-});
+    majorRestricted: Boolean
+}, {collection: 'Classes'});
