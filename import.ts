@@ -1,13 +1,13 @@
 import mongoose from 'mongoose';
 import {course} from "./models/course";
 
-mongoose.connect("mongodb+srv://test:kuzmin@cluster0-djdw5.mongodb.net/test?authSource=admin&replicaSet=Cluster0-shard-0&w=majority&readPreference=primary&appname=MongoDB%20Compass&retryWrites=true&ssl=true");
+mongoose.connect("mongodb+srv://sonj2:ttrr123@cluster0-djdw5.mongodb.net/websci_project?authSource=admin&replicaSet=Cluster0-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true");
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 const CourseModel = new mongoose.model('Classes', course);
 var doc = CourseModel();
-doc.coursecode = "CSCI-1111";
-doc.coursenumber = 11111;
+doc.course_code = "CSCI-1111";
+doc.course_number = 11111;
 doc.prerequisites = null;
 doc.corequisites = null;
 doc.name = "test";
