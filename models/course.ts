@@ -16,8 +16,8 @@ export const course = mongoose.Schema({
         }
     ],
     name: String,
-    required_major: String
-});
+    majorRestricted: Boolean
+}, {collection: 'Classes'});
 
 
 export async function get_course(code, number, callback) {

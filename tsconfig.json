@@ -5,6 +5,7 @@
     "target": "ES6"
   },
   "files": [
+    "import.ts",
     "main.ts"
   ],
   "include": [
