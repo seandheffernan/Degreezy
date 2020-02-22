@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
 
 export const course = mongoose.Schema({
-    coursecode: Number,
-    coursenumber: Number,
+    course_code: Number,
+    course_number: Number,
     prerequisites: [
         {
             course: mongoose.Schema.Types.ObjectID
@@ -14,5 +14,5 @@ export const course = mongoose.Schema({
         }
     ],
     name: String,
-    requiredmajor: String
+    required_major: String
 });
