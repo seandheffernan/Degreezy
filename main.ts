@@ -2,12 +2,14 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 
+import course_router from './routes/course'
 
 const app = express();
 
 // Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+app.use('/courses', course_router);
 
 
 // Server Start

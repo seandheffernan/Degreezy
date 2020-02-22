@@ -1,15 +1,14 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "target": "ES6"
   },
   "files": [
-    "main.ts",
-    "models/user.ts",
-    "models/course.ts",
-    "models/program.ts",
-    "models/connection.ts",
-    "models/schedule.ts",
-    "models/semester.ts"
+    "main.ts"
+  ],
+  "include": [
+    "models/*",
+    "routes/*"
   ]
 }
