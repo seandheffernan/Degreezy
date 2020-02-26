@@ -10,5 +10,8 @@
   "include": [
     "models/*",
     "routes/*"
+  ],
+  "exclude": [
+    "node_modules"
   ]
 }
