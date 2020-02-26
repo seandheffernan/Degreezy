@@ -19,6 +19,8 @@ export const course = mongoose.Schema({
     required_major: String
 });
 
+course.index({"course_code": 'text', "name": 'text', "required_major": "text"});
+
 
 export async function get_course(code, number, callback) {
     await get_connection().then(() => {
@@ -31,7 +33,3 @@ export async function get_course(code, number, callback) {
     )
 }
 
-get_course('CSCI', 1000, function (data, err) {
-    console.log(err);
-    console.log(data);
-})
