@@ -33,3 +33,24 @@ export async function get_course(code, number, callback) {
     )
 }
 
+export async function insert_course(course_details, callback) {
+    await get_connection().then(() => {
+        let course_model = mongoose.model('Course', course);
+        course_model.create(course_details, function(err) {
+            if (err) {
+                console.log(err);
+            } else {
+                callback(err);
+            }
+            mongoose.disconnect();
+        });
+    });
+}
+
+export const course_test = {
+    "course_code": "CSCI",
+    "course_number": 1000,
+    "name": "Computer Science I",
+    "required_major": "Computer Science"
+};
+
