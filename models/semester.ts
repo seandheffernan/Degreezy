@@ -50,8 +50,16 @@ export async function push_course(semester_name, course_name, callback) {
     });
 }
 
-export async function pop_course(semester_name, course_name, callback) {
+export async function pull_course(semester_name, course_name, callback) { //in theory, it should remove course from semester, but needs testing
     await get_connection().then(() => {
         let semester_model = mongoose.model('Semester', semester);
+        semester_model.findOneAndUpdate({semester: semester_name},{$pull: {results: {$elemMatch: {'courses': course_name}} }}, function(err) {
+            if (err) {
+                console.log(err);
+            } else {
+                callback(err);
+            }
+            mongoose.disconnect();
+        });
     })
 }

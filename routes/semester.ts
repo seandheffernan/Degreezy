@@ -1,5 +1,5 @@
 import express from 'express';
-import {insert_semester, semester, get_semester} from "../models/semester"
+import {insert_semester, semester, get_semester, push_course, pull_course} from "../models/semester"
 
 const semester_router = express.Router();
 
@@ -26,6 +26,24 @@ semester_router.post('/', (req, res) => {
 
 semester_router.post('/push', (req, res) => {
     console.log(req.body);
+    push_course(req.body.semester, req.body.course, function(err) {
+        if (err) {
+            res.send(err);
+        } else {
+            res.send("Data added successfully");
+        }
+    });
+});
+
+semester_router.post('/pull', (req, res) => {
+    console.log(req.body);
+    pull_course(req.body.semester, req.body.course, function(err){
+        if (err) {
+            res.send(err);
+        } else {
+            res.send("Data removed successfully");
+        }
+    });
 });
 
 export default semester_router;
