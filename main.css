@@ -1,10 +1,15 @@
 /*@import url('https://fonts.googleapis.com/css?family=PT+Sans&display=swap');*/
 
+html, head, body {
+  margin: 0;
+  padding: 0;
+}
+
 * {
   font-family: "Spartan", sans-serif;
-  /*	margin: 0;
-	padding: 0;
-	box-sizing: border-box;*/
+/*  margin: 0;
+	padding: 0;*/
+	/*box-sizing: border-box;*/
 }
 
 body {
@@ -20,14 +25,14 @@ body {
   margin-bottom: 12px;
 }
 
-#myUL {
+/*#myUL {
   list-style-type: none;
   padding: 0;
   margin: 0;
 }
 
 #myUL li a {
-  margin-top: -1px; /* Prevent double borders */
+  margin-top: -1px;
   background-color: #f6f6f6;
   padding: 12px;
   text-decoration: none;
@@ -38,6 +43,10 @@ body {
 
 #myUL li a:hover:not(.header) {
   background-color: #eee;
+}*/
+
+.lists {
+  /*width: 90%;*/
 }
 
 .list .list-item {
@@ -45,7 +54,6 @@ body {
 	border-radius: 8px;
 	padding: 15px 20px;
 	text-align: center;
-	/*margin: 4px 0px;*/
   margin-left: 10px;
   margin-right: 10px;
   margin-bottom: 5px;
@@ -62,7 +70,7 @@ body {
 }
 
 .list-item {
-	max-width: 300px;
+	/*max-width: 300px;*/
 }
 
 /*.list-item a {
@@ -80,10 +88,11 @@ body {
 #queue {
 	background-color: rgba(0, 0, 0, 0.1);
 	display: block;
-	max-width: 80%;
+	/*max-width: 80%;*/
 	min-height: 200px;
-	max-height: 400px;
+	/*max-height: 400px;*/
 	margin-left: 10%;
+
 }
 
 .sem1, .sem2 {
