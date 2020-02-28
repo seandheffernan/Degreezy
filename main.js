@@ -1,5 +1,6 @@
 const list_items = document.querySelectorAll('.list-item');
 const lists = document.querySelectorAll('.list');
+// const lists = document.querySelectorAll('.list-item'); //interesting behavior; can drag elements into elements
 
 let draggedItem = null;
 
@@ -9,27 +10,30 @@ for (let i = 0; i < list_items.length; i++) {
 	item.addEventListener('dragstart', function () {
 		draggedItem = item;
 		setTimeout(function () {
-			item.style.display = 'none';
+			// item.style.display = 'none';
+      item.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
 		}, 0)
 	});
 
 	item.addEventListener('dragend', function () {
 		setTimeout(function () {
-			draggedItem.style.display = 'block';
+			// draggedItem.style.display = 'block';
+      draggedItem.style.backgroundColor = '#F3F3F3';
 			draggedItem = null;
 		}, 0);
 	})
 
-	for (let j = 0; j < lists.length; j ++) {
+	for (let j = 0; j < lists.length; j++) {
 		const list = lists[j];
 
 		list.addEventListener('dragover', function (e) {
-			e.preventDefault();
+      e.preventDefault();
+      this.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
 		});
 		
 		list.addEventListener('dragenter', function (e) {
-			e.preventDefault();
-			this.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
+			// e.preventDefault();
+			// this.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
 		});
 
 		list.addEventListener('dragleave', function (e) {
@@ -39,25 +43,26 @@ for (let i = 0; i < list_items.length; i++) {
 		list.addEventListener('drop', function (e) {
 			console.log('drop');
 			this.append(draggedItem);
+      // this.append("hi"); // will print 7 times
 			this.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
 		});
 	}
 }
 
-
+// search
 function myFunction() {
-    var input, filter, ul, li, a, i, txtValue;
-    input = document.getElementById("myInput");
-    filter = input.value.toUpperCase();
-    ul = document.getElementById("myUL");
-    li = ul.getElementsByTagName("li");
-    for (i = 0; i < li.length; i++) {
-        a = li[i].getElementsByTagName("a")[0];
-        txtValue = a.textContent || a.innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            li[i].style.display = "";
-        } else {
-            li[i].style.display = "none";
-        }
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("myUL");
+  li = ul.getElementsByTagName("li");
+  for (i = 0; i < li.length; i++) {
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
     }
+  }
 }
