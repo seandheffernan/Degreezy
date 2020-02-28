@@ -49,3 +49,7 @@ export async function push_course(semester_name, course_name, callback) {
         });
     });
 }
+
+export async function pop_course(semester_name, course_name, callback) {
+    
+}
