@@ -16,8 +16,8 @@ export const course = mongoose.Schema({
         }
     ],
     name: String,
-    required_major: String
-});
+    majorRestricted: Boolean
+}, {collection: 'Classes'});
 
 course.index({"course_code": 'text', "name": 'text', "required_major": "text"});
 
