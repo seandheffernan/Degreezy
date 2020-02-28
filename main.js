@@ -1,3 +1,4 @@
+$(document).ready(function () {
 const list_items = document.querySelectorAll('.list-item');
 const lists = document.querySelectorAll('.list');
 
@@ -61,3 +62,28 @@ function myFunction() {
         }
     }
 }
+
+
+var toggleBtnL = document.querySelector('.leftButton');
+var toggleBtnR = document.querySelector('.rightButton');
+var leftArrow = document.querySelector(".fa-arrow-left");
+var rightArrow = document.querySelector(".fa-arrow-right");
+var left = document.querySelector('.left');
+var right = document.querySelector('.right');
+var content = document.querySelector('#content');
+
+toggleBtnL.addEventListener('click', function() {
+  left.classList.toggle('is-closed');
+  toggleBtnL.classList.toggle('is-closed');
+  leftArrow.classList.toggle('fa-arrow-right');
+  leftArrow.classList.toggle('fa-arrow-left');
+})
+toggleBtnR.addEventListener('click', function() {
+	right.classList.toggle('is-closed');
+	toggleBtnR.classList.toggle('is-closed');
+	rightArrow.classList.toggle('fa-arrow-right');
+	rightArrow.classList.toggle('fa-arrow-left');
+})
+
+
+});
