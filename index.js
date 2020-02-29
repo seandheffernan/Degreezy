@@ -11,6 +11,20 @@ dragula([
   document.getElementById("y4s2")
 ]);
 
+// removeOnSpill: false
+//   .on("drag", function(el) {
+//     el.className.replace("ex-moved", "");
+//   })
+//   .on("drop", function(el) {
+//     el.className += "ex-moved";
+//   })
+//   .on("over", function(el, container) {
+//     container.className += "ex-over";
+//   })
+//   .on("out", function(el, container) {
+//     container.className.replace("ex-over", "");
+//   });
+
 // const list_items = document.querySelectorAll('.list-item');
 // const lists = document.querySelectorAll('.list');
 // // const lists = document.querySelectorAll('.list-item'); //interesting behavior; can drag elements into elements

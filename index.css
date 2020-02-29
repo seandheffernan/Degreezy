@@ -33,7 +33,7 @@ body {
 
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
-  cursor: move;
+  cursor: grab;
 }
 
 .lists .list {
@@ -75,10 +75,12 @@ body {
   -moz-user-select: none !important;
   -ms-user-select: none !important;
   user-select: none !important;
+  /*background-color: #46B39F;*/
 }
 
 .gu-transit {
   opacity: 0.2;
+  /*background-color: #eee;*/
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
   filter: alpha(opacity=20);
 }
