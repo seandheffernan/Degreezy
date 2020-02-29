@@ -19,14 +19,14 @@ export const course = mongoose.Schema({
     majorRestricted: Boolean
 }, {collection: 'Classes'});
 
-course.index({"course_code": 'text', "name": 'text', "required_major": "text"});
+course.index({'$**': 'text'});
 
 
-export async function get_course(code, number, callback) {
+export async function get_course(searchString, callback) {
     await get_connection().then(() => {
             let course_model = mongoose.model('Course', course);
-            course_model.findOne({course_code: code, course_number: number}, {}, function (data, err) {
-            // course_model.find({$text: {$search: search_requests}},function(data, err) {
+            // course_model.findOne({course_code: code, course_number: number}, {}, function (data, err) {
+            course_model.find({$text: {$search: searchString}},function(data, err) {
                 callback(data, err);
                 mongoose.disconnect();
             });
