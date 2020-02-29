@@ -91,12 +91,13 @@ body {
 }
 
 
-/* Shit that Allison Added to Test??? */
+/* Stuff that Allison Added to Test??? */
 #content{
 	margin-left: 5%;
 	margin-right: 5%;
 	position: right;
 }
+
 .sidebar{
 	margin-bottom: -101%;
 	padding-bottom: 101%; 
@@ -105,47 +106,60 @@ body {
 	background-color:grey;
 	transition: .7s
 }
+
 .sidebar-toggle{
 	z-index: 1;
-	border: 4px solid white;
 	outline: none;
 	width: 60px;
 	height: 60px;
 	border-radius: 50%;
-	margin-left: 25%;
 	margin-top: 1em;
-	margin-right: 25%;
 	background-color: grey;
 	transition: .7s;
 }
+
 .buttons{
 	display: inline-block;
 }
+
 .leftButton{
+	margin-left: 23%;
 	position: absolute;
 }
-.rightButton{
+
+.rightButton{	
+	margin-right: 23%;
 	position: relative;
 	float: right; 
 }
+
 .leftButton.is-closed{
 	margin-left: 15%;
 	transform: translateX(-400%);
 }
+
 .rightButton.is-closed {
 	margin-right: 15%;
 	transform: translateX(400%);
 }
+
 .left {
   	position: relative;
 }
+
 .left.is-closed {
 	transform: translateX(-90%);
 }
+
 .right {	
 	float: right;
 	position: relative;
 }
+
+.right p {
+	margin-left: 10%;
+}
+
 .right.is-closed {
 	transform: translateX(90%);
 }
