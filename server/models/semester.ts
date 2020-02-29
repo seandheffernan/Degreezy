@@ -12,10 +12,12 @@ export const semester: Schema = new Schema({
     semester: String
 });
 
+semester.index({'$**': 'text'});
+
 export async function get_semester(semester_name, callback) {
     await get_connection().then(() => {
         let semester_model = mongoose.model('Semester', semester)
-        semester_model.findOne({semester: semester_name}, {}, function (data, err) {
+        semester_model.findOne({}, {}, function (data, err) {
             callback(data, err);
             mongoose.disconnect();
         });
