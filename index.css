@@ -1,15 +1,11 @@
-/*@import url('https://fonts.googleapis.com/css?family=PT+Sans&display=swap');*/
 
 html, head, body {
-  margin: 0;
-  padding: 0;
+  /*margin: 10px;*/
+  padding: 25px;
 }
 
 * {
   font-family: "Spartan", sans-serif;
-/*  margin: 0;
-	padding: 0;*/
-	/*box-sizing: border-box;*/
 }
 
 body {
@@ -17,39 +13,14 @@ body {
 }
 
 #myInput {
-  width: 80%;
+  width: 100%;
   font-size: 16px;
   padding: 12px 20px 12px 40px;
   border: 1px solid #ddd;
-  margin-left: 10%;
   margin-bottom: 12px;
 }
 
-/*#myUL {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-#myUL li a {
-  margin-top: -1px;
-  background-color: #f6f6f6;
-  padding: 12px;
-  text-decoration: none;
-  font-size: 18px;
-  color: black;
-  display: block;
-}
-
-#myUL li a:hover:not(.header) {
-  background-color: #eee;
-}*/
-
-.lists {
-  /*width: 90%;*/
-}
-
-.list .list-item {
+.list-item {
 	background-color: #F3F3F3;
 	border-radius: 8px;
 	padding: 15px 20px;
@@ -59,24 +30,15 @@ body {
   margin-bottom: 5px;
 
 	display: inline-block;
+
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  cursor: move;
 }
+
 .lists .list {
-/*	display: flex;
-	flex-flow: column;
-	flex: 1;*/
-
-
 	padding: 8px;
 }
-
-.list-item {
-	/*max-width: 300px;*/
-}
-
-/*.list-item a {
-  text-decoration: none;
-  color: black;
-}*/
 
 .lists {
 	/*background-color: rgba(0, 0, 0, 0.1);*/
@@ -85,28 +47,38 @@ body {
 
 }
 
-#queue {
-	background-color: rgba(0, 0, 0, 0.1);
-	display: block;
-	/*max-width: 80%;*/
-	min-height: 200px;
-	/*max-height: 400px;*/
-	margin-left: 10%;
-
-}
-
-.sem1, .sem2 {
-	display: block;
+.sem {
+  display: block;
   margin-bottom: 20px;
-/*	margin-left: 15%;
-	margin-right: 2%;
-	margin-top: 5px;
-	margin-bottom: 5px;*/
-	min-height: 300px;
-	/*max-height: 250px;*/
-	background-color: rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  min-height: 300px;
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 
+/* Dragula from https://codepen.io/nikkipantony/pen/qoKORX */
+.gu-mirror {
+  position: fixed !important;
+  margin: 0 !important;
+  z-index: 9999 !important;
+  opacity: 0.8;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  filter: alpha(opacity=80);
+}
 
+.gu-hide {
+  display: none !important;
+}
 
+.gu-unselectable {
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+}
+
+.gu-transit {
+  opacity: 0.2;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+  filter: alpha(opacity=20);
+}
