@@ -1,7 +1,9 @@
 
-html {
-  margin: 20px;
+html,body {
+  /*margin: 20px;*/
   /*padding: 10px;*/
+  margin: 0;
+  padding: 0;
 }
 
 * {
@@ -55,6 +57,81 @@ body {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
+
+/* Sidebar */
+#content{
+  margin-left: 5%;
+  margin-right: 5%;
+  position: right;
+}
+
+.sidebar{
+  margin-bottom: -101%;
+  padding-bottom: 101%; 
+  width: 15%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.1);
+  /*background-color:grey;*/
+  transition: .7s
+}
+
+.sidebar-toggle{
+  z-index: 1;
+  outline: none;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-top: 1em;
+  background-color: rgba(0, 0, 0, 0.1);
+  /*background-color: grey;*/
+  transition: .7s;
+}
+
+.buttons{
+  display: inline-block;
+}
+
+.leftButton{
+  margin-left: 23%;
+  position: absolute;
+}
+
+.rightButton{ 
+  margin-right: 23%;
+  position: relative;
+  float: right; 
+}
+
+.leftButton.is-closed{
+  margin-left: 15%;
+  transform: translateX(-400%);
+}
+
+.rightButton.is-closed {
+  margin-right: 15%;
+  transform: translateX(400%);
+}
+
+.left {
+  position: relative;
+}
+
+.left.is-closed {
+  transform: translateX(-90%);
+}
+
+.right {  
+  float: right;
+  position: relative;
+}
+
+.right p {
+  margin-left: 10%;
+}
+
+.right.is-closed {
+  transform: translateX(90%);
+}
 
 /* Dragula from https://codepen.io/nikkipantony/pen/qoKORX */
 .gu-mirror {
