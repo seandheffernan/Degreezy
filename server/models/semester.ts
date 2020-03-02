@@ -9,15 +9,15 @@ export const semester: Schema = new Schema({
             course: String,
         }
     ],
-    semester: String
+    name: String
 });
 
 semester.index({'$**': 'text'});
 
-export async function get_semester(semester_name, callback) {
+export async function get_semester(searchString, callback) {
     await get_connection().then(() => {
         let semester_model = mongoose.model('Semester', semester)
-        semester_model.findOne({}, {}, function (data, err) {
+        semester_model.findOne({$text: {$search: searchString}}, {}, function (data, err) {
             callback(data, err);
             mongoose.disconnect();
         });
