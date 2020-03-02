@@ -5,11 +5,11 @@
     "target": "ES6"
   },
   "files": [
-    "main.ts"
+    "server/main.ts"
   ],
   "include": [
-    "models/*",
-    "routes/*"
+    "server/models/*",
+    "server/routes/*"
   ],
   "exclude": [
     "node_modules"

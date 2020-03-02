@@ -2,11 +2,11 @@
   "name": "Degree_Planner",
   "version": "1.0.0",
   "description": "",
-  "main": "main.js",
+  "main": "server/main.js",
   "scripts": {
-    "start": "node main.js",
-    "connect": "node models/connection.js",
-    "dev": "nodemon main.js"
+    "start": "node server/main.js",
+    "connect": "node server/models/connection.js",
+    "dev": "nodemon server/main.js"
   },
   "keywords": [],
   "author": "",

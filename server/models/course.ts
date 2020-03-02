@@ -16,8 +16,9 @@ export const course = mongoose.Schema({
         }
     ],
     name: String,
-    majorRestricted: Boolean
-}, {collection: 'Classes'});
+    majorRestricted: Boolean,
+    semester: String
+});
 
 course.index({'$**': 'text'});
 
@@ -49,9 +50,15 @@ export async function insert_course(course_details, callback) {
 }
 
 export const course_test = {
-    "course_code": "CSCI",
-    "course_number": 1000,
-    "name": "Computer Science I",
-    "required_major": "Computer Science"
-};
+        "course_code": "CSCI",
+        "course_number": 1100,
+        "name": "COMPUTER SCIENCE I",
+        "semester": "Spring",
+        "description": "An introduction to computer programming algorithm design and analysis. Additional topics include basic computer organization; internal representation of scalar and array data; use of top-down design and subprograms to tackle complex problems; abstract data types. Enrichment material as time allows. Interdisciplinary case studies, numerical and nonnumerical applications. Students who have passed CSCI 1200 cannot register for this course.",
+        "prerequisites": [
+        ],
+        "corequisites": [
+        ],
+        "majorRestricted": true
+    };
 
