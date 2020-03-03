@@ -24,7 +24,7 @@ semester_router.post('/', (req, res) => {
     });
 });
 
-semester_router.post('/push', (req, res) => {
+semester_router.put('/push', (req, res) => {
     console.log(req.body);
     push_course(req.body.semester, req.body.course, function(err) {
         if (err) {
@@ -35,7 +35,7 @@ semester_router.post('/push', (req, res) => {
     });
 });
 
-semester_router.post('/pull', (req, res) => {
+semester_router.delete('/pull', (req, res) => {
     console.log(req.body);
     pull_course(req.body.semester, req.body.course, function(err){
         if (err) {

@@ -2,7 +2,8 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 
-import course_router from './routes/course'
+import course_router from './routes/course';
+import semester_router from './routes/semester';
 
 const app = express();
 
@@ -10,6 +11,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use('/courses', course_router);
+app.use('/semesters', semester_router);
 
 
 // Server Start
