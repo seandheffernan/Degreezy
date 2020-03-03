@@ -4,7 +4,7 @@ import bodyParser from 'body-parser';
 
 import course_router from './routes/course';
 import semester_router from './routes/semester';
-
+import schedule_router from './routes/schedule';
 const app = express();
 
 // Middleware
@@ -12,6 +12,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use('/courses', course_router);
 app.use('/semesters', semester_router);
+app.use('/schedules', schedule_router);
 
 
 // Server Start
