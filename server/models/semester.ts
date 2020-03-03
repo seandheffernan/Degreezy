@@ -39,7 +39,8 @@ export async function insert_semester(semester_details, callback) {
 export async function push_course(semester_name, course_name, callback) {
     await get_connection().then(() => {
         let semester_model = mongoose.model('Semester', semester);
-        semester_model.findOneAndUpdate({semester: semester_name},{$push: {'courses' : course_name }}, function(err) {
+        var course = { course: course_name };
+        semester_model.findOneAndUpdate({semester: semester_name}, {$push: { courses: course}}, function(err) {
             if (err) {
                 console.log(err);
             } else {
@@ -53,7 +54,8 @@ export async function push_course(semester_name, course_name, callback) {
 export async function pull_course(semester_name, course_name, callback) { //in theory, it should remove course from semester, but needs testing
     await get_connection().then(() => {
         let semester_model = mongoose.model('Semester', semester);
-        semester_model.findOneAndUpdate({semester: semester_name},{$pull: {results: {$elemMatch: {'courses': course_name}} }}, function(err) {
+        var course = { course: course_name };
+        semester_model.findOneAndUpdate({semester: semester_name}, {$pull: { courses: course}}, function(err) {
             if (err) {
                 console.log(err);
             } else {
