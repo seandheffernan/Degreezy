@@ -1,15 +1,31 @@
 /* Dragula inspired by https://codepen.io/nikkipantony/pen/qoKORX */
-dragula([
-  document.getElementById("queue"),
-  document.getElementById("y1s1"),
-  document.getElementById("y1s2"),
-  document.getElementById("y2s1"),
-  document.getElementById("y2s2"),
-  document.getElementById("y3s1"),
-  document.getElementById("y3s2"),
-  document.getElementById("y4s1"),
-  document.getElementById("y4s2")
-]);
+$(document).ready(function(){
+  var arraylike = document.getElementsByClassName('contain');
+  containers = arraylike.toArray();
+  console.log(containers);
+  var drake = dragula({ containers: containers });
+  // var drake = dragula(
+  //   // var containers = $('.container').toArray();
+  //   // dragula(containers);
+  //   [
+  //     // document.getElementById("queue"),
+  //     // document.getElementsByClassName('sem')
+  //     // document.getElementById("y1s1"),
+  //     // document.getElementById("y1s2"),
+  //     // document.getElementById("y2s3"),
+  //     // document.getElementById("y2s4"),
+  //     // document.getElementById("y3s5"),
+  //     // document.getElementById("y3s6"),
+  //     // document.getElementById("y4s7"),
+  //     // document.getElementById("y4s8")
+  // ]);
+  drake.on('drop', (el, target) => {
+    //this is where we change semester based on drop location
+    console.log(target.id);
+    el.classList.add('ex-moved');
+  });
+})
+
 
 // removeOnSpill: false
 //   .on("drag", function(el) {
@@ -93,3 +109,4 @@ dragula([
 //     }
 //   }
 // }
+

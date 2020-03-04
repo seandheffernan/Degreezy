@@ -19,7 +19,6 @@ app.use('/', express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/public'));
 app.use(express.static(path.join(__dirname, '../public')));
 
-
 // Server Start
 const port = 3000;
 
