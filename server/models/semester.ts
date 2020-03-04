@@ -38,11 +38,11 @@ export async function insert_semester(semester_details, callback) {
     });
 }
 
-export async function push_course(semester_name, course_name, callback) {
+export async function push_course(semester, course_name, callback) {
     await get_connection().then(() => {
         let semester_model = mongoose.model('Semester', semester);
         var course = { course: course_name };
-        semester_model.findOneAndUpdate({semester: semester_name}, {$push: { courses: course}}, function(err) {
+        semester_model.findOneAndUpdate({$text: {$search: semester}}, {$push: { courses: course}}, function(err) {
             if (err) {
                 console.log(err);
             } else {
