@@ -24,22 +24,14 @@
       <div class="container">
         <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for classes" title="Search for classes">
       </div>
-      <h1>{{schedule}}</h1>
       <div class="lists container">
         <div class="row justify-content-center">
           <ul class="col-md-auto list" id="queue">
-            <li dragula="first" class="list-item">{{schedule}}</li>
-            <li class="list-item">Intro to IT</li>            
-            <li class="list-item">Intro to CS</li>
-            <li class="list-item">Data Structures</li>
-            <li class="list-item">Web Systems</li>
-            <li class="list-item">Intro to HCI</li>
-            <li class="list-item">IT and Society</li>
-            <li class="list-item">Remedial Big Maths</li>
+            <li ng-repeat="i in schedule" class="list-item">{{i.semester.courses[0].course}}</li>  
           </ul>
         </div>
       </div>
-
+  
       <div class="lists container">
         <div class="row">
           <div class="col-md-6">
@@ -87,9 +79,9 @@
               method: 'GET',
               url: '/schedules'
               }).then(function successCallback(response) {
-                $scope.schedule = response.data.semesters[0].semester.courses[0].course; //For just one course 
+                $scope.schedule = response.data.semesters; 
                 console.log("API: " + "/schedules");
-                console.log(response.data);
+                console.log(response.data.semesters);
                 console.log("Success!");
               }, function errorCallback(response) {
                 console.log(response.data);
