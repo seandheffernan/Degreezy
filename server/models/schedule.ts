@@ -14,7 +14,7 @@ export const schedule:Schema = new Schema({
 export async function get_schedule(semester, callback) {
     await get_connection().then(() => {
             let schedule_model = mongoose.model('Schedule', schedule);
-            schedule_model.findOne({}, {}, function (data, err) {
+            schedule_model.findOne({schedule_semester: semester}, {}, function (data, err) {
                 callback(data, err);
                 mongoose.disconnect();
             });
