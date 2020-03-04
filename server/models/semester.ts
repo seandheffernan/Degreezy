@@ -9,13 +9,15 @@ export const semester: Schema = new Schema({
             course: String,
         }
     ],
-    semester: String
+    name: String
 });
 
-export async function get_semester(semester_name, callback) {
+semester.index({'$**': 'text'});
+
+export async function get_semester(searchString, callback) {
     await get_connection().then(() => {
         let semester_model = mongoose.model('Semester', semester)
-        semester_model.findOne({semester: semester_name}, {}, function (data, err) {
+        semester_model.findOne({name: searchString}, {}, function (data, err) {
             callback(data, err);
             mongoose.disconnect();
         });
@@ -40,7 +42,7 @@ export async function push_course(semester_name, course_name, callback) {
     await get_connection().then(() => {
         let semester_model = mongoose.model('Semester', semester);
         var course = { course: course_name };
-        semester_model.findOneAndUpdate({semester: semester_name}, {$push: { courses: course}}, function(err) {
+        semester_model.findOneAndUpdate({name: semester_name}, {$push: {courses: course}}, function(err) {
             if (err) {
                 console.log(err);
             } else {
@@ -51,11 +53,11 @@ export async function push_course(semester_name, course_name, callback) {
     });
 }
 
-export async function pull_course(semester_name, course_name, callback) { //in theory, it should remove course from semester, but needs testing
+export async function pull_course(semester_name, course_name, callback) {
     await get_connection().then(() => {
         let semester_model = mongoose.model('Semester', semester);
         var course = { course: course_name };
-        semester_model.findOneAndUpdate({semester: semester_name}, {$pull: { courses: course}}, function(err) {
+        semester_model.findOneAndUpdate({name: semester_name}, {$pull: {courses: course}}, function(err) {
             if (err) {
                 console.log(err);
             } else {
