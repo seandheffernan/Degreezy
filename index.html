@@ -24,11 +24,12 @@
       <div class="container">
         <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for classes" title="Search for classes">
       </div>
-
+      <h1>{{schedule}}</h1>
       <div class="lists container">
         <div class="row justify-content-center">
           <ul class="col-md-auto list" id="queue">
-            <li class="list-item">Intro to IT</li>
+            <li dragula="first" class="list-item">{{schedule}}</li>
+            <li class="list-item">Intro to IT</li>            
             <li class="list-item">Intro to CS</li>
             <li class="list-item">Data Structures</li>
             <li class="list-item">Web Systems</li>
@@ -80,20 +81,25 @@
     <script>
        var app = angular.module('app', []);
     
-       app.controller('ctrl', function ($scope, $http) {
+      app.controller('ctrl', function ($scope, $http) {
         $scope.run = function(){
           $http({
               method: 'GET',
               url: '/schedules'
-            }).then(function successCallback(response) {
+              }).then(function successCallback(response) {
+                $scope.schedule = response.data.semesters[0].semester.courses[0].course; //For just one course 
+                console.log("API: " + "/schedules");
                 console.log(response.data);
                 console.log("Success!");
               }, function errorCallback(response) {
                 console.log(response.data);
               }); 
-          console.log("Hopefully run a GET request at some point");
-        }   
-        });
+            console.log("Hopefully run a GET request at some point");
+          }
+        // $scope.$on('first.drop', function (e, el) {
+        //   el.addClass('ex-moved');
+        // });   //TRYING TO FIGURE OUT DROP NONSENSE
+      });
     </script>
   </body>
 </html>

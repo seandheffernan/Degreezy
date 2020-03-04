@@ -13,6 +13,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use('/courses', course_router);
 app.use('/semesters', semester_router);
 app.use('/schedules', schedule_router);
+
 var path = require('path');
 app.use('/', express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/public'));
