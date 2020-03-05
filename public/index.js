@@ -35,14 +35,15 @@ app.controller('ctrl', function ($scope, $http) {
     ]);
     drake.on('drop', (el, target) => {
       //this is where we change semester based on drop location
-      send(target.Id);
+      $scope.send(target.id, el.id);
       el.classList.add('ex-moved');
     });
-    $scope.send = function(semesterID){
-      $http({
-        // method: 'POST',
-        // url: '' THIS IS WHERE POST REQUEST GOES SOMEONE DO THIS THANK
-      })
+    $scope.send = function(semesterID, courseInfo){
+      console.log("INFO:" +courseInfo);
+      // $http({
+      //   // method: 'POST',
+      //   // url: '' THIS IS WHERE POST REQUEST GOES SOMEONE DO THIS THANK
+      // })
     } 
 });
 
