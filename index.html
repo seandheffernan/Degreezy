@@ -27,43 +27,42 @@
       <div class="lists container">
         <div class="row justify-content-center">
           <ul class="col-md-auto list" id="queue" >
-            <li ng-repeat="i in schedule" class="list-item contain">{{i.semester.courses[0].course}}</li>  
+            <li ng-repeat="i in courses" class="list-item">{{i.name}}</li>  
           </ul>
         </div>
       </div>
       <div class="lists container">
         <div class="row">
           <!-- ng-repeat="i in schedule"> -->
-          <div class="col-md-6 " ng-repeat="i in schedule">
-            <ul class="sem contain" ng-attr-id="{{i.semester.semester}}"></ul>
+          <div class="col-md-6 " >
+            <!-- y{{Math.ceil(($index+1)/2)}}s{{$index+1}} -->
+            <ul class="sem" id="sem1"></ul>
+          </div>
+          <div class="col-md-6 " >
+            <ul class="sem" id="sem2"></ul>
+          </div>
+          <div class="col-md-6 " >
+            <ul class="sem" id="sem3"></ul>
+          </div>
+          <div class="col-md-6 " >
+            <ul class="sem" id="sem4"></ul>
+          </div>
+          <div class="col-md-6 " >
+            <ul class="sem" id="sem5"></ul>
+          </div>
+          <div class="col-md-6 " >
+            <ul class="sem" id="sem6"></ul>
+          </div>
+          <div class="col-md-6 " >
+            <ul class="sem" id="sem7"></ul>
+          </div>
+          <div class="col-md-6 " >
+            <ul class="sem" id="sem8"></ul>
           </div>
         </div>
       </div>
     </div>
+  
     <script src="index.js"></script>
-    <script>
-      var app = angular.module('app', []);
-      app.controller('ctrl', function ($scope, $http) {
-        $scope.Math=window.Math;
-        $scope.run = function(){
-          $http({
-              method: 'GET',
-              url: '/schedules'
-            }).then(function successCallback(response) {
-                $scope.schedule = response.data.semesters; 
-                console.log("API: " + "/schedules");
-                console.log(response.data.semesters);
-                console.log("Success!");
-            }, function errorCallback(response) {
-                console.log(response.data);
-            }); 
-          }
-        // $scope.$on('list-item.drop', function (e, el) {
-        //   el.addClass('ex-moved');
-        // });   //TRYING TO FIGURE OUT DROP NONSENSE
-        //nvm we're using regular dragula and not dragula w angular idk if it works through this
-        
-      });
-    </script>
   </body>
 </html>

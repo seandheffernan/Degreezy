@@ -1,30 +1,55 @@
+var app = angular.module('app', []);
+app.controller('ctrl', function ($scope, $http) {
+  // $scope.Math=window.Math;
+  $scope.run = function(){
+    $http({
+      method: 'GET',
+        url: '/courses?searchString=CSCI'
+      }).then(function successCallback(response) {
+          $scope.courses = response.data; 
+          console.log("Success!");
+      }, function errorCallback(response) {
+          console.log(response.data);
+    })
+    $http({
+        method: 'GET',
+        url: '/schedules'
+      }).then(function successCallback(response) {
+          $scope.schedule = response.data.semesters;
+          console.log("Success!");
+      }, function errorCallback(response) {
+          console.log(response.data);
+      }); 
+    }
+    var drake = dragula(
+      [
+        document.getElementById("queue"),
+        document.getElementById("sem1"),
+        document.getElementById("sem2"),
+        document.getElementById("sem3"),
+        document.getElementById("sem4"),
+        document.getElementById("sem5"),
+        document.getElementById("sem6"),
+        document.getElementById("sem7"),
+        document.getElementById("sem8")
+    ]);
+    drake.on('drop', (el, target) => {
+      //this is where we change semester based on drop location
+      send(target.Id);
+      el.classList.add('ex-moved');
+    });
+    $scope.send = function(semesterID){
+      $http({
+        // method: 'POST',
+        // url: '' THIS IS WHERE POST REQUEST GOES SOMEONE DO THIS THANK
+      })
+    } 
+});
+
+
 /* Dragula inspired by https://codepen.io/nikkipantony/pen/qoKORX */
-$(document).ready(function(){
-  var arraylike = document.getElementsByClassName('contain');
-  containers = arraylike.toArray();
-  console.log(containers);
-  var drake = dragula({ containers: containers });
-  // var drake = dragula(
-  //   // var containers = $('.container').toArray();
-  //   // dragula(containers);
-  //   [
-  //     // document.getElementById("queue"),
-  //     // document.getElementsByClassName('sem')
-  //     // document.getElementById("y1s1"),
-  //     // document.getElementById("y1s2"),
-  //     // document.getElementById("y2s3"),
-  //     // document.getElementById("y2s4"),
-  //     // document.getElementById("y3s5"),
-  //     // document.getElementById("y3s6"),
-  //     // document.getElementById("y4s7"),
-  //     // document.getElementById("y4s8")
-  // ]);
-  drake.on('drop', (el, target) => {
-    //this is where we change semester based on drop location
-    console.log(target.id);
-    el.classList.add('ex-moved');
-  });
-})
+
+
 
 
 // removeOnSpill: false
