@@ -35,7 +35,7 @@ semester_router.put('/push', (req, res) => {
     });
 });
 
-semester_router.delete('/pull', (req, res) => {
+semester_router.post('/pull', (req, res) => {
     console.log(req.body);
     pull_course(req.body.name, req.body.course, function(err){
         if (err) {

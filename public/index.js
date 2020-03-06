@@ -162,7 +162,7 @@ app.controller('ctrl', function ($scope, $http) {
       // alert(sourceID + " " + course_json.name);
 
       $http({
-          method: 'DELETE',
+          method: 'POST',
           url: '/semesters/pull',
           dataType: 'JSON',
           data: to_delete
