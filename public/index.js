@@ -106,8 +106,8 @@ app.controller('ctrl', function ($scope, $http) {
 
     if (sourceID != semesterID) {
       if (course_json.name) {
-        alert(sourceID + " " + course_json.name);
-        alert(semesterID + " " + course_json.name);
+        // alert(sourceID + " " + course_json.name);
+        // alert(semesterID + " " + course_json.name);
         var to_delete = {
           course: course_json.name,
           name: sourceID
@@ -119,8 +119,8 @@ app.controller('ctrl', function ($scope, $http) {
         };
       } else {
         // alert(semesterID);
-        alert(sourceID + " " + course_json);
-        alert(semesterID + " " + course_json);
+        // alert(sourceID + " " + course_json);
+        // alert(semesterID + " " + course_json);
         var to_delete = {
           course: course_json,
           name: sourceID
