@@ -49,33 +49,43 @@ app.controller('ctrl', function ($scope, $http) {
 
     // *************************************************
 
-    // var all_semester_content = {
-    //   sem1: {},
-    //   sem2: {},
-    //   sem3: {},
-    //   sem4: {},
-    //   sem5: {},
-    //   sem6: {},
-    //   sem7: {},
-    //   sem8: {}
-    // };
+    var all_semester_content = {
+      sem1: [],
+      sem2: [],
+      sem3: [],
+      sem4: [],
+      sem5: [],
+      sem6: [],
+      sem7: [],
+      sem8: []
+    };
 
-    // for (let i = 1; i <= 8; i++) {
-    //   var string = "sem" + i;
-    //   var link = '/semesters?semester=' + string
+    for (let i = 1; i <= 1; i++) {
+      var string = "sem" + i;
+      var link = '/semesters?semester_name=' + string
+      // alert(link);
 
-    //   $http({
-    //       method: 'GET',
-    //       url: link
-    //     }).then(function successCallback(response) {
-    //         // $scope.string = response.data.semesters;
-            
-            
-    //         console.log("Success!");
-    //     }, function errorCallback(response) {
-    //         console.log(response.data);
-    //   });
-    // }
+      $http({
+          method: 'GET',
+          url: link
+        }).then(function successCallback(response) {
+            alert(response.data);
+            // var test = JSON.parse(response.data);
+
+            // alert(test);
+            // for (let i = 0; i < response.) {
+
+            // }
+
+            // all_semester_content.sem1.push(response.data);
+            // $scope.string = response.data.semesters;
+
+
+            console.log("Success!");
+        }, function errorCallback(response) {
+            console.log(response.data);
+      });
+    }
 
   }
   var drake = dragula([
@@ -149,7 +159,7 @@ app.controller('ctrl', function ($scope, $http) {
         name: sourceID
       };
 
-      alert(sourceID + " " + course_json.name);
+      // alert(sourceID + " " + course_json.name);
 
       $http({
           method: 'DELETE',
@@ -168,7 +178,7 @@ app.controller('ctrl', function ($scope, $http) {
         name: semesterID
       };
 
-      alert(semesterID + " " + course_json.name);
+      // alert(semesterID + " " + course_json.name);
 
       $http({
           method: 'PUT',
