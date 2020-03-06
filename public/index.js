@@ -6,7 +6,7 @@ app.controller('ctrl', function ($scope, $http) {
       method: 'GET',
         url: '/courses?searchString=CSCI'
       }).then(function successCallback(response) {
-          $scope.courses = response.data; 
+          $scope.courses = response.data;
           console.log("Success!");
       }, function errorCallback(response) {
           console.log(response.data);
@@ -25,6 +25,9 @@ app.controller('ctrl', function ($scope, $http) {
 
 
     // TEMP SETUP OF THE SEMESTERS IN THE LOCAL DATABASE
+    // Instructions: Uncomment the blocked off section
+    //   below to get the semester database up and
+    //   running on page load; comment out afterwards
     // *************************************************
 
     // for (let i = 1; i <= 8; i++) {
@@ -49,18 +52,9 @@ app.controller('ctrl', function ($scope, $http) {
 
     // *************************************************
 
-    var all_semester_content = {
-      sem1: [],
-      sem2: [],
-      sem3: [],
-      sem4: [],
-      sem5: [],
-      sem6: [],
-      sem7: [],
-      sem8: []
-    };
+    var all_semester_content = [[], [], [], [], [], [], [], []];
 
-    for (let i = 1; i <= 1; i++) {
+    for (let i = 1; i <= 8; i++) {
       var string = "sem" + i;
       var link = '/semesters?semester_name=' + string
       // alert(link);
@@ -69,17 +63,13 @@ app.controller('ctrl', function ($scope, $http) {
           method: 'GET',
           url: link
         }).then(function successCallback(response) {
-            alert(response.data);
-            // var test = JSON.parse(response.data);
+            var head = response.data.courses;
 
-            // alert(test);
-            // for (let i = 0; i < response.) {
-
-            // }
-
-            // all_semester_content.sem1.push(response.data);
-            // $scope.string = response.data.semesters;
-
+            for (let j in head) {
+              // alert(JSON.stringify(head[j]));
+              all_semester_content[i-1].push(head[j].course);
+            }
+            $scope.sem_content = all_semester_content;
 
             console.log("Success!");
         }, function errorCallback(response) {
@@ -88,6 +78,7 @@ app.controller('ctrl', function ($scope, $http) {
     }
 
   }
+
   var drake = dragula([
     document.getElementById("queue"),
     document.getElementById("sem1"),
@@ -100,66 +91,46 @@ app.controller('ctrl', function ($scope, $http) {
     document.getElementById("sem8")
   ]);
 
-  // // ON DRAG
-  // // uses source of the drag (where the dragged element originated from)
-  // drake.on('drag', (el, source) => {
-  //   // never to be deleted from the queue
-  //   // if (source.id != "queue") {
-  //     $scope.drag(source.id, el.id);
-  //   // }
-  //   // el.classList.add('ex-moved');
-  // });
-  // $scope.drag = function(sourceID, courseInfo){
-  //   console.log("INFO:" +courseInfo);
-
-  //   // name should be semester name
-  //   // courses array should be filled with courses for that semester
-
-  //   var course_json = JSON.parse(courseInfo);
-  //   // alert(sourceID + " " + course_json.name);
-
-  //   var object = {
-  //     course: course_json.name,
-  //     name: sourceID
-  //   };
-
-  //   $http({
-  //       method: 'DELETE',
-  //       url: '/semesters/pull',
-  //       dataType: 'JSON',
-  //       data: object
-  //     }).then(function successCallback(response) {
-  //         // $scope.schedule = response.data.semesters;
-  //         console.log("DELETE successful");
-  //     }, function errorCallback(response) {
-  //         console.log(response.data);
-  //   });
-  // }
-
   // ON DROP
   // uses target of the drag (where it will be dropped) &
   // uses source of the drag (where the dragged element originated from)
-
   drake.on('drop', (el, target, source) => {
-    // alert(source.id);
+    // alert(el.id);
     $scope.drop(source.id, target.id, el.id);
     el.classList.add('ex-moved');
   });
   $scope.drop = function(sourceID, semesterID, courseInfo){
     console.log("INFO:" +courseInfo);
 
-    // name should be semester name
-    // courses array should be filled with courses for that semester
-
     var course_json = JSON.parse(courseInfo);
 
     if (sourceID != semesterID) {
-      var to_delete = {
-        course: course_json.name,
-        name: sourceID
-      };
+      if (course_json.name) {
+        alert(sourceID + " " + course_json.name);
+        alert(semesterID + " " + course_json.name);
+        var to_delete = {
+          course: course_json.name,
+          name: sourceID
+        };
 
-      // alert(sourceID + " " + course_json.name);
+        var to_insert = {
+          course: course_json.name,
+          name: semesterID
+        };
+      } else {
+        // alert(semesterID);
+        alert(sourceID + " " + course_json);
+        alert(semesterID + " " + course_json);
+        var to_delete = {
+          course: course_json,
+          name: sourceID
+        };
+
+        var to_insert = {
+          course: course_json,
+          name: semesterID
+        };
+      }
 
       $http({
           method: 'POST',
@@ -167,18 +138,10 @@ app.controller('ctrl', function ($scope, $http) {
           dataType: 'JSON',
           data: to_delete
         }).then(function successCallback(response) {
-            // $scope.schedule = response.data.semesters;
             console.log("DELETE successful");
         }, function errorCallback(response) {
             console.log(response.data);
       });
-
-      var to_insert = {
-        course: course_json.name,
-        name: semesterID
-      };
-
-      // alert(semesterID + " " + course_json.name);
 
       $http({
           method: 'PUT',
@@ -186,26 +149,11 @@ app.controller('ctrl', function ($scope, $http) {
           dataType: 'JSON',
           data: to_insert
         }).then(function successCallback(response) {
-            // $scope.schedule = response.data.semesters;
             console.log("PUT successful");
         }, function errorCallback(response) {
             console.log(response.data);
       });
     }
-
-    // $http({
-    //     method: 'PUT',
-    //     url: '/semesters/push',
-    //     dataType: 'JSON',
-    //     data: object
-    //   }).then(function successCallback(response) {
-    //       // $scope.schedule = response.data.semesters;
-    //       console.log("PUT successful");
-    //   }, function errorCallback(response) {
-    //       console.log(response.data);
-    // });
-
-    // when removed from a semester, DELETE request should be issued
   }
 });
 
