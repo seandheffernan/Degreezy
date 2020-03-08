@@ -4,7 +4,7 @@ import {insert_semester, semester, get_semester, push_course, pull_course} from 
 const semester_router = express.Router();
 
 semester_router.get('/', (req, res) => {
-    get_semester(req.query.searchString, function(err, data) {
+    get_semester(req.query.semester_name, function(err, data) {
         if (err) {
             res.send(err);
         } else {
@@ -35,7 +35,7 @@ semester_router.put('/push', (req, res) => {
     });
 });
 
-semester_router.delete('/pull', (req, res) => {
+semester_router.post('/pull', (req, res) => {
     console.log(req.body);
     pull_course(req.body.name, req.body.course, function(err){
         if (err) {
