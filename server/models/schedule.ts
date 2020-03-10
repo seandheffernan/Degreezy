@@ -6,7 +6,7 @@ const Schema = mongoose.Schema;
 export const schedule: Schema = new Schema({
     semesters: [
         {
-            semester: semester
+            semester: String
         }
     ]
 });
