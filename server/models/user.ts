@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import {Programs} from "./program";
 import {course} from "./course";
-import {schedule} from "./schedule";
+import {get_connection} from './connection'
 
 export const userModel = mongoose.Schema({
     username: String,
@@ -11,7 +11,9 @@ export const userModel = mongoose.Schema({
     programs: [Programs],
     concentration: String,
     name: String,
-    schedule: schedule
+    schedule: {
+        semester: String
+    }
 });
 
 export function get_progress(name, callback) {
