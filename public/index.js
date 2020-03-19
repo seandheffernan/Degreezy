@@ -6,45 +6,155 @@ app.controller('ctrl', function ($scope, $http) {
       method: 'GET',
         url: '/courses?searchString=CSCI'
       }).then(function successCallback(response) {
-          $scope.courses = response.data; 
+          $scope.courses = response.data;
           console.log("Success!");
       }, function errorCallback(response) {
           console.log(response.data);
     })
-    $http({
-        method: 'GET',
-        url: '/schedules'
-      }).then(function successCallback(response) {
-          $scope.schedule = response.data.semesters;
-          console.log("Success!");
-      }, function errorCallback(response) {
-          console.log(response.data);
-      }); 
+    // to be implemented
+    // $http({
+    //     method: 'GET',
+    //     url: '/schedules'
+    //   }).then(function successCallback(response) {
+    //       $scope.schedule = response.data.semesters;
+    //       console.log("Success!");
+    //   }, function errorCallback(response) {
+    //       console.log(response.data);
+    // });
+
+
+
+    // TEMP SETUP OF THE SEMESTERS IN THE LOCAL DATABASE
+    // Instructions: Uncomment the blocked off section
+    //   below to get the semester database up and
+    //   running on page load; comment out afterwards
+    // *************************************************
+
+    // for (let i = 1; i <= 8; i++) {
+    //   var string = "sem" + i;
+    //   var object = {
+    //     courses: [],
+    //     name: string
+    //   };
+
+    //   $http({
+    //       method: 'POST',
+    //       url: '/semesters',
+    //       dataType: 'JSON',
+    //       data: object
+    //     }).then(function successCallback(response) {
+    //         // $scope.schedule = response.data.semesters;
+    //         console.log("Success!");
+    //     }, function errorCallback(response) {
+    //         console.log(response.data);
+    //   });
+    // }
+
+    // *************************************************
+
+    var all_semester_content = [[], [], [], [], [], [], [], []];
+
+    for (let i = 1; i <= 8; i++) {
+      var string = "sem" + i;
+      var link = '/semesters?semester_name=' + string
+      // alert(link);
+
+      $http({
+          method: 'GET',
+          url: link
+        }).then(function successCallback(response) {
+            var head = response.data.courses;
+
+            for (let j in head) {
+              // alert(JSON.stringify(head[j]));
+              all_semester_content[i-1].push(head[j].course);
+            }
+            $scope.sem_content = all_semester_content;
+
+            console.log("Success!");
+        }, function errorCallback(response) {
+            console.log(response.data);
+      });
     }
-    var drake = dragula(
-      [
-        document.getElementById("queue"),
-        document.getElementById("sem1"),
-        document.getElementById("sem2"),
-        document.getElementById("sem3"),
-        document.getElementById("sem4"),
-        document.getElementById("sem5"),
-        document.getElementById("sem6"),
-        document.getElementById("sem7"),
-        document.getElementById("sem8")
-    ]);
-    drake.on('drop', (el, target) => {
-      //this is where we change semester based on drop location
-      $scope.send(target.id, el.id);
-      el.classList.add('ex-moved');
-    });
-    $scope.send = function(semesterID, courseInfo){
-      console.log("INFO:" +courseInfo);
-      // $http({
-      //   // method: 'POST',
-      //   // url: '' THIS IS WHERE POST REQUEST GOES SOMEONE DO THIS THANK
-      // })
-    } 
+
+  }
+
+  var drake = dragula([
+    document.getElementById("queue"),
+    document.getElementById("sem1"),
+    document.getElementById("sem2"),
+    document.getElementById("sem3"),
+    document.getElementById("sem4"),
+    document.getElementById("sem5"),
+    document.getElementById("sem6"),
+    document.getElementById("sem7"),
+    document.getElementById("sem8")
+  ]);
+
+  // ON DROP
+  // uses target of the drag (where it will be dropped) &
+  // uses source of the drag (where the dragged element originated from)
+  drake.on('drop', (el, target, source) => {
+    // alert(el.id);
+    $scope.drop(source.id, target.id, el.id);
+    el.classList.add('ex-moved');
+  });
+  $scope.drop = function(sourceID, semesterID, courseInfo){
+    console.log("INFO:" +courseInfo);
+
+    var course_json = JSON.parse(courseInfo);
+
+    if (sourceID != semesterID) {
+      if (course_json.name) {
+        // alert(sourceID + " " + course_json.name);
+        // alert(semesterID + " " + course_json.name);
+        var to_delete = {
+          course: course_json.name,
+          name: sourceID
+        };
+
+        var to_insert = {
+          course: course_json.name,
+          name: semesterID
+        };
+      } else {
+        // alert(semesterID);
+        // alert(sourceID + " " + course_json);
+        // alert(semesterID + " " + course_json);
+        var to_delete = {
+          course: course_json,
+          name: sourceID
+        };
+
+        var to_insert = {
+          course: course_json,
+          name: semesterID
+        };
+      }
+
+      $http({
+          method: 'POST',
+          url: '/semesters/pull',
+          dataType: 'JSON',
+          data: to_delete
+        }).then(function successCallback(response) {
+            console.log("DELETE successful");
+        }, function errorCallback(response) {
+            console.log(response.data);
+      });
+
+      $http({
+          method: 'PUT',
+          url: '/semesters/push',
+          dataType: 'JSON',
+          data: to_insert
+        }).then(function successCallback(response) {
+            console.log("PUT successful");
+        }, function errorCallback(response) {
+            console.log(response.data);
+      });
+    }
+  }
 });
 
 

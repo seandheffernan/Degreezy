@@ -46,14 +46,14 @@
     </nav>
     <div class = "mainBody">
       <div ng-controller="ctrl" ng-init="run()"> 
-        <div class = "sticky">    
+        <div class = "sticky">
           <br/>  
           <div class="sticky container">
             <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for classes" title="Search for classes">
           </div>
           <div class="sticky lists container">
             <div class="row justify-content-center">
-              <ul class="col-md-auto list" id="queue" >
+              <ul class="col-md-auto list" id="queue">
                 <li ng-repeat="i in courses" class="list-item" id="{{i}}">{{i.name}}</li>  
               </ul>
             </div>
@@ -81,35 +81,51 @@
             <!-- ng-repeat="i in schedule"> -->
             <div class="col-md-6 " >
               <!-- y{{Math.ceil(($index+1)/2)}}s{{$index+1}} -->
-              <ul class="sem" id="sem1"></ul>
+              <ul class="sem" id="sem1">
+                <li ng-repeat="i in sem_content[0]" class="list-item" id="{{sem_content[0]}}">{{i}}</li>
+              </ul>
               <div id="semTitle">Year 1 Semester 1</div>
             </div>
-            <div class="col-md-6 " >
-              <ul class="sem" id="sem2"></ul>
+            <div class="col-md-6" >
+              <ul class="sem" id="sem2">
+                <li ng-repeat="i in sem_content[1]" class="list-item" id="{{sem_content[1]}}">{{i}}</li>
+              </ul>
               <div id="semTitle">Year 1 Semester 2</div>
             </div>
-            <div class="col-md-6 " >
-              <ul class="sem" id="sem3"></ul>
+            <div class="col-md-6" >
+              <ul class="sem" id="sem3">
+                <li ng-repeat="i in sem_content[2]" class="list-item" id="{{sem_content[2]}}">{{i}}</li>
+              </ul>
               <div id="semTitle">Year 2 Semester 1</div>
             </div>
-            <div class="col-md-6 " >
-              <ul class="sem" id="sem4"></ul>
+            <div class="col-md-6" >
+              <ul class="sem" id="sem4">
+                <li ng-repeat="i in sem_content[3]" class="list-item" id="{{sem_content[3]}}">{{i}}</li>
+              </ul>
               <div id="semTitle">Year 2 Semester 2</div>
             </div>
-            <div class="col-md-6 " >
-              <ul class="sem" id="sem5"></ul>
+            <div class="col-md-6" >
+              <ul class="sem" id="sem5">
+                <li ng-repeat="i in sem_content[4]" class="list-item" id="{{sem_content[4]}}">{{i}}</li>
+              </ul>
               <div id="semTitle">Year 3 Semester 1</div>
             </div>
-            <div class="col-md-6 " >
-              <ul class="sem" id="sem6"></ul>
+            <div class="col-md-6" >
+              <ul class="sem" id="sem6">
+                <li ng-repeat="i in sem_content[5]" class="list-item" id="{{sem_content[5]}}">{{i}}</li>
+              </ul>
               <div id="semTitle">Year 3 Semester 2</div>
             </div>
-            <div class="col-md-6 " >
-              <ul class="sem" id="sem7"></ul>
+            <div class="col-md-6" >
+              <ul class="sem" id="sem7">
+                <li ng-repeat="i in sem_content[6]" class="list-item" id="{{sem_content[6]}}">{{i}}</li>
+              </ul>
               <div id="semTitle">Year 4 Semester 1</div>
             </div>
-            <div class="col-md-6 " >
-              <ul class="sem" id="sem8"></ul>
+            <div class="col-md-6" >
+              <ul class="sem" id="sem8">
+                <li ng-repeat="i in sem_content[7]" class="list-item" id="{{sem_content[7]}}">{{i}}</li>
+              </ul>
               <div id="semTitle">Year 4 Semester 2</div>
             </div>
           </div>
