@@ -11,9 +11,9 @@ export const userModel = mongoose.Schema({
     programs: [Programs],
     concentration: String,
     name: String,
-    schedule: {
+    schedule: [{
         semester: String
-    }
+    }]
 });
 
 export function get_progress(name, callback) {
