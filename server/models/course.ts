@@ -16,7 +16,8 @@ export const course = mongoose.Schema({
     ],
     name: String,
     majorRestricted: Boolean,
-    semester: String
+    semester: String,
+    description: String
 });
 
 course.index({'$**': 'text'});
