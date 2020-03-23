@@ -1,10 +1,12 @@
 // Dependencies
 import express from 'express';
 import bodyParser from 'body-parser';
+import {get_connection} from "./models/connection";
 
 import course_router from './routes/course';
 import semester_router from './routes/semester';
 import schedule_router from './routes/schedule';
+
 const app = express();
 
 // Middleware
@@ -24,4 +26,6 @@ const port = 3000;
 
 app.get('/', (req, res) => res.sendFile('index.html', {root: "."}));
 
-app.listen(port, () => console.log(`Example app listening on port ${port}`));
+app.listen(port, () => {
+    get_connection().then(r => console.log(`App Running on Port ${port}`))
+});
