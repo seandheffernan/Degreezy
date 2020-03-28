@@ -6,12 +6,12 @@ export const course = mongoose.Schema({
     course_number: Number,
     prerequisites: [
         {
-            course: String
+            course: mongoose.Schema.Types.ObjectID
         }
     ],
     corequisites: [
         {
-            course: String
+            course: mongoose.Schema.Types.ObjectID
         }
     ],
     name: String,
