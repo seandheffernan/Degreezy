@@ -128,19 +128,20 @@ export function add_course_taken(token, course_name, callback) {
     });
 }
 
-export function check_prereq(token, course_name, callback) {
+export function check_prereq(token, course_name, callback) {//current function looks at an arbitrary class that is not taken by the user yet.
     let user_model = mongoose.model('User', userModel)
     var target = user_model.find({_id: token})
     var target_sem = null;
     var target_course = null;
     let course_model = mongoose.model('Course', course);
-    target_course = course_model.find({$text: {$search: course_name}});
+    target_course = course_model.find({$text: {$search: course_name}}); //find course
+    //grab the pre reqs
     if (target != null) {
         for (var semester_id in target.schedule) {
             let semester_model = mongoose.model('Semester', semester);
             target_sem = semester_model.findById(semester_id);
-            if (target_sem.courses.find()) { //change that to prereq class
-                break;
+            if (target_sem.courses.find()) { //see if semester has said pre reqs
+                break;//do somthing to note that we found one of em
             }
         }
     }
