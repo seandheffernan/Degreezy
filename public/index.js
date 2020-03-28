@@ -122,12 +122,12 @@ app.controller('ctrl', function ($scope, $http) {
         // alert(sourceID + " " + course_json);
         // alert(semesterID + " " + course_json);
         var to_delete = {
-          course: course_json,
+          course: course_json[0],
           name: sourceID
         };
 
         var to_insert = {
-          course: course_json,
+          course: course_json[0],
           name: semesterID
         };
       }
