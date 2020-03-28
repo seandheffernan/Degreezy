@@ -1,25 +1,37 @@
 import express from "express";
 import passport from "passport";
-import cas from "passport-cas2";
+import node_cas from "@byu-law/passport-cas";
+import session from 'express-session';
 
-let casStrategy = cas.Strategy;
+let casStrategy = node_cas.Strategy;
 
 
 passport.use(new casStrategy({
-        casURL: "https://cas-auth.rpi.edu/cas",
-    },
-    function (username, profile, callback) {
-        console.log(username);
-    }));
+    ssoBaseURL: 'https://cas-auth.rpi.edu/cas',
+    serverBaseURL: 'http://localhost:3001'
+}, function(profile, done) {
+    return done(null, profile);
+}));
+
 
 let app = express();
-
 app.use(passport.initialize());
+app.use(session({secret: "A"}));
 
-app.get('/test', passport.authenticate('cas', {failureRedirect: '/login'}), function(req, res) {
-    res.send("All done");
+passport.serializeUser(function(user, done) {
+    done(null, user);
 });
 
+passport.deserializeUser(function(user, done) {
+    done(null, user);
+});
+
+
+app.get('/login', passport.authenticate('cas'), function(req, res) {
+    console.log(req.user);
+});
+
+
 app.listen(3001, function() {
-    console.log("App started on port 3001")
+    console.log("App listening on port 3001");
 });
