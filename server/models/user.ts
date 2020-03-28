@@ -115,6 +115,37 @@ export function findArray(value, array) {
     return false;
 }
 
+export function add_course_taken(token, course_name, callback) {
+    let user_model = mongoose.model('User', userModel)
+    var course = {course: course_name}
+    user_model.findOneAndUpdate(token, {$push: {classes_taken: course}}, function (err) {
+        if (err) {
+            console.log(err);
+        } else {
+            callback(err);
+        }
+        mongoose.disconnect();
+    });
+}
+
+export function check_prereq(token, course_name, callback) {
+    let user_model = mongoose.model('User', userModel)
+    var target = user_model.find({_id: token})
+    var target_sem = null;
+    var target_course = null;
+    let course_model = mongoose.model('Course', course);
+    target_course = course_model.find({$text: {$search: course_name}});
+    if (target != null) {
+        for (var semester_id in target.schedule) {
+            let semester_model = mongoose.model('Semester', semester);
+            target_sem = semester_model.findById(semester_id);
+            if (target_sem.courses.find()) { //change that to prereq class
+                break;
+            }
+        }
+    }
+}
+//prequisites for these courses (recursive method: dynamic programming? memo-ize?)
 export const user_test = {
     "usertoken": "1234",
     "year": 2020,
