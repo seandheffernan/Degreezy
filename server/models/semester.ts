@@ -9,7 +9,9 @@ export const semester: Schema = new Schema({
             course: String,
         }
     ],
-    name: String
+    name: String,
+    season: String,
+    year: Number
 });
 
 semester.index({'$**': 'text'});
