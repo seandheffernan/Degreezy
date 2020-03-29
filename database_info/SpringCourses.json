@@ -634,6 +634,20 @@
   },
   {
     "course_code": "ITWS",
+    "course_number": 2110,
+    "name": "WEB SYSTEMS DEVELOPMENT",
+    "semester": "Fall",
+    "description": "This course involves a study of the methods used to extract and deliver dynamic information on the World Wide Web. The course uses a hands-on approach in which students actively develop Web-based software systems. Additional topics include installation, configuration, and management of Web servers. Students are required to have access to a PC on which they can install software such as a Web server and various programming environments.",
+    "prerequisites": [
+      "INTRO TO IT & WEB SCIENCE",
+      "DATA STRUCTURES"
+    ],
+    "corequisites": [
+    ],
+    "majorRestricted": true
+  },
+  {
+    "course_code": "ITWS",
     "course_number": 2210,
     "name": "INTRODUCTION TO HCI",
     "semester": "Spring",
@@ -675,6 +689,7 @@
     "semester": "Spring",
     "description": "This course provides an introduction to fundamental concepts of management and applies them to IT. It examines the use of IT in business processes and the management issues of integrating IT into organizational processes to gain competitive advantage. Topics include: management, organizations, and information systems; development life cycle; project management and systems engineering; process reengineering; and organizational learning. This course includes the planning, development, and implementation of an IT project for a real client.",
     "prerequisites": [
+      "WEB SYSTEMS DEVELOPMENT"
     ],
     "corequisites": [
     ],
@@ -711,6 +726,7 @@
     "semester": "Spring",
     "description": "Building on the technology covered in Web Systems Development, students will be exposed to current technologies, frameworks, and practices in the area of Web development. Types of topics included will be HTML5/CSS3, API’s for data, Ruby on Rails, node.js, MongoDB, PHP, and RDF. Methodology to be explored will be application design, software versioning, and team development. Lab intensive, this course is intended to complete a foundation for the advanced courses in Data Science and Advanced Web Science.",
     "prerequisites": [
+      "WEB SYSTEMS DEVELOPMENT"
     ],
     "corequisites": [
     ],
@@ -1065,19 +1081,6 @@
     "majorRestricted": true
   },
   {
-    "course_code": "PHYS",
-    "course_number": 1200,
-    "name": "PHYSICS II",
-    "semester": "Spring",
-    "description": "The second semester of the two-semester sequence of interactive courses. Topics include electric and magnetic forces and fields, Gauss’s Law, dc and ac circuits, Ampere’s Law and Faraday’s Law, electromagnetic radiation, physical optics, and quantum physics.",
-    "prerequisites": [
-      "PHYSICS I"
-    ],
-    "corequisites": [
-    ],
-    "majorRestricted": true
-  },
-  {
     "course_code": "MATH",
     "course_number": 1010,
     "name": "CALCULUS I",
@@ -1102,7 +1105,33 @@
     ],
     "majorRestricted": true
   },
-    {
+  {
+    "course_code": "MATH",
+    "course_number": 1500,
+    "name": "CALCULUS FOR ARCHITECTURE, MANAGEMENT, AND HASS",
+    "semester": "Fall",
+    "description": "Basic concepts in differential and integral calculus for functions of one variable. Topics will include functions, limits, continuity, derivatives, integration, exponential and logarithmic functions, and techniques of integration. Application areas will include topics in Management, Architecture, and Social Sciences with special emphasis on the role of calculus in introductory probability.",
+    "prerequisites": [
+    ],
+    "corequisites": [
+    ],
+    "majorRestricted": true
+  },
+  {
+    "course_code": "MATH",
+    "course_number": 1520,
+    "name": "MATHEMATICAL METHODS IN MANAGEMENT AND ECONOMICS",
+    "semester": "Fall",
+    "description": "Functions of several variables, introductory linear algebra, and other analytical techniques needed for further study in probability, statistics, and operations research. Topics covered include improper integrals, probability density functions, partial derivatives and optimization techniques for functions of several variables, matrix algebra, linear systems, lines and planes in 3-space, linear inequalities, introductory linear programming, introductory combinatorics, and some probability.",
+    "prerequisites": [
+      "CALCULUS I",
+      "CALCULUS FOR ARCHITECTURE, MANAGEMENT, AND HASS"
+    ],
+    "corequisites": [
+    ],
+    "majorRestricted": true
+  },
+  {
     "course_code": "MATH",
     "course_number": 2010,
     "name": "MULTIVARIABLE CALCULUS AND MATRIX ALGEBRA",
@@ -1192,4 +1221,57 @@
     ],
     "majorRestricted": true
   },
+    {
+    "course_code": "MGMT",
+    "course_number": 2100,
+    "name": "STATISTICAL METHODS",
+    "semester": "Spring",
+    "description": "This course develops an understanding of concepts in business statistics and focuses on application of concepts in problem-solving situations. In particular, students learn to present and describe data, analyze probability distributions, make statistical inferences based on data samples, and develop models for prediction and forecasting.",
+    "prerequisites": [
+      "CALCULUS FOR ARCHITECTURE, MANAGEMENT, AND HASS",
+      "MATHEMATICAL METHODS IN MANAGEMENT AND ECONOMICS"
+    ],
+    "corequisites": [
+    ],
+    "majorRestricted": true
+  },
+  {
+    "course_code": "MGMT",
+    "course_number": 4100,
+    "name": "QUANTITATIVE METHODS FOR BUSINESS",
+    "semester": "Spring",
+    "description": "This course introduces the student to the business management of production and operations systems. The concepts are related to inventory control, forecasting, scheduling, man-powers, and facilities planning. Computer usage includes Excel and specialized packages.",
+    "prerequisites": [
+      "STATISTICAL METHODS"
+    ],
+    "corequisites": [
+    ],
+    "majorRestricted": true
+  },
+  {
+    "course_code": "MGMT",
+    "course_number": 4110,
+    "name": "OPERATIONS MANAGEMENT",
+    "semester": "Spring",
+    "description": "This course introduces the student to the operations function in services and manufacturing-oriented firms. Students develop an appreciation of the concepts, principles, and techniques used for decision making in the operations function. The course takes a managerial perspective. Students cannot receive credit for this course if they have already taken ISYE 2210.",
+    "prerequisites": [
+    ],
+    "corequisites": [
+    ],
+    "majorRestricted": true
+  },
+  {
+    "course_code": "MGMT",
+    "course_number": 4170,
+    "name": "DATA RESOURCE MANAGEMENT",
+    "semester": "Spring",
+    "description": "This is a hands-on course where students will learn a mix of theoretical and practical tools. Using these tools, they will solve a variety of supply chain problems, both analytically and numerically. Students will examine data and use this to understand supply, demand, and inventory levels using R to model many of these problems. The course will also review the data and assess its suitability for modelling. Time series, Markov chain, optimal control, linear programming, statistical analysis, and other mathematical tools will be used to reveal the data’s secrets. The bottom line is these insights will be used to make recommendations to firms and other decision makers. Students will also look at qualitative problems through the examination and discussions of cases in class. Not everything can be distilled to a number and so a holistic view of business problems will be taken to make more strategic recommendations. Teams of students will then solve and present these case results.",
+    "prerequisites": [
+      "QUANTITATIVE METHODS FOR BUSINESS",
+      "OPERATIONS MANAGEMENT"
+    ],
+    "corequisites": [
+    ],
+    "majorRestricted": true
+  }
  ]

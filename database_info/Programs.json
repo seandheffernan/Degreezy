@@ -122,6 +122,18 @@
 					"COMPUTATIONAL OPTIMIZATION",
 					"LINEAR PROGRAMMING"
 				]
+			},
+			{
+				"Name": "HASS",
+				"Count": 6,
+				"Classes": [
+					"GENERAL PSYCHOLOGY",
+					"POSITIVE PSYCHOLOGY",
+					"PRINCIPLES OF ECONOMICS",
+					"INTERMEDIATE MICROECONOMIC THEORY",
+					"HISTORY AND CULTURE OF GAMES",
+					"MONEY AND BANKING"
+				]
 			}
 		],
 	},
@@ -227,6 +239,18 @@
 					"ADVANCED COMPUTER HARDWARE DESIGN",
 					"MICROPROCESSOR SYSTEMS",
 					"INTERNETWORKING OF THINGS"
+				]
+			},
+			{
+				"Name": "HASS",
+				"Count": 6,
+				"Classes": [
+					"GENERAL PSYCHOLOGY",
+					"POSITIVE PSYCHOLOGY",
+					"PRINCIPLES OF ECONOMICS",
+					"INTERMEDIATE MICROECONOMIC THEORY",
+					"HISTORY AND CULTURE OF GAMES",
+					"MONEY AND BANKING"
 				]
 			}
 		],
@@ -346,6 +370,18 @@
 					"INTRODUCTION TO MACHINE LEARNING",
 					"PATTERN RECOGNITION"
 				]
+			},
+			{
+				"Name": "HASS",
+				"Count": 6,
+				"Classes": [
+					"GENERAL PSYCHOLOGY",
+					"POSITIVE PSYCHOLOGY",
+					"PRINCIPLES OF ECONOMICS",
+					"INTERMEDIATE MICROECONOMIC THEORY",
+					"HISTORY AND CULTURE OF GAMES",
+					"MONEY AND BANKING"
+				]
 			}
 		],
 	},
@@ -442,7 +478,381 @@
 					"ROBOT DYNAMICS AND CONTROL",
 					"GAME ARCHITECTURE"
 				]
+			},
+			{
+				"Name": "HASS",
+				"Count": 6,
+				"Classes": [
+					"GENERAL PSYCHOLOGY",
+					"POSITIVE PSYCHOLOGY",
+					"PRINCIPLES OF ECONOMICS",
+					"INTERMEDIATE MICROECONOMIC THEORY",
+					"HISTORY AND CULTURE OF GAMES",
+					"MONEY AND BANKING"
+				]
 			}
 		],
-	}
+	},
+	{
+		"Name":"ITWS; Computer Networking",
+		"Major Courses": [
+			"INTRO TO IT & WEB SCIENCE",
+			"WEB SYSTEMS DEVELOPMENT",
+			"WEB SCIENCE SYSTEMS DEV",
+			"MANAGING IT RESOURCES",
+			"CALCULUS I",
+			"COMPUTER SCIENCE I",
+			"DATA STRUCTURES",
+			"IT AND SOCIETY",
+			"INTRODUCTION TO HCI",
+			"OPERATING SYSTEMS",
+			"CRYPTOGRAPHY AND NETWORK SECURITY I",
+			"COMPUTER COMMUNICATION NETWORKS",
+			"INFORMATION SYSTEM SECURITY",
+			"NETWORK PROGRAMMING",
+			"CRYPTOGRAPHY AND NETWORK SECURITY II",
+		],
+		"Elective Courses": [
+			{
+				"Name": "ITWS Track",
+				"Count": 1,
+				"Classes": [
+					"SENIOR THESIS",
+					"IT & WEB SCIENCE CAPSTONE"
+				]
+			},
+			{
+				"Name": "ITWS Option",
+				"Count": 1,
+				"Classes": [
+					"DATABASE SYSTEMS",
+					"DATA RESOURCE MANAGEMENT"
+				]
+			},
+			{
+				"Name": "Physical Science Option",
+				"Count": 1,
+				"Classes": [
+					"PHYSICS I",
+					"PHYSICS II",
+				]
+			},
+			{
+				"Name": "Life Science Option",
+				"Count": 1,
+				"Classes": [
+					"INTRODUCTION TO BIOLOGY",
+					"INTRODUCTION TO BIOLOGY LAB",
+				]
+			},
+			{
+				"Name": "Mathematics Option",
+				"Count": 2,
+				"Classes": [
+					"CALCULUS II",
+					"MULTIVARIABLE CALCULUS AND MATRIX ALGEBRA",
+					"INTRODUCTION TO DIFFERENTIAL EQUATIONS"
+				]
+			},
+			{
+				"Name": "Free Elective",
+				"Count": 3,
+			},
+			{
+				"Name": "HASS",
+				"Count": 4,
+				"Classes": [
+					"GENERAL PSYCHOLOGY",
+					"POSITIVE PSYCHOLOGY",
+					"PRINCIPLES OF ECONOMICS",
+					"MONEY AND BANKING"
+				]
+			}
+		],
+	},
+	{
+		"Name":"ITWS; Data Science",
+		"Major Courses": [
+			"INTRO TO IT & WEB SCIENCE",
+			"WEB SYSTEMS DEVELOPMENT",
+			"WEB SCIENCE SYSTEMS DEV",
+			"MANAGING IT RESOURCES",
+			"CALCULUS I",
+			"COMPUTER SCIENCE I",
+			"DATA STRUCTURES",
+			"IT AND SOCIETY",
+			"INTRODUCTION TO HCI",
+			"INTRO TO ARTIFICIAL INTELLIG",
+			"OPERATING SYSTEMS",
+			"STATISTICS SEQUENCE A",
+			"NETWORK PROGRAMMING",
+			"DATA SCIENCE",
+			"MACHINE LEARNING FROM DATA",
+			"XINFORMATICS",
+			"STATISTICS SEQUENCE B"
+		],
+		"Elective Courses": [
+			{
+				"Name": "ITWS Track",
+				"Count": 1,
+				"Classes": [
+					"SENIOR THESIS",
+					"IT & WEB SCIENCE CAPSTONE"
+				]
+			},
+			{
+				"Name": "ITWS Option",
+				"Count": 1,
+				"Classes": [
+					"DATABASE SYSTEMS",
+					"DATA RESOURCE MANAGEMENT"
+				]
+			},
+			{
+				"Name": "Physical Science Option",
+				"Count": 1,
+				"Classes": [
+					"PHYSICS I",
+					"PHYSICS II",
+				]
+			},
+			{
+				"Name": "Life Science Option",
+				"Count": 1,
+				"Classes": [
+					"INTRODUCTION TO BIOLOGY",
+					"INTRODUCTION TO BIOLOGY LAB",
+				]
+			},
+			{
+				"Name": "Mathematics Option",
+				"Count": 2,
+				"Classes": [
+					"CALCULUS II",
+					"MULTIVARIABLE CALCULUS AND MATRIX ALGEBRA",
+					"INTRODUCTION TO DIFFERENTIAL EQUATIONS"
+				]
+			},
+			{
+				"Name": "Free Elective",
+				"Count": 3,
+			},
+			{
+				"Name": "HASS",
+				"Count": 4,
+				"Classes": [
+					"GENERAL PSYCHOLOGY",
+					"POSITIVE PSYCHOLOGY",
+					"PRINCIPLES OF ECONOMICS",
+					"MONEY AND BANKING"
+				]
+			}
+		],
+	},
+	{
+		"Name":"ITWS; Web Technologies",
+		"Major Courses": [
+			"INTRO TO IT & WEB SCIENCE",
+			"WEB SYSTEMS DEVELOPMENT",
+			"WEB SCIENCE SYSTEMS DEV",
+			"MANAGING IT RESOURCES",
+			"CALCULUS I",
+			"COMPUTER SCIENCE I",
+			"DATA STRUCTURES",
+			"IT AND SOCIETY",
+			"INTRODUCTION TO HCI",
+			"PRINCIPLES OF SOFTWARE",
+			"OPERATING SYSTEMS",
+			"NETWORK PROGRAMMING",
+		],
+		"Elective Courses": [
+			{
+				"Name": "ITWS Track",
+				"Count": 1,
+				"Classes": [
+					"SENIOR THESIS",
+					"IT & WEB SCIENCE CAPSTONE"
+				]
+			},
+			{
+				"Name": "ITWS Option",
+				"Count": 1,
+				"Classes": [
+					"DATABASE SYSTEMS",
+					"DATA RESOURCE MANAGEMENT"
+				]
+			},
+			{
+				"Name": "Physical Science Option",
+				"Count": 1,
+				"Classes": [
+					"PHYSICS I",
+					"PHYSICS II",
+				]
+			},
+			{
+				"Name": "Life Science Option",
+				"Count": 1,
+				"Classes": [
+					"INTRODUCTION TO BIOLOGY",
+					"INTRODUCTION TO BIOLOGY LAB",
+				]
+			},
+			{
+				"Name": "Mathematics Option",
+				"Count": 2,
+				"Classes": [
+					"CALCULUS II",
+					"MULTIVARIABLE CALCULUS AND MATRIX ALGEBRA",
+					"INTRODUCTION TO DIFFERENTIAL EQUATIONS"
+				]
+			},
+			{
+				"Name": "Free Elective",
+				"Count": 3,
+			},
+			{
+				"Name": "Communication Design Elective",
+				"Count": 1,
+				"Classes": [
+					"INTRODUCTION TO GRAPHICS",
+					"VISUAL POETICS AND NARRATIVE",
+					"DESIGN FOR GLOBAL SOCIETY",
+					"VISUAL DESIGN: THEORY AND APPLICATION",
+					"VISUAL LITERACY",
+					"INFORMATION DESIGN",
+					"STUDIO DESIGN IN HCI"
+				]
+			},
+			{
+				"Name": "Intelligent Systems Elective",
+				"Count": 1,
+				"Classes": [
+					"COGNITIVE MODELING",
+					"COMPUTATIONAL INTELLIGENCE",
+					"MACHINE LEARNING FROM DATA",
+					"INTRODUCTION TO ARTIFICIAL INTELLIGENCE"
+				]
+			},
+			{
+				"Name": "Assessment Elective",
+				"Count": 1,
+				"Classes": [
+					"FOUNDATIONS OF HCI USABILITY",
+					"STUDIO DESIGN IN HCI",
+					"INFORMATION DESIGN",
+					"MATHEMATICAL STATISTICS",
+					"STATISTICAL METHODS"
+				]
+			},
+			{
+				"Name": "Computing Elective",
+				"Count": 1,
+				"Classes": [
+					"COMPUTER ALGORITHMS",
+					"PARALLEL PROGRAMMING",
+					"PROGRAMMING LANGUAGES",
+					"COMPUTER GRAPHICS"
+				]
+			},
+			{
+				"Name": "Computing Elective",
+				"Count": 1,
+				"Classes": [
+					"DATA MINING",
+					"MACHINE LEARNING FROM DATA",
+					"INTRODUCTION TO ARTIFICIAL INTELLIGENCE",
+					"SOFTWARE DESIGN AND DOCUME"
+				]
+			},
+			{
+				"Name": "HASS",
+				"Count": 4,
+				"Classes": [
+					"GENERAL PSYCHOLOGY",
+					"POSITIVE PSYCHOLOGY",
+					"PRINCIPLES OF ECONOMICS",
+					"MONEY AND BANKING"
+				]
+			}
+		],
+	},
+	{
+		"Name":"ITWS; ",
+		"Major Courses": [
+			"INTRO TO IT & WEB SCIENCE",
+			"WEB SYSTEMS DEVELOPMENT",
+			"WEB SCIENCE SYSTEMS DEV",
+			"MANAGING IT RESOURCES",
+			"CALCULUS I",
+			"COMPUTER SCIENCE I",
+			"DATA STRUCTURES",
+			"IT AND SOCIETY",
+			"INTRODUCTION TO HCI",
+		],
+		"Elective Courses": [
+			{
+				"Name": "ITWS Track",
+				"Count": 1,
+				"Classes": [
+					"SENIOR THESIS",
+					"IT & WEB SCIENCE CAPSTONE"
+				]
+			},
+			{
+				"Name": "ITWS Option",
+				"Count": 1,
+				"Classes": [
+					"DATABASE SYSTEMS",
+					"DATA RESOURCE MANAGEMENT"
+				]
+			},
+			{
+				"Name": "Physical Science Option",
+				"Count": 1,
+				"Classes": [
+					"PHYSICS I",
+					"PHYSICS II",
+				]
+			},
+			{
+				"Name": "Life Science Option",
+				"Count": 1,
+				"Classes": [
+					"INTRODUCTION TO BIOLOGY",
+					"INTRODUCTION TO BIOLOGY LAB",
+				]
+			},
+			{
+				"Name": "Mathematics Option",
+				"Count": 2,
+				"Classes": [
+					"CALCULUS II",
+					"MULTIVARIABLE CALCULUS AND MATRIX ALGEBRA",
+					"INTRODUCTION TO DIFFERENTIAL EQUATIONS"
+				]
+			},
+			{
+				"Name": "Free Elective",
+				"Count": 3,
+			},
+			{
+				"Name": "... Concentration Courses",
+				"Count": 3,
+				"Classes": [
+				]
+			},
+			{
+				"Name": "HASS",
+				"Count": 4,
+				"Classes": [
+					"GENERAL PSYCHOLOGY",
+					"POSITIVE PSYCHOLOGY",
+					"PRINCIPLES OF ECONOMICS",
+					"MONEY AND BANKING"
+				]
+			}
+		],
+	},
+
 ]
