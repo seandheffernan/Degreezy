@@ -1,13 +1,17 @@
 import mongoose from 'mongoose';
-import {course} from "./course";
 
 export const Programs = mongoose.Schema({
     name: String,
-    ismajor: Boolean,
-    electivecredits: Number,
-    classes_required: [
+    major_courses: [
+        String
+    ],
+    elective_courses: [
         {
-            course: course
+            name: String,
+            count: Number,
+            classes: [
+                String
+            ]
         }
     ]
 });

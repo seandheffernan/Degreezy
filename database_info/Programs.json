@@ -1,7 +1,7 @@
 [
 	{
-		"Name":"CSCI; Theory and Algorithms",
-		"Major Courses": [
+		"name":"CSCI; Theory and Algorithms",
+		"major_courses": [
 			"COMPUTER SCIENCE I",
 			"DATA STRUCTURES",
 			"CALCULUS I",
@@ -16,27 +16,27 @@
 			"OPERATING SYSTEMS",
 			"PROGRAMMING LANGUAGES"
 		],
-		"Elective Courses": [
+		"elective_courses": [
 			{
-				"Name": "Science Option",
-				"Count": 1,
-				"Classes": [
+				"name": "Science Option",
+				"count": 1,
+				"classes": [
 					"PHYSICS II",
 					"CHEMISTRY I"
 				]
 			},
 			{
-				"Name": "Mathematics Option",
-				"Count": 2,
-				"Classes": [
+				"name": "Mathematics Option",
+				"count": 2,
+				"classes": [
 					"MULTIVARIABLE CALCULUS AND MATRIX ALGEBRA",
 					"INTRODUCTION TO DIFFERENTIAL EQUATIONS"
 				]
 			},
 			{
-				"Name": "Computer Science Option",
-				"Count": 4,
-				"Classes": [
+				"name": "Computer Science Option",
+				"count": 4,
+				"classes": [
 					"GRAPH THEORY",
 					"PARALLEL PROGRAMMING",
 					"DATABASE SYSTEMS",
@@ -71,9 +71,9 @@
 				]
 			},
 			{
-				"Name": "Theory and Algorithms Concentration Courses",
-				"Count": 3,
-				"Classes": [
+				"name": "Theory and Algorithms Concentration Courses",
+				"count": 3,
+				"classes": [
 					"DESIGN AND ANALYSIS OF ALGORITHMS",
 					"RANDOMIZED ALGORITHMS",
 					"APPROXIMATION ALGORITHMS",
@@ -124,9 +124,9 @@
 				]
 			},
 			{
-				"Name": "HASS",
-				"Count": 6,
-				"Classes": [
+				"name": "HASS",
+				"count": 6,
+				"classes": [
 					"GENERAL PSYCHOLOGY",
 					"POSITIVE PSYCHOLOGY",
 					"PRINCIPLES OF ECONOMICS",
@@ -135,11 +135,11 @@
 					"MONEY AND BANKING"
 				]
 			}
-		],
+		]
 	},
 	{
-		"Name":"CSCI; Systems and Software",
-		"Major Courses": [
+		"name":"CSCI; Systems and Software",
+		"major_courses": [
 			"COMPUTER SCIENCE I",
 			"DATA STRUCTURES",
 			"CALCULUS I",
@@ -154,27 +154,27 @@
 			"OPERATING SYSTEMS",
 			"PROGRAMMING LANGUAGES"
 		],
-		"Elective Courses": [
+		"elective_courses": [
 			{
-				"Name": "Science Option",
-				"Count": 1,
-				"Classes": [
+				"name": "Science Option",
+				"count": 1,
+				"classes": [
 					"PHYSICS II",
 					"CHEMISTRY I"
 				]
 			},
 			{
-				"Name": "Mathematics Option",
-				"Count": 2,
-				"Classes": [
+				"name": "Mathematics Option",
+				"count": 2,
+				"classes": [
 					"MULTIVARIABLE CALCULUS AND MATRIX ALGEBRA",
 					"INTRODUCTION TO DIFFERENTIAL EQUATIONS"
 				]
 			},
 			{
-				"Name": "Computer Science Option",
-				"Count": 4,
-				"Classes": [
+				"name": "Computer Science Option",
+				"count": 4,
+				"classes": [
 					"GRAPH THEORY",
 					"PARALLEL PROGRAMMING",
 					"DATABASE SYSTEMS",
@@ -209,11 +209,11 @@
 				]
 			},
 			{
-				"Name": "Systems and Software Concentration Courses",
-				"Count": 3,
-				"Classes": [
+				"name": "Systems and Software Concentration Courses",
+				"count": 3,
+				"classes": [
 					"NETWORK PROGRAMMING",
-					"NETWORKING IN THE LINUX KERNEL"
+					"NETWORKING IN THE LINUX KERNEL",
 					"PARALLEL PROGRAMMING",
 					"PARALLEL COMPUTING",
 					"DATABASE SYSTEMS",
@@ -242,9 +242,9 @@
 				]
 			},
 			{
-				"Name": "HASS",
-				"Count": 6,
-				"Classes": [
+				"name": "HASS",
+				"count": 6,
+				"classes": [
 					"GENERAL PSYCHOLOGY",
 					"POSITIVE PSYCHOLOGY",
 					"PRINCIPLES OF ECONOMICS",
@@ -253,11 +253,11 @@
 					"MONEY AND BANKING"
 				]
 			}
-		],
+		]
 	},
 	{
-		"Name":"CSCI; Artifical Intelligence and Data",
-		"Major Courses": [
+		"name":"CSCI; Artifical Intelligence and Data",
+		"major_courses": [
 			"COMPUTER SCIENCE I",
 			"DATA STRUCTURES",
 			"CALCULUS I",
@@ -272,27 +272,27 @@
 			"OPERATING SYSTEMS",
 			"PROGRAMMING LANGUAGES"
 		],
-		"Elective Courses": [
+		"elective_courses": [
 			{
-				"Name": "Science Option",
-				"Count": 1,
-				"Classes": [
+				"name": "Science Option",
+				"count": 1,
+				"classes": [
 					"PHYSICS II",
 					"CHEMISTRY I"
 				]
 			},
 			{
-				"Name": "Mathematics Option",
-				"Count": 2,
-				"Classes": [
+				"name": "Mathematics Option",
+				"count": 2,
+				"classes": [
 					"MULTIVARIABLE CALCULUS AND MATRIX ALGEBRA",
 					"INTRODUCTION TO DIFFERENTIAL EQUATIONS"
 				]
 			},
 			{
-				"Name": "Computer Science Option",
-				"Count": 4,
-				"Classes": [
+				"name": "Computer Science Option",
+				"count": 4,
+				"classes": [
 					"GRAPH THEORY",
 					"PARALLEL PROGRAMMING",
 					"DATABASE SYSTEMS",
@@ -327,9 +327,9 @@
 				]
 			},
 			{
-				"Name": "Aritifical Intelligence and Data Concentration Courses",
-				"Count": 3,
-				"Classes": [
+				"name": "Aritifical Intelligence and Data Concentration Courses",
+				"count": 3,
+				"classes": [
 					"MACHINE LEARNING FROM DATA",
 					"COMPUTATIONAL SOCIAL PROCESSES",
 					"NATURAL LANGUAGE PROCESSING",
@@ -372,9 +372,9 @@
 				]
 			},
 			{
-				"Name": "HASS",
-				"Count": 6,
-				"Classes": [
+				"name": "HASS",
+				"count": 6,
+				"classes": [
 					"GENERAL PSYCHOLOGY",
 					"POSITIVE PSYCHOLOGY",
 					"PRINCIPLES OF ECONOMICS",
@@ -383,11 +383,11 @@
 					"MONEY AND BANKING"
 				]
 			}
-		],
+		]
 	},
 	{
-		"Name":"CSCI; Vision, Graphics, Robotics, and Games",
-		"Major Courses": [
+		"name":"CSCI; Vision, Graphics, Robotics, and Games",
+		"major_courses": [
 			"COMPUTER SCIENCE I",
 			"DATA STRUCTURES",
 			"CALCULUS I",
@@ -402,27 +402,27 @@
 			"OPERATING SYSTEMS",
 			"PROGRAMMING LANGUAGES"
 		],
-		"Elective Courses": [
+		"elective_courses": [
 			{
-				"Name": "Science Option",
-				"Count": 1,
-				"Classes": [
+				"name": "Science Option",
+				"count": 1,
+				"classes": [
 					"PHYSICS II",
 					"CHEMISTRY I"
 				]
 			},
 			{
-				"Name": "Mathematics Option",
-				"Count": 2,
-				"Classes": [
+				"name": "Mathematics Option",
+				"count": 2,
+				"classes": [
 					"MULTIVARIABLE CALCULUS AND MATRIX ALGEBRA",
 					"INTRODUCTION TO DIFFERENTIAL EQUATIONS"
 				]
 			},
 			{
-				"Name": "Computer Science Option",
-				"Count": 4,
-				"Classes": [
+				"name": "Computer Science Option",
+				"count": 4,
+				"classes": [
 					"GRAPH THEORY",
 					"PARALLEL PROGRAMMING",
 					"DATABASE SYSTEMS",
@@ -457,9 +457,9 @@
 				]
 			},
 			{
-				"Name": "Theory and Algorithms Concentration Courses",
-				"Count": 3,
-				"Classes": [
+				"name": "Theory and Algorithms Concentration Courses",
+				"count": 3,
+				"classes": [
 					"COMPUTATIONAL VISION",
 					"PARALLEL PROGRAMMING",
 					"PARALLEL COMPUTING",
@@ -480,9 +480,9 @@
 				]
 			},
 			{
-				"Name": "HASS",
-				"Count": 6,
-				"Classes": [
+				"name": "HASS",
+				"count": 6,
+				"classes": [
 					"GENERAL PSYCHOLOGY",
 					"POSITIVE PSYCHOLOGY",
 					"PRINCIPLES OF ECONOMICS",
@@ -491,11 +491,11 @@
 					"MONEY AND BANKING"
 				]
 			}
-		],
+		]
 	},
 	{
-		"Name":"ITWS; Computer Networking",
-		"Major Courses": [
+		"name":"ITWS; Computer Networking",
+		"major_courses": [
 			"INTRO TO IT & WEB SCIENCE",
 			"WEB SYSTEMS DEVELOPMENT",
 			"WEB SCIENCE SYSTEMS DEV",
@@ -510,69 +510,69 @@
 			"COMPUTER COMMUNICATION NETWORKS",
 			"INFORMATION SYSTEM SECURITY",
 			"NETWORK PROGRAMMING",
-			"CRYPTOGRAPHY AND NETWORK SECURITY II",
+			"CRYPTOGRAPHY AND NETWORK SECURITY II"
 		],
-		"Elective Courses": [
+		"elective_courses": [
 			{
-				"Name": "ITWS Track",
-				"Count": 1,
-				"Classes": [
+				"name": "ITWS Track",
+				"count": 1,
+				"classes": [
 					"SENIOR THESIS",
 					"IT & WEB SCIENCE CAPSTONE"
 				]
 			},
 			{
-				"Name": "ITWS Option",
-				"Count": 1,
-				"Classes": [
+				"name": "ITWS Option",
+				"count": 1,
+				"classes": [
 					"DATABASE SYSTEMS",
 					"DATA RESOURCE MANAGEMENT"
 				]
 			},
 			{
-				"Name": "Physical Science Option",
-				"Count": 1,
-				"Classes": [
+				"name": "Physical Science Option",
+				"count": 1,
+				"classes": [
 					"PHYSICS I",
-					"PHYSICS II",
+					"PHYSICS II"
 				]
 			},
 			{
-				"Name": "Life Science Option",
-				"Count": 1,
-				"Classes": [
+				"name": "Life Science Option",
+				"count": 1,
+				"classes": [
 					"INTRODUCTION TO BIOLOGY",
-					"INTRODUCTION TO BIOLOGY LAB",
+					"INTRODUCTION TO BIOLOGY LAB"
 				]
 			},
 			{
-				"Name": "Mathematics Option",
-				"Count": 2,
-				"Classes": [
+				"name": "Mathematics Option",
+				"count": 2,
+				"classes": [
 					"CALCULUS II",
 					"MULTIVARIABLE CALCULUS AND MATRIX ALGEBRA",
 					"INTRODUCTION TO DIFFERENTIAL EQUATIONS"
 				]
 			},
 			{
-				"Name": "Free Elective",
-				"Count": 3,
+				"name": "Free Elective",
+				"count": 3
 			},
 			{
-				"Name": "HASS",
-				"Count": 4,
-				"Classes": [
+				"name": "HASS",
+				"count": 4,
+				"classes": [
 					"GENERAL PSYCHOLOGY",
 					"POSITIVE PSYCHOLOGY",
 					"PRINCIPLES OF ECONOMICS",
 					"MONEY AND BANKING"
 				]
 			}
-		],
+		]
 	},
 	{
-		"Name":"ITWS; Data Science",
-		"Major Courses": [
+		"name":"ITWS; Data Science",
+		"major_courses": [
 			"INTRO TO IT & WEB SCIENCE",
 			"WEB SYSTEMS DEVELOPMENT",
 			"WEB SCIENCE SYSTEMS DEV",
@@ -591,67 +591,67 @@
 			"XINFORMATICS",
 			"STATISTICS SEQUENCE B"
 		],
-		"Elective Courses": [
+		"elective_courses": [
 			{
-				"Name": "ITWS Track",
-				"Count": 1,
-				"Classes": [
+				"name": "ITWS Track",
+				"count": 1,
+				"classes": [
 					"SENIOR THESIS",
 					"IT & WEB SCIENCE CAPSTONE"
 				]
 			},
 			{
-				"Name": "ITWS Option",
-				"Count": 1,
-				"Classes": [
+				"name": "ITWS Option",
+				"count": 1,
+				"classes": [
 					"DATABASE SYSTEMS",
 					"DATA RESOURCE MANAGEMENT"
 				]
 			},
 			{
-				"Name": "Physical Science Option",
-				"Count": 1,
-				"Classes": [
+				"name": "Physical Science Option",
+				"count": 1,
+				"classes": [
 					"PHYSICS I",
-					"PHYSICS II",
+					"PHYSICS II"
 				]
 			},
 			{
-				"Name": "Life Science Option",
-				"Count": 1,
-				"Classes": [
+				"name": "Life Science Option",
+				"count": 1,
+				"classes": [
 					"INTRODUCTION TO BIOLOGY",
-					"INTRODUCTION TO BIOLOGY LAB",
+					"INTRODUCTION TO BIOLOGY LAB"
 				]
 			},
 			{
-				"Name": "Mathematics Option",
-				"Count": 2,
-				"Classes": [
+				"name": "Mathematics Option",
+				"count": 2,
+				"classes": [
 					"CALCULUS II",
 					"MULTIVARIABLE CALCULUS AND MATRIX ALGEBRA",
 					"INTRODUCTION TO DIFFERENTIAL EQUATIONS"
 				]
 			},
 			{
-				"Name": "Free Elective",
-				"Count": 3,
+				"name": "Free Elective",
+				"count": 3
 			},
 			{
-				"Name": "HASS",
-				"Count": 4,
-				"Classes": [
+				"name": "HASS",
+				"count": 4,
+				"classes": [
 					"GENERAL PSYCHOLOGY",
 					"POSITIVE PSYCHOLOGY",
 					"PRINCIPLES OF ECONOMICS",
 					"MONEY AND BANKING"
 				]
 			}
-		],
+		]
 	},
 	{
-		"Name":"ITWS; Web Technologies",
-		"Major Courses": [
+		"name":"ITWS; Web Technologies",
+		"major_courses": [
 			"INTRO TO IT & WEB SCIENCE",
 			"WEB SYSTEMS DEVELOPMENT",
 			"WEB SCIENCE SYSTEMS DEV",
@@ -663,58 +663,58 @@
 			"INTRODUCTION TO HCI",
 			"PRINCIPLES OF SOFTWARE",
 			"OPERATING SYSTEMS",
-			"NETWORK PROGRAMMING",
+			"NETWORK PROGRAMMING"
 		],
-		"Elective Courses": [
+		"elective_courses": [
 			{
-				"Name": "ITWS Track",
-				"Count": 1,
-				"Classes": [
+				"name": "ITWS Track",
+				"count": 1,
+				"classes": [
 					"SENIOR THESIS",
 					"IT & WEB SCIENCE CAPSTONE"
 				]
 			},
 			{
-				"Name": "ITWS Option",
-				"Count": 1,
-				"Classes": [
+				"name": "ITWS Option",
+				"count": 1,
+				"classes": [
 					"DATABASE SYSTEMS",
 					"DATA RESOURCE MANAGEMENT"
 				]
 			},
 			{
-				"Name": "Physical Science Option",
-				"Count": 1,
-				"Classes": [
+				"name": "Physical Science Option",
+				"count": 1,
+				"classes": [
 					"PHYSICS I",
-					"PHYSICS II",
+					"PHYSICS II"
 				]
 			},
 			{
-				"Name": "Life Science Option",
-				"Count": 1,
-				"Classes": [
+				"name": "Life Science Option",
+				"count": 1,
+				"classes": [
 					"INTRODUCTION TO BIOLOGY",
-					"INTRODUCTION TO BIOLOGY LAB",
+					"INTRODUCTION TO BIOLOGY LAB"
 				]
 			},
 			{
-				"Name": "Mathematics Option",
-				"Count": 2,
-				"Classes": [
+				"name": "Mathematics Option",
+				"count": 2,
+				"classes": [
 					"CALCULUS II",
 					"MULTIVARIABLE CALCULUS AND MATRIX ALGEBRA",
 					"INTRODUCTION TO DIFFERENTIAL EQUATIONS"
 				]
 			},
 			{
-				"Name": "Free Elective",
-				"Count": 3,
+				"name": "Free Elective",
+				"count": 3
 			},
 			{
-				"Name": "Communication Design Elective",
-				"Count": 1,
-				"Classes": [
+				"name": "Communication Design Elective",
+				"count": 1,
+				"classes": [
 					"INTRODUCTION TO GRAPHICS",
 					"VISUAL POETICS AND NARRATIVE",
 					"DESIGN FOR GLOBAL SOCIETY",
@@ -725,9 +725,9 @@
 				]
 			},
 			{
-				"Name": "Intelligent Systems Elective",
-				"Count": 1,
-				"Classes": [
+				"name": "Intelligent Systems Elective",
+				"count": 1,
+				"classes": [
 					"COGNITIVE MODELING",
 					"COMPUTATIONAL INTELLIGENCE",
 					"MACHINE LEARNING FROM DATA",
@@ -735,9 +735,9 @@
 				]
 			},
 			{
-				"Name": "Assessment Elective",
-				"Count": 1,
-				"Classes": [
+				"name": "Assessment Elective",
+				"count": 1,
+				"classes": [
 					"FOUNDATIONS OF HCI USABILITY",
 					"STUDIO DESIGN IN HCI",
 					"INFORMATION DESIGN",
@@ -746,9 +746,9 @@
 				]
 			},
 			{
-				"Name": "Computing Elective",
-				"Count": 1,
-				"Classes": [
+				"name": "Computing Elective",
+				"count": 1,
+				"classes": [
 					"COMPUTER ALGORITHMS",
 					"PARALLEL PROGRAMMING",
 					"PROGRAMMING LANGUAGES",
@@ -756,9 +756,9 @@
 				]
 			},
 			{
-				"Name": "Computing Elective",
-				"Count": 1,
-				"Classes": [
+				"name": "Computing Elective",
+				"count": 1,
+				"classes": [
 					"DATA MINING",
 					"MACHINE LEARNING FROM DATA",
 					"INTRODUCTION TO ARTIFICIAL INTELLIGENCE",
@@ -766,20 +766,20 @@
 				]
 			},
 			{
-				"Name": "HASS",
-				"Count": 4,
-				"Classes": [
+				"name": "HASS",
+				"count": 4,
+				"classes": [
 					"GENERAL PSYCHOLOGY",
 					"POSITIVE PSYCHOLOGY",
 					"PRINCIPLES OF ECONOMICS",
 					"MONEY AND BANKING"
 				]
 			}
-		],
+		]
 	},
 	{
-		"Name":"ITWS; ",
-		"Major Courses": [
+		"name":"ITWS; ",
+		"major_courses": [
 			"INTRO TO IT & WEB SCIENCE",
 			"WEB SYSTEMS DEVELOPMENT",
 			"WEB SCIENCE SYSTEMS DEV",
@@ -788,71 +788,70 @@
 			"COMPUTER SCIENCE I",
 			"DATA STRUCTURES",
 			"IT AND SOCIETY",
-			"INTRODUCTION TO HCI",
+			"INTRODUCTION TO HCI"
 		],
-		"Elective Courses": [
+		"elective_courses": [
 			{
-				"Name": "ITWS Track",
-				"Count": 1,
-				"Classes": [
+				"name": "ITWS Track",
+				"count": 1,
+				"classes": [
 					"SENIOR THESIS",
 					"IT & WEB SCIENCE CAPSTONE"
 				]
 			},
 			{
-				"Name": "ITWS Option",
-				"Count": 1,
-				"Classes": [
+				"name": "ITWS Option",
+				"count": 1,
+				"classes": [
 					"DATABASE SYSTEMS",
 					"DATA RESOURCE MANAGEMENT"
 				]
 			},
 			{
-				"Name": "Physical Science Option",
-				"Count": 1,
-				"Classes": [
+				"name": "Physical Science Option",
+				"count": 1,
+				"classes": [
 					"PHYSICS I",
-					"PHYSICS II",
+					"PHYSICS II"
 				]
 			},
 			{
-				"Name": "Life Science Option",
-				"Count": 1,
-				"Classes": [
+				"name": "Life Science Option",
+				"count": 1,
+				"classes": [
 					"INTRODUCTION TO BIOLOGY",
-					"INTRODUCTION TO BIOLOGY LAB",
+					"INTRODUCTION TO BIOLOGY LAB"
 				]
 			},
 			{
-				"Name": "Mathematics Option",
-				"Count": 2,
-				"Classes": [
+				"name": "Mathematics Option",
+				"count": 2,
+				"classes": [
 					"CALCULUS II",
 					"MULTIVARIABLE CALCULUS AND MATRIX ALGEBRA",
 					"INTRODUCTION TO DIFFERENTIAL EQUATIONS"
 				]
 			},
 			{
-				"Name": "Free Elective",
-				"Count": 3,
+				"name": "Free Elective",
+				"count": 3
 			},
 			{
-				"Name": "... Concentration Courses",
-				"Count": 3,
-				"Classes": [
+				"name": "... Concentration Courses",
+				"count": 3,
+				"classes": [
 				]
 			},
 			{
-				"Name": "HASS",
-				"Count": 4,
-				"Classes": [
+				"name": "HASS",
+				"count": 4,
+				"classes": [
 					"GENERAL PSYCHOLOGY",
 					"POSITIVE PSYCHOLOGY",
 					"PRINCIPLES OF ECONOMICS",
 					"MONEY AND BANKING"
 				]
 			}
-		],
-	},
-
+		]
+	}
 ]
