@@ -25,6 +25,42 @@ export function get_user(token, callback) {
         callback(data, err);
     });
 }
+
+export function insert_user(user_details, callback) {
+    let user_model = mongoose.model('User', userModel);
+    user_model.create(user_details, function(err) {
+        if (err) {
+            console.log(err);
+        } else {
+            callback(err);
+        }
+    });
+}
+
+export function push_semester(token, semester_id, callback) {
+    let user_model = mongoose.model('User', userModel);
+    var semester = { semester: semester_id };
+    user_model.findOneAndUpdate(token, {$push: {schedule: semester}}, function (err) {
+        if (err) {
+            console.log(err);
+        } else {
+            callback(err);
+        }
+    });
+}
+
+export function pull_semester(token, semester_id, callback) {
+    let user_model = mongoose.model('User', userModel);
+    var semester = { semester: semester_id };
+    user_model.findByIdAndUpdate(token, {$pull: {schedule: semester}}, function (err) {
+        if (err) {
+            console.log(err);
+        } else {
+            callback(err);
+        }
+    });
+}
+
 export function get_progress(name, callback) {
     let user_model = mongoose.model('User', userModel);
     user_model.findOne({username: name}, {}, function(err, data) {
@@ -69,41 +105,6 @@ export function get_progress(name, callback) {
     });
 }
 
-export function insert_user(user_details, callback) {
-    let user_model = mongoose.model('User', userModel);
-    user_model.create(user_details, function(err) {
-        if (err) {
-            console.log(err);
-        } else {
-            callback(err);
-        }
-    });
-}
-
-export function push_semester(token, semester_id, callback) {
-    let user_model = mongoose.model('User', userModel);
-    var semester = { semester: semester_id };
-    user_model.findOneAndUpdate(token, {$push: {schedule: semester}}, function (err) {
-        if (err) {
-            console.log(err);
-        } else {
-            callback(err);
-        }
-    });
-}
-
-export function pull_semester(token, semester_id, callback) {
-    let user_model = mongoose.model('User', userModel);
-    var semester = { semester: semester_id };
-    user_model.findByIdAndUpdate(token, {$pull: {schedule: semester}}, function (err) {
-        if (err) {
-            console.log(err);
-        } else {
-            callback(err);
-        }
-    });
-}
-
 export function findArray(value, array) {
     for (let i = 0; i < array.length; i++) {
         if (array[i] == value) {
@@ -112,6 +113,7 @@ export function findArray(value, array) {
     }
     return false;
 }
+
 export const user_test = {
     "usertoken": "1234",
     "year": 2020,
