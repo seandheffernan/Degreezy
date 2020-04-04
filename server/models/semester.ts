@@ -35,7 +35,7 @@ export function insert_semester(semester_details, callback) {
 export function push_course(_id, course_name, callback) {
     let semester_model = mongoose.model('Semester', semester);
     var course = {course: course_name};
-    semester_model.findByOneAndUpdate({name: _id}, {$push: {courses: course}}, function (err) {
+    semester_model.findOneAndUpdate({name: _id}, {$push: {courses: course}}, function (err) {
         if (err) {
             console.log(err);
         } else {
@@ -47,7 +47,7 @@ export function push_course(_id, course_name, callback) {
 export function pull_course(_id, course_name, callback) {
     let semester_model = mongoose.model('Semester', semester);
     var course = {course: course_name};
-    semester_model.findByOneAndUpdate({name: _id}, {$pull: {courses: course}}, function (err) {
+    semester_model.findOneAndUpdate({name: _id}, {$pull: {courses: course}}, function (err) {
         if (err) {
             console.log(err);
         } else {
