@@ -32,7 +32,7 @@ export function fetch_create_user(req, res) {
                 // Assuming eight semesters
                 let newUser = new userModel({rcsid: rcsid});
                 for (let i = 0; i < 8; i++) {
-                    let newSemester = new semesterModel({name: ''}); // TODO: Add Name Parameter According to Spec
+                    let newSemester = new semesterModel({}); // TODO: Add Name Parameter According to Spec
                     newUser.schedule[i] = newSemester._id;
                     newSemester.save(function(err) {
                         if(err) console.log(err);
