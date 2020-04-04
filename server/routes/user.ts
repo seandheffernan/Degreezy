@@ -1,5 +1,5 @@
 import express from 'express';
-import { push_semester, pull_semester, insert_user, get_user } from '../models/user';
+import { push_semester, pull_semester, insert_user, get_user, add_course_taken, check_prereq } from '../models/user';
 
 const user_router = express.Router();
 
@@ -46,4 +46,33 @@ user_router.post('/pull', (req, res) => {
     });
 });
 
+user_router.put('/courses/push', (req, res) => {
+    add_course_taken(req.body.token, req.body.course_name, function(err){
+        if(err) {
+            res.send(err);
+        } else {
+            res.send("Data added successfully");
+        }
+    })
+})
+
+user_router.get('/courses/prereq', (req, res) =>{
+    check_prereq(req.query.token, req.query.course_name, function(result){
+        if(result) {
+            res.send("The user has met the prerequisites for the course");
+        } else {
+            res.send("The user has not met the prerequisites for the course");
+        }
+    })
+})
+
+user_router.get('/courses/coreq', (req, res) =>{
+    check_prereq(req.query.token, req.query.course_name, function(result){
+        if(result) {
+            res.send("The user has met the corequisites for the course");
+        } else {
+            res.send("The user has not met the corequisites for the course");
+        }
+    })
+})
 export default user_router;
