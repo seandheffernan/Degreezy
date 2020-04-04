@@ -1,5 +1,5 @@
 import express from 'express';
-import { push_semester, pull_semester, insert_user, get_user, add_course_taken, check_prereq } from '../models/user';
+import { push_semester, pull_semester, insert_user, get_user, add_course_taken, check_prereq, check_coreq } from '../models/user';
 
 const user_router = express.Router();
 
@@ -67,7 +67,7 @@ user_router.get('/courses/prereq', (req, res) =>{
 })
 
 user_router.get('/courses/coreq', (req, res) =>{
-    check_prereq(req.query.token, req.query.course_name, function(result){
+    check_coreq(req.query.token, req.query.course_name, function(result){
         if(result) {
             res.send("The user has met the corequisites for the course");
         } else {
