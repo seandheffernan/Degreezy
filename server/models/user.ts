@@ -4,8 +4,7 @@ import {course} from "./course";
 import {get_connection} from './connection'
 
 export const userModel = mongoose.Schema({
-    username: String,
-    password: String,
+    usertoken: String,
     year: Number,
     classes_taken: [{
         course: String,
@@ -16,7 +15,7 @@ export const userModel = mongoose.Schema({
     concentration: String,
     name: String,
     schedule: [{
-        semester: String
+        semester: mongoose.Schema.Types.ObjectID,
     }]
 });
 
