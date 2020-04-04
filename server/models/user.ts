@@ -1,18 +1,65 @@
 import mongoose from 'mongoose';
 import {Programs} from "./program";
 import {course} from "./course";
-import {schedule} from "./schedule";
+import {get_connection} from './connection'
 
 export const userModel = mongoose.Schema({
-    username: String,
-    password: String,
+    usertoken: String,
     year: Number,
-    classes_taken: [course],
-    programs: [Programs],
+    classes_taken: [{
+        course: String,
+    }],
+    programs: [{
+        program: mongoose.Schema.Types.ObjectID,
+    }],
     concentration: String,
     name: String,
-    schedule: schedule
+    schedule: [{
+        semester: mongoose.Schema.Types.ObjectID,
+    }]
 });
+
+export function get_user(token, callback) {
+    let user_model = mongoose.model('User', userModel);
+    user_model.findOne({usertoken: token}, {}, function (data, err) {
+        callback(data, err);
+    });
+}
+
+export function insert_user(user_details, callback) {
+    let user_model = mongoose.model('User', userModel);
+    user_model.create(user_details, function(err) {
+        if (err) {
+            console.log(err);
+        } else {
+            callback(err);
+        }
+    });
+}
+
+export function push_semester(token, semester_id, callback) {
+    let user_model = mongoose.model('User', userModel);
+    var semester = { semester: semester_id };
+    user_model.findOneAndUpdate(token, {$push: {schedule: semester}}, function (err) {
+        if (err) {
+            console.log(err);
+        } else {
+            callback(err);
+        }
+    });
+}
+
+export function pull_semester(token, semester_id, callback) {
+    let user_model = mongoose.model('User', userModel);
+    var semester = { semester: semester_id };
+    user_model.findByIdAndUpdate(token, {$pull: {schedule: semester}}, function (err) {
+        if (err) {
+            console.log(err);
+        } else {
+            callback(err);
+        }
+    });
+}
 
 export function get_progress(name, callback) {
     let user_model = mongoose.model('User', userModel);
@@ -66,3 +113,13 @@ export function findArray(value, array) {
     }
     return false;
 }
+
+export const user_test = {
+    "usertoken": "1234",
+    "year": 2020,
+    "classes_taken" : [],
+    "programs" : [],
+    "concentration" : "",
+    "name" : "",
+    "schedule" : []
+};
