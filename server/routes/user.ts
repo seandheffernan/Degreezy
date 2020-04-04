@@ -1,10 +1,10 @@
 import express from 'express';
-import {insert_semester, semester, get_semester, push_course, pull_course} from "../models/semester"
+import { push_semester, pull_semester, insert_user, get_user } from '../models/user';
 
-const semester_router = express.Router();
+const user_router = express.Router();
 
-semester_router.get('/', (req, res) => {
-    get_semester(req.query._id, function(err, data) {
+user_router.get('/', (req, res) => {
+    get_user(req.query.token, function(err, data){
         if (err) {
             res.send(err);
         } else {
@@ -13,9 +13,9 @@ semester_router.get('/', (req, res) => {
     });
 });
 
-semester_router.post('/', (req, res) => {
+user_router.post('/', (req, res) => {
     console.log(req.body);
-    insert_semester(req.body, function(err){
+    insert_user(req.body, function(err){
         if (err) {
             res.send(err);
         } else {
@@ -24,9 +24,9 @@ semester_router.post('/', (req, res) => {
     });
 });
 
-semester_router.put('/push', (req, res) => {
+user_router.put('/push', (req, res) => {
     console.log(req.body);
-    push_course(req.body._id, req.body.course, function(err) {
+    push_semester(req.body.token, req.body.semester_id, function(err) {
         if (err) {
             res.send(err);
         } else {
@@ -35,9 +35,9 @@ semester_router.put('/push', (req, res) => {
     });
 });
 
-semester_router.post('/pull', (req, res) => {
+user_router.post('/pull', (req, res) => {
     console.log(req.body);
-    pull_course(req.body._id, req.body.course, function(err){
+    pull_semester(req.body.token, req.body.semester_id, function(err){
         if (err) {
             res.send(err);
         } else {
@@ -46,4 +46,4 @@ semester_router.post('/pull', (req, res) => {
     });
 });
 
-export default semester_router;
+export default user_router;
