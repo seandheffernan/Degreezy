@@ -1,13 +1,17 @@
 import mongoose from 'mongoose';
-import {course} from "./course";
 
 export const Programs = mongoose.Schema({
     name: String,
-    ismajor: Boolean,
-    electivecredits: Number,
-    classes_required: [
+    major_courses: [
+        String
+    ],
+    elective_courses: [
         {
-            course: course
+            name: String,
+            count: Number,
+            classes: [
+                String
+            ]
         }
     ]
 });
@@ -20,5 +24,13 @@ export async function insert_program(program_details, callback) {
         } else {
             callback(err);
         }
+    });
+}
+
+export async function get_program(program_name, callback) {
+    let program_model = mongoose.model('Program', Programs);
+    program_model.findOne({name: program_name}, function(err, data) {
+        console.log(data);
+        callback(data, err);
     });
 }
