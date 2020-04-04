@@ -2,12 +2,40 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import {get_connection} from "./models/connection";
+import passport from "passport";
+import node_cas from "@byu-law/passport-cas";
+import session from "express-session";
+
 
 import course_router from './routes/course';
 import semester_router from './routes/semester';
 import schedule_router from './routes/schedule';
+import {fetch_create_user} from "./models/user";
+
+// Passport Configuration
+let casStrategy = node_cas.Strategy;
+passport.use(new casStrategy({
+    ssoBaseURL: 'https://cas-auth.rpi.edu/cas',
+    serverBaseURL: 'http://localhost:3000'
+}, function(profile, done) {
+    return done(null, profile);
+}));
 
 const app = express();
+app.use(passport.initialize());
+app.use(session({secret: "Kuzmin"})); // TODO: Need a better secret
+
+passport.serializeUser(function(user, done) {
+    done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+    done(null, user);
+});
+
+app.get('/login', passport.authenticate('cas'), function(req, res) {
+    console.log(req.user);
+});
 
 // Middleware
 app.use(bodyParser.json());
