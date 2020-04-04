@@ -56,7 +56,7 @@ app.controller('ctrl', function ($scope, $http) {
 
     for (let i = 1; i <= 8; i++) {
       var string = "sem" + i;
-      var link = '/semesters?semester_name=' + string
+      var link = '/semesters?_id=' + string
       // alert(link);
 
       $http({
@@ -110,12 +110,12 @@ app.controller('ctrl', function ($scope, $http) {
         // alert(semesterID + " " + course_json.name);
         var to_delete = {
           course: course_json.name,
-          name: sourceID
+          _id: sourceID
         };
 
         var to_insert = {
           course: course_json.name,
-          name: semesterID
+          _id: semesterID
         };
       } else {
         // alert(semesterID);
@@ -123,12 +123,12 @@ app.controller('ctrl', function ($scope, $http) {
         // alert(semesterID + " " + course_json);
         var to_delete = {
           course: course_json[0],
-          name: sourceID
+          _id: sourceID
         };
 
         var to_insert = {
           course: course_json[0],
-          name: semesterID
+          _id: semesterID
         };
       }
 
