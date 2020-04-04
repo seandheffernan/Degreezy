@@ -26,3 +26,11 @@ export async function insert_program(program_details, callback) {
         }
     });
 }
+
+export async function get_program(program_name, callback) {
+    let program_model = mongoose.model('Program', Programs);
+    program_model.findOne({name: program_name}, function(err, data) {
+        console.log(data);
+        callback(data, err);
+    });
+}
