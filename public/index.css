@@ -363,9 +363,10 @@ body {
 
   .col-md-6 {
     /* width: 10% !important; */
-    border-right: black;
+    border-color: #7096bd !important;
     border-width: 2px;
     border: solid;
+
   }
 
   .sem {
@@ -376,14 +377,19 @@ body {
     border-width: 5px !important; */
     min-height: 150px !important;
     /* height: 50px !important; */
-    padding-top: 20px;
+    padding-top: 40px;
   }
 
   .list-item {
     /* color: red !important;
     background-color: black !important; */
     margin-top: 5px !important;
-    background-color: red !important;
+    /* background-color: red !important; */
+    border-radius: 0 !important;
+    padding: 0px 0px !important;
+    margin-left: 5px !important;
+    margin-right: 5px !important;
+    margin-bottom: 0px !important;
   }
 
   .row {
@@ -395,8 +401,9 @@ body {
 
   .lists {
     border: solid;
+    border-color: #7096bd !important;
     border-width: 2px;
-    border-color: black;
+    /* border-color: black; */
   }
 
   /* #sem1, #sem3, #sem5, #sem7 {
@@ -405,4 +412,12 @@ body {
   #sem2, #sem4, #sem6, #sem8 {
     float: right;
   } */
+
+  .even {
+
+  }
+
+  .odd {
+    background-color: ;
+  }
 }
