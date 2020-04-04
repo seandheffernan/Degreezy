@@ -7,8 +7,12 @@ export const userModel = mongoose.Schema({
     username: String,
     password: String,
     year: Number,
-    classes_taken: [course],
-    programs: [Programs],
+    classes_taken: [{
+        course: String,
+    }],
+    programs: [{
+        program: mongoose.Schema.Types.ObjectID,
+    }],
     concentration: String,
     name: String,
     schedule: [{
