@@ -133,35 +133,41 @@ export function check_prereq(token, course_name, callback) {//current function l
     var target_sem = null;
     var target_course = null;
     let course_model = mongoose.model('Course', course);
-    target_course = course_model.find({$text: {$search: course_name}}); //find course
-    var prereqs = target_course.prequisites;
-    //grab the pre reqs
-    var result = false;
-    if (target != null) {
-        for (var semester_id in target.schedule) {
-            let semester_model = mongoose.model('Semester', semester);
-            target_sem = semester_model.findById(semester_id);
-            for (var prereq in prereqs){
-                if (target_sem.courses.find(prereq)) { //see if semester has said pre reqs
-                    result = true;
-                    break;
+    console.log("start");
+    course_model.find({$text: {$search: course_name}}, function (err){
+        console.log("1");
+        target_course = err;
+    });
+    if (target_course) {
+        var prereqs = target_course.prequisites;
+        //grab the pre reqs
+        //var result = "false";
+        if (target != null) {
+            var semester_model = mongoose.model('Semester', semester);
+            for (var semester_id in target.schedule) { //look through the semesters the user has (or look through the classes taken)
+                target_sem = semester_model.findById(semester_id);
+                console.log(target_sem);
+                for (var prereq in prereqs){
+                    if (target_sem.courses.find(prereq)) { //see if semester has said pre reqs
+                        //result = "true";
+                        callback("true");
+                        break;
+                    }
+                    else {
+                    }
                 }
-                else {
-                }
+                //if (result){break;}
             }
-            if (result){break;}
         }
+        //callback(result);
+    } else {
+        callback('error');
     }
-    if(result) {
-        callback(true);
-    }
-    else {
-        callback(false);
-    }
+    
 }
 //prequisites for these courses (recursive method: dynamic programming? memo-ize?)
 
-export function check_coreq(token, course_name, callback) {
+export function check_coreq(token, course_name, callback) { //left untouched for now
     let user_model = mongoose.model('User', userModel)
     var target = user_model.find({_id: token})
     var target_sem = null;
