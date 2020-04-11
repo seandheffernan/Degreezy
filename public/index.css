@@ -331,40 +331,8 @@ body {
   }
 }
 
-.table {
-  font-size: 10px !important;
-  /* width: 80%; */
-  border: solid !important;
-  border-color: #7096bd !important;
-  border-width: 2px !important;
-}
-tr {
-  height: 5px !important;
-}
-
-td, th {
-  border: solid !important;
-  background-color: #7096bd !important;
-  border-color: white !important;
-
-  /* border-color: white; */
-  border-width: 2px !important;
-}
-
-.leftCol {
-  background-color: #d2ddef !important;
-  border-color: white !important;
-
-  color: darkblue !important;
-  font-weight: bold !important;
-}
-
-.rightCol {
-  background-color: #eaeef7 !important;
-  border-color: white !important;
-
-  color: black;
-  font-weight: bold;
+.infoTable {
+  display: none;
 }
 
 /* ----------- Styling Information for clean print view ----------- */
@@ -380,6 +348,10 @@ td, th {
   body {
     -webkit-print-color-adjust: exact !important;
 
+  }
+
+  .infoTable {
+    display: block;
   }
 
   .navbar {
@@ -459,20 +431,76 @@ td, th {
     background-color: #eaeef7 !important;
   }
 
-  .infoTable {
-    margin-top: 0;
-    padding: 0 !important;
-    /* width: 100%; */
-    margin-left: 10px;
-    margin-right: 10px;
-  }
-
   h2 {
     margin-top: 0;
   }
 
   .mainBody {
     margin-top: 0;
+  }
+
+  .table-bordered {
+    border: solid !important;
+    border-color: #7096bd !important;
+    border-width: 2px !important;
+  }
+
+  .infoTable {
+    margin-top: 0;
+    padding: 0 !important;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .table {
+    /* width: 80%; */
+    border: solid !important;
+    border-color: #7096bd !important;
+    border-width: 2px !important;
+  }
+  tr {
+    height: 25px !important;
+  }
+  
+  td, th {
+    border: solid !important;
+    background-color: #7096bd !important;
+    border-color: white !important;
+  
+    /* border-color: white; */
+    border-width: 3px !important;
+    text-align: center;
+  }
+  
+  td {
+    font-size: 10px;
+  }
+  
+  th {
+    font-size: 20px;
+    padding: 5px;
+  }
+  
+  .leftCol {
+    background-color: #d2ddef !important;
+    border-color: white !important;
+  
+    color: darkblue !important;
+    font-weight: bold !important;
+  }
+  
+  .rightCol {
+    background-color: #eaeef7 !important;
+    border-color: white !important;
+  
+    color: black;
+    font-weight: bold;
+  }
+  
+  .tableNoBS {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
   }
 
 }
