@@ -34,7 +34,7 @@ export function insert_user(user_details, callback) {
 
 export function push_semester(token, semester_id, callback) {
     let user_model = mongoose.model('User', userModel);
-    var semester = { semester: semester_id };
+    //var semester = { semester: semester_id };
     user_model.findOneAndUpdate(token, {$push: {schedule: semester_id}}, function (err) {
         if (err) {
             console.log(err);
@@ -46,7 +46,7 @@ export function push_semester(token, semester_id, callback) {
 
 export function pull_semester(token, semester_id, callback) {
     let user_model = mongoose.model('User', userModel);
-    var semester = { semester: semester_id };
+    //var semester = { semester: semester_id };
     user_model.findByIdAndUpdate(token, {$pull: {schedule: semester_id}}, function (err) {
         if (err) {
             console.log(err);
@@ -111,7 +111,7 @@ export function findArray(value, array) {
 
 export function add_course_taken(token, course_name, callback) {
     let user_model = mongoose.model('User', userModel)
-    var course = {course: course_name}
+    //var course = {course: course_name}
     user_model.findOneAndUpdate(token, {$push: {classes_taken: course_name}}, function (err) {
         if (err) {
             console.log(err);
