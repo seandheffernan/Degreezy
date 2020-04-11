@@ -77,6 +77,48 @@ body {
   color: white;
 
 }
+
+/*@media (max-width: 767px) {
+  .carousel-item {
+    display: block;
+    float: none;
+    margin-right: 0;
+    margin-top: 12px;
+  }
+  .carousel-control, 
+  .carousel-indicators {
+    display: none;
+  }
+  
+  .carousel-caption {
+    color: black;
+    position: static;
+    text-align: left;
+    text-shadow: none;
+  }
+  
+  .carousel-caption h3 {
+    font-weight: bold;
+    margin-top: 4px;
+    margin-bottom: 8px;
+  }
+}*/
+
+/* Make the images wide and responsive. */
+.carousel-inner img {
+  height: auto;
+  width: 100%;
+}
+
+/* Decorations */  
+.carousel {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+
+
+
 /* Dragula from https://codepen.io/nikkipantony/pen/qoKORX */
 .gu-mirror {
   position: fixed !important;
