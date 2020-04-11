@@ -4,12 +4,10 @@ import mongoose, {Schema} from 'mongoose';
 const Schema = mongoose.Schema;
 
 export const semester: Schema = new Schema({
-    courses: [
-        {
-            course: String,
-        }
-    ],
-    name: String
+    courses: [String],
+    name: String,
+    season: String,
+    year: Number
 });
 
 semester.index({'$**': 'text'});
@@ -34,8 +32,8 @@ export function insert_semester(semester_details, callback) {
 
 export function push_course(_id, course_name, callback) {
     let semester_model = mongoose.model('Semester', semester);
-    var course = {course: course_name};
-    semester_model.findOneAndUpdate({name: _id}, {$push: {courses: course}}, function (err) {
+    //var course = {course: course_name};
+    semester_model.findOneAndUpdate({name: _id}, {$push: {courses: course_name}}, function (err) {
         if (err) {
             console.log(err);
         } else {
@@ -46,8 +44,8 @@ export function push_course(_id, course_name, callback) {
 
 export function pull_course(_id, course_name, callback) {
     let semester_model = mongoose.model('Semester', semester);
-    var course = {course: course_name};
-    semester_model.findOneAndUpdate({name: _id}, {$pull: {courses: course}}, function (err) {
+    //var course = {course: course_name};
+    semester_model.findOneAndUpdate({name: _id}, {$pull: {courses: course_name}}, function (err) {
         if (err) {
             console.log(err);
         } else {
