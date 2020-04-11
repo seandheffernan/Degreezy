@@ -5,7 +5,7 @@ import {get_connection} from "./models/connection";
 import passport from "passport";
 import node_cas from "@byu-law/passport-cas";
 import session from "express-session";
-
+import cookieParser from "cookie-parser";
 
 import course_router from './routes/course';
 import semester_router from './routes/semester';
@@ -23,8 +23,11 @@ passport.use(new casStrategy({
 }));
 
 const app = express();
-app.use(passport.initialize());
+
 app.use(session({secret: "Kuzmin"})); // TODO: Need a better secret
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 passport.serializeUser(function(user, done) {
     done(null, user);
@@ -35,12 +38,13 @@ passport.deserializeUser(function(user, done) {
 });
 
 app.get('/login', passport.authenticate('cas'), function(req, res) {
-    console.log(req.user);
+    fetch_create_user(req, res);
 });
 
 // Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(cookieParser());
 app.use('/courses', course_router);
 app.use('/semesters', semester_router);
 app.use('/users', user_router);
@@ -54,7 +58,9 @@ app.use(express.static(path.join(__dirname, '../public')));
 // Server Start
 const port = 3000;
 
-app.get('/', (req, res) => res.sendFile('index.html', {root: "."}));
+app.get('/', (req, res) => {
+    res.sendFile('index.html', {root: "."})
+});
 
 app.listen(port, () => {
     get_connection().then(r => console.log(`App Running on Port ${port}`))

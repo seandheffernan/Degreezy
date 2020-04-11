@@ -5,9 +5,6 @@ import {semester} from "./semester";
 import {get_connection} from './connection'
 
 export const userSchema = mongoose.Schema({
-    username: String,
-    password: String,
-    rcsID: String,
     usertoken: String,
     year: Number,
     classes_taken: [{
@@ -24,14 +21,14 @@ export const userSchema = mongoose.Schema({
 });
 
 export function get_user(token, callback) {
-    let user_model = mongoose.model('User', userModel);
+    let user_model = mongoose.model('User', userSchema);
     user_model.findOne({usertoken: token}, {}, function (data, err) {
         callback(data, err);
     });
 }
 
 export function insert_user(user_details, callback) {
-    let user_model = mongoose.model('User', userModel);
+    let user_model = mongoose.model('User', userSchema);
     user_model.create(user_details, function(err) {
         if (err) {
             console.log(err);
@@ -42,37 +39,39 @@ export function insert_user(user_details, callback) {
 }
 
 export function fetch_create_user(req, res) {
-    let rcsid = req.user;
-    const userModel = mongoose.model("Users", userSchema);
+    let token = req.user;
+    const userModel = mongoose.model("User", userSchema);
     const semesterModel = mongoose.model("Semesters", semester);
-    userModel.findOne({rcsID: rcsid}, {}, function (err, data) {
+    userModel.findOne({usertoken: token}, {}, function (err, data) {
         if (err) {
             console.log(err);
         } else {
             if (!data) {
                 // Make Semesters
                 // Assuming eight semesters
-                let newUser = new userModel({rcsid: rcsid});
-                for (let i = 0; i < 8; i++) {
-                    let newSemester = new semesterModel({}); // TODO: Add Name Parameter According to Spec
+                let newUser = new userModel({usertoken: token});
+                console.log(newUser);
+                for (let i = 0; i < 10; i++) {
+                    let newSemester = new semesterModel({});
                     newUser.schedule[i] = newSemester._id;
-                    newSemester.save(function(err) {
-                        if(err) console.log(err);
+                    newSemester.save(function (err) {
+                        if (err) console.log(err);
                     });
                 }
-                // New User
-                newUser.save(function(err) {
-                    if(err) console.log(err);
-                });
-            } else {
-                callback(null, data)
+                    // New User
+                    newUser.save(function (err) {
+                        if (err) console.log(err);
+                        console.log("New User created");
+                    });
             }
+            console.log("Logged in");
+            res.redirect('/')
         }
     })
 }
 
 export function push_semester(token, semester_id, callback) {
-    let user_model = mongoose.model('User', userModel);
+    let user_model = mongoose.model('User', userSchema);
     var semester = { semester: semester_id };
     user_model.findOneAndUpdate(token, {$push: {schedule: semester}}, function (err) {
         if (err) {
@@ -84,7 +83,7 @@ export function push_semester(token, semester_id, callback) {
 }
 
 export function pull_semester(token, semester_id, callback) {
-    let user_model = mongoose.model('User', userModel);
+    let user_model = mongoose.model('User', userSchema);
     var semester = { semester: semester_id };
     user_model.findByIdAndUpdate(token, {$pull: {schedule: semester}}, function (err) {
         if (err) {
@@ -96,7 +95,7 @@ export function pull_semester(token, semester_id, callback) {
 }
 
 export function get_progress(name, callback) {
-    let user_model = mongoose.model('User', userModel);
+    let user_model = mongoose.model('User', userSchema);
     user_model.findOne({username: name}, {}, function(err, data) {
         if (err) {
             console.log(err);

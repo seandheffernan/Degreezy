@@ -21,6 +21,7 @@
     "mongoose": "^5.8.11",
     "passport": "0.2.2",
     "ts-node": "^8.6.2",
-    "express-session": "latest"
+    "express-session": "latest",
+    "cookie-parser": "^1.4.5"
   }
 }
