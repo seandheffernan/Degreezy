@@ -42,6 +42,24 @@ export function insert_course(course_details, callback) {
     });
 }
 
+export function build_course(callback) {
+    let course_model = mongoose.model('Course', course);
+    let coursesJson = require('../../database_info/SpringCourses.json');
+    course_model.deleteMany({}, function(err) {
+        if (err) {
+            console.log(err);
+        } else {
+            course_model.collection.insertMany(coursesJson, function(err) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    callback(err);
+                }
+            });
+        }
+    });
+}
+
 export const course_test = {
     "course_code": "CSCI",
     "course_number": 1100,
