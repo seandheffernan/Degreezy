@@ -46,7 +46,7 @@
     </nav>
     <div class = "mainBody">
       <div ng-controller="ctrl" ng-init="run()"> 
-        <div class = "sticky">
+        <div class = "searchAndShow sticky">
           <br/>  
           <div class="sticky container">
             <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for classes" title="Search for classes">
@@ -76,59 +76,118 @@
           </div>
         </div>
 
+        <div class="infoTable container">        
+          <table class="tableNoBS table-bordered">
+            <thead>
+              <tr>
+                <th colspan="6"> Degreezy Audit </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="leftCol">Student</td>
+                <td class="rightCol">Sehat, Ace</td>
+                <td class="leftCol">Degree</td>
+                <td class="rightCol">BS Computer Science/ITWS</td>
+                <td class="leftCol">Level</td>
+                <td class="rightCol">Undergraduate</td>
+              </tr>
+              <tr>                
+                <td class="leftCol">ID</td>
+                <td class="rightCol">661661661</td>
+                <td class="leftCol">College</td>
+                <td class="rightCol">School of Science</td>
+                <td class="leftCol">Cohort</td>
+                <td class="rightCol">Transfer Spring 2019</td>
+              </tr>
+              <tr>
+                <td class="leftCol">Class</td>
+                <td class="rightCol">Junior</td>
+                <td class="leftCol">Major</td>
+                <td class="rightCol">Computer Science / ITWS</td>                
+                <td class="leftCol">Overall GPA</td>
+                <td class="rightCol">5.0</td>
+              </tr>
+              <tr>
+                <td class="leftCol">Major Advisor</td>
+                <td class="rightCol">Holzbaur</td>
+                <td class="leftCol">Minor</td>
+                <td class="rightCol"> N.A </td>
+                <td class="leftCol"> Holds </td>
+                <td class="rightCol"> N.A </td>
+              </tr>
+              <tr>
+                <td class="leftCol">Class Dean Advisor</td>
+                <td class="rightCol"></td>
+                <td class="leftCol">Concentration</td>
+                <td class="rightCol">Really Hard</td>
+                <td class="leftCol"></td>
+                <td class="rightCol"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
         <div class="lists container">
-          <div class="row">
+          <div class="row odd">
             <!-- ng-repeat="i in schedule"> -->
-            <div class="col-md-6 " >
+            <div class="col-md-6 col-sm-6 col-xs-6" >
               <!-- y{{Math.ceil(($index+1)/2)}}s{{$index+1}} -->
               <ul class="sem" id="sem1">
                 <li ng-repeat="i in sem_content[0]" class="list-item" id="{{sem_content[0]}}">{{i}}</li>
               </ul>
-              <div id="semTitle">Year 1 Semester 1</div>
+              <div class="semTitle">Year 1 Semester 1</div>
             </div>
-            <div class="col-md-6" >
+            <div class="col-md-6 col-sm-6 col-xs-6" >
               <ul class="sem" id="sem2">
                 <li ng-repeat="i in sem_content[1]" class="list-item" id="{{sem_content[1]}}">{{i}}</li>
               </ul>
-              <div id="semTitle">Year 1 Semester 2</div>
+              <div class="semTitle">Year 1 Semester 2</div>
             </div>
-            <div class="col-md-6" >
+          </div>
+          <div class = "row even">
+            <div class="col-md-6 col-sm-6 col-xs-6" >
               <ul class="sem" id="sem3">
                 <li ng-repeat="i in sem_content[2]" class="list-item" id="{{sem_content[2]}}">{{i}}</li>
               </ul>
-              <div id="semTitle">Year 2 Semester 1</div>
+              <div class="semTitle">Year 2 Semester 1</div>
             </div>
-            <div class="col-md-6" >
+            <div class="col-md-6 col-sm-6 col-xs-6" >
               <ul class="sem" id="sem4">
                 <li ng-repeat="i in sem_content[3]" class="list-item" id="{{sem_content[3]}}">{{i}}</li>
               </ul>
-              <div id="semTitle">Year 2 Semester 2</div>
+              <div class="semTitle">Year 2 Semester 2</div>
             </div>
-            <div class="col-md-6" >
+          </div>
+          <div class = "row odd">
+            <div class="col-md-6 col-sm-6 col-xs-6" >
               <ul class="sem" id="sem5">
                 <li ng-repeat="i in sem_content[4]" class="list-item" id="{{sem_content[4]}}">{{i}}</li>
               </ul>
-              <div id="semTitle">Year 3 Semester 1</div>
+              <div class="semTitle">Year 3 Semester 1</div>
             </div>
-            <div class="col-md-6" >
+            <div class="col-md-6 col-sm-6 col-xs-6" >
               <ul class="sem" id="sem6">
                 <li ng-repeat="i in sem_content[5]" class="list-item" id="{{sem_content[5]}}">{{i}}</li>
               </ul>
-              <div id="semTitle">Year 3 Semester 2</div>
+              <div class="semTitle">Year 3 Semester 2</div>
             </div>
-            <div class="col-md-6" >
+          </div>
+          <div class = "row even">
+            <div class="col-md-6 col-sm-6 col-xs-6" >
               <ul class="sem" id="sem7">
                 <li ng-repeat="i in sem_content[6]" class="list-item" id="{{sem_content[6]}}">{{i}}</li>
               </ul>
-              <div id="semTitle">Year 4 Semester 1</div>
+              <div class="semTitle">Year 4 Semester 1</div>
             </div>
-            <div class="col-md-6" >
+            <div class="col-md-6 col-sm-6 col-xs-6" >
               <ul class="sem" id="sem8">
                 <li ng-repeat="i in sem_content[7]" class="list-item" id="{{sem_content[7]}}">{{i}}</li>
               </ul>
-              <div id="semTitle">Year 4 Semester 2</div>
+              <div class="semTitle">Year 4 Semester 2</div>
             </div>
           </div>
+        </div>
         </div>
 
               <!-- // SlideOut -->
