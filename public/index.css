@@ -78,7 +78,8 @@ body {
 
 }
 
-/*@media (max-width: 767px) {
+/* Carousel */
+/*@media (min-width: 767px) {
   .carousel-item {
     display: block;
     float: none;
@@ -104,17 +105,7 @@ body {
   }
 }*/
 
-/* Make the images wide and responsive. */
-.carousel-inner img {
-  height: auto;
-  width: 100%;
-}
 
-/* Decorations */  
-.carousel {
-  margin-bottom: 20px;
-  margin-top: 20px;
-}
 
 
 

@@ -143,73 +143,72 @@
         </div> -->
 
         <div id="carousel" class="lists container carousel slide">
-          <div class="carousel-inner">
+          <div class="outside">
 
-          <!-- <div class="row odd"> -->
-            <!-- <div class="col-md-6 col-sm-6 col-xs-6" > -->
-            <div class="carousel-item active" >
-
-
+          <div class="inside row odd">
+            <div class="sem_col col-md-6 col-sm-6 col-xs-6 active" >
               <ul class="sem" id="sem1">
                 <li ng-repeat="i in sem_content[0]" class="list-item" id="{{sem_content[0]}}">{{i}}</li>
               </ul>
               <div class="semTitle">Year 1 Semester 1</div>
             </div>
-            <!-- <div class="col-md-6 col-sm-6 col-xs-6" > -->
-            <div class="carousel-item" >
+            <div class="sem_col col-md-6 col-sm-6 col-xs-6" >
               <ul class="sem" id="sem2">
                 <li ng-repeat="i in sem_content[1]" class="list-item" id="{{sem_content[1]}}">{{i}}</li>
               </ul>
               <div class="semTitle">Year 1 Semester 2</div>
             </div>
-
-          <!-- </div> -->
-
-
-          <!-- <div class="row even">
-            <div class="col-md-6 col-sm-6 col-xs-6" >
+          </div>
+          <div class="inside row even">
+            <div class="sem_col col-md-6 col-sm-6 col-xs-6" >
               <ul class="sem" id="sem3">
                 <li ng-repeat="i in sem_content[2]" class="list-item" id="{{sem_content[2]}}">{{i}}</li>
               </ul>
               <div class="semTitle">Year 2 Semester 1</div>
             </div>
-            <div class="col-md-6 col-sm-6 col-xs-6" >
+            <div class="sem_col col-md-6 col-sm-6 col-xs-6" >
               <ul class="sem" id="sem4">
                 <li ng-repeat="i in sem_content[3]" class="list-item" id="{{sem_content[3]}}">{{i}}</li>
               </ul>
               <div class="semTitle">Year 2 Semester 2</div>
             </div>
           </div>
-          <div class="row odd">
-            <div class="col-md-6 col-sm-6 col-xs-6" >
+          <div class="inside row odd">
+            <div class="sem_col col-md-6 col-sm-6 col-xs-6" >
               <ul class="sem" id="sem5">
                 <li ng-repeat="i in sem_content[4]" class="list-item" id="{{sem_content[4]}}">{{i}}</li>
               </ul>
               <div class="semTitle">Year 3 Semester 1</div>
             </div>
-            <div class="col-md-6 col-sm-6 col-xs-6" >
+            <div class="sem_col col-md-6 col-sm-6 col-xs-6" >
               <ul class="sem" id="sem6">
                 <li ng-repeat="i in sem_content[5]" class="list-item" id="{{sem_content[5]}}">{{i}}</li>
               </ul>
               <div class="semTitle">Year 3 Semester 2</div>
             </div>
           </div>
-          <div class="row even">
-            <div class="col-md-6 col-sm-6 col-xs-6" >
+          <div class="inside row even">
+            <div class="sem_col col-md-6 col-sm-6 col-xs-6" >
               <ul class="sem" id="sem7">
                 <li ng-repeat="i in sem_content[6]" class="list-item" id="{{sem_content[6]}}">{{i}}</li>
               </ul>
               <div class="semTitle">Year 4 Semester 1</div>
             </div>
-            <div class="col-md-6 col-sm-6 col-xs-6" >
+            <div class="sem_col col-md-6 col-sm-6 col-xs-6" >
               <ul class="sem" id="sem8">
                 <li ng-repeat="i in sem_content[7]" class="list-item" id="{{sem_content[7]}}">{{i}}</li>
               </ul>
               <div class="semTitle">Year 4 Semester 2</div>
             </div>
-          </div> -->
+          </div>
+
 
           </div>
+
+
+
+
+
 
           <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -225,76 +224,8 @@
         </div>
         </div>
 
-<!--         <div id="carousel" class="carousel slide" data-ride="carousel">
-          <div class="carousel-inner">
-            <div class="carousel-item active" >
-              <ul class="sem" id="sem1">
-                <li ng-repeat="i in sem_content[0]" class="list-item" id="{{sem_content[0]}}">{{i}}</li>
-              </ul>
-              <div class="semTitle">Year 1 Semester 1</div>
-            </div>
-            <div class="carousel-item" >
-              <ul class="sem" id="sem2">
-                <li ng-repeat="i in sem_content[1]" class="list-item" id="{{sem_content[1]}}">{{i}}</li>
-              </ul>
-              <div class="semTitle">Year 1 Semester 2</div>
-            </div>
-          </div>
-          <div class="row even">
-            <div class="col-md-6 col-sm-6 col-xs-6" >
-              <ul class="sem" id="sem3">
-                <li ng-repeat="i in sem_content[2]" class="list-item" id="{{sem_content[2]}}">{{i}}</li>
-              </ul>
-              <div class="semTitle">Year 2 Semester 1</div>
-            </div>
-            <div class="col-md-6 col-sm-6 col-xs-6" >
-              <ul class="sem" id="sem4">
-                <li ng-repeat="i in sem_content[3]" class="list-item" id="{{sem_content[3]}}">{{i}}</li>
-              </ul>
-              <div class="semTitle">Year 2 Semester 2</div>
-            </div>
-          </div>
-          <div class="row odd">
-            <div class="col-md-6 col-sm-6 col-xs-6" >
-              <ul class="sem" id="sem5">
-                <li ng-repeat="i in sem_content[4]" class="list-item" id="{{sem_content[4]}}">{{i}}</li>
-              </ul>
-              <div class="semTitle">Year 3 Semester 1</div>
-            </div>
-            <div class="col-md-6 col-sm-6 col-xs-6" >
-              <ul class="sem" id="sem6">
-                <li ng-repeat="i in sem_content[5]" class="list-item" id="{{sem_content[5]}}">{{i}}</li>
-              </ul>
-              <div class="semTitle">Year 3 Semester 2</div>
-            </div>
-          </div>
-          <div class="row even">
-            <div class="col-md-6 col-sm-6 col-xs-6" >
-              <ul class="sem" id="sem7">
-                <li ng-repeat="i in sem_content[6]" class="list-item" id="{{sem_content[6]}}">{{i}}</li>
-              </ul>
-              <div class="semTitle">Year 4 Semester 1</div>
-            </div>
-            <div class="col-md-6 col-sm-6 col-xs-6" >
-              <ul class="sem" id="sem8">
-                <li ng-repeat="i in sem_content[7]" class="list-item" id="{{sem_content[7]}}">{{i}}</li>
-              </ul>
-              <div class="semTitle">Year 4 Semester 2</div>
-            </div>
-          </div>
-          <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
-        </div>
-        </div> -->
 
-
-              <!-- // SlideOut -->
+        <!-- // SlideOut -->
         <div id="slider2" class="slideIn2">
         <!--   // Tab -->
           <div class="slideOutTab2">

@@ -79,6 +79,50 @@ app.controller('ctrl', function ($scope, $http) {
 
   }
 
+  // Carousel (mobile only view)
+  $(window).on('load resize', function() {
+    $('#carousel').carousel('pause');
+
+    if ( document.documentElement.clientWidth <= 767 ) {
+      $('.sem_col').addClass('carousel-item');
+      $('.sem_col').removeClass('col-md-6');
+      $('.sem_col').removeClass('col-sm-6');
+      $('.sem_col').removeClass('col-xs-6');
+
+      $('.carousel-control-prev').show();
+      $('.carousel-control-next').show();
+
+      $('.outside').addClass('carousel-inner');
+      $('.inside').removeClass('row');
+      $('.inside').removeClass('even');
+      $('.inside').removeClass('odd');
+
+
+    } else {
+      $('.sem_col').removeClass('carousel-item');
+      $('.sem_col').addClass('col-md-6');
+      $('.sem_col').addClass('col-sm-6');
+      $('.sem_col').addClass('col-xs-6');
+
+      $('.carousel-control-prev').hide();
+      $('.carousel-control-next').hide();
+
+      $('.outside').removeClass('carousel-inner');
+      $('.inside').addClass('row');
+      $('.inside').addClass('even');
+      $('.inside').addClass('odd');
+
+
+    }
+  });
+
+
+
+
+
+
+
+
   var drake = dragula([
     document.getElementById("queue"),
     document.getElementById("sem1"),
