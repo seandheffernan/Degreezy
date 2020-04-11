@@ -6,12 +6,12 @@ export const course = mongoose.Schema({
     course_number: Number,
     prerequisites: [
         {
-            course: mongoose.Schema.Types.ObjectID
+            course: String
         }
     ],
     corequisites: [
         {
-            course: mongoose.Schema.Types.ObjectID
+            course: String
         }
     ],
     name: String,
@@ -38,6 +38,24 @@ export function insert_course(course_details, callback) {
             console.log(err);
         } else {
             callback(err);
+        }
+    });
+}
+
+export function build_course(callback) {
+    let course_model = mongoose.model('Course', course);
+    let coursesJson = require('../../database_info/SpringCourses.json');
+    course_model.deleteMany({}, function(err) {
+        if (err) {
+            console.log(err);
+        } else {
+            course_model.collection.insertMany(coursesJson, function(err) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    callback(err);
+                }
+            });
         }
     });
 }

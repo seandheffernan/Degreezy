@@ -9,7 +9,8 @@ import session from "express-session";
 
 import course_router from './routes/course';
 import semester_router from './routes/semester';
-import schedule_router from './routes/schedule';
+import user_router from './routes/user';
+import program_router from './routes/program';
 import {fetch_create_user} from "./models/user";
 
 // Passport Configuration
@@ -42,7 +43,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use('/courses', course_router);
 app.use('/semesters', semester_router);
-app.use('/schedules', schedule_router);
+app.use('/users', user_router);
+app.use('/programs', program_router);
 
 var path = require('path');
 app.use('/', express.static(__dirname + '/public'));
