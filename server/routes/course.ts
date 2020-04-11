@@ -1,5 +1,5 @@
 import express from 'express';
-import {get_course, insert_course, course_test} from "../models/course";
+import {get_course, insert_course, build_course} from "../models/course";
 
 
 const course_router = express.Router();
@@ -13,6 +13,7 @@ course_router.get('/', (req, res) => {
         }
     });
 });
+
 course_router.post('/', (req, res) => {
     console.log(req.body);
     insert_course(req.body, function(err) {
@@ -22,6 +23,16 @@ course_router.post('/', (req, res) => {
             res.send("Data added successfully");
         }
     });
+});
+
+course_router.post('/build', (req, res) => {
+    build_course(function(err) {
+        if (err) {
+            res.send(err);
+        } else {
+            res.send("Data added successfully");
+        }
+    })
 });
 
 export default course_router;
