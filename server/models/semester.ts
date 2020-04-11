@@ -4,11 +4,7 @@ import mongoose, {Schema} from 'mongoose';
 const Schema = mongoose.Schema;
 
 export const semester: Schema = new Schema({
-    courses: [
-        {
-            course: String,
-        }
-    ],
+    courses: [String],
     name: String,
     season: String,
     year: Number

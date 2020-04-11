@@ -57,6 +57,10 @@ user_router.put('/courses/push', (req, res) => {
 })
 
 user_router.get('/courses/prereq', (req, res) =>{
+    var taken;
+    if(req.query.taken){
+        taken = (req.query.taken == "true");
+    } else {taken = false}
     check_prereq(req.query.token, req.query.course_name, function(result){
         if(result == "true") {
             console.log("sucess");
@@ -65,11 +69,11 @@ user_router.get('/courses/prereq', (req, res) =>{
             console.log("failure");
             res.send("The user has not met the prerequisites for the course");
         } else {
-            console.log("error");
+            console.log(result);
             //res.send(result);
             res.send("There has been an error with the function");
         }
-    })
+    }, taken)
 })
 
 user_router.get('/courses/coreq', (req, res) =>{
@@ -81,9 +85,8 @@ user_router.get('/courses/coreq', (req, res) =>{
             console.log("failure");
             res.send("The user has not met the corequisites for the course");
         } else {
-            console.log("error");
-            res.send(result)
             res.send("There has been an error with the function");
+            res.send(result);
         }
     })
 })

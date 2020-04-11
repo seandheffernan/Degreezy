@@ -4,16 +4,8 @@ import mongoose from 'mongoose';
 export const course = mongoose.Schema({
     course_code: String,
     course_number: Number,
-    prerequisites: [
-        {
-            course: mongoose.Schema.Types.ObjectID
-        }
-    ],
-    corequisites: [
-        {
-            course: mongoose.Schema.Types.ObjectID
-        }
-    ],
+    prerequisites: [String],
+    corequisites: [String],
     name: String,
     majorRestricted: Boolean,
     semester: String,
