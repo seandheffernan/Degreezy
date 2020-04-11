@@ -332,7 +332,7 @@ body {
 }
 
 /* ----------- Styling Information for clean print view ----------- */
-@media print {
+/* @media print { */
   * {
     background: transparent !important; */
     color: #000 ! important;
@@ -364,9 +364,9 @@ body {
   .col-md-6 {
     /* width: 10% !important; */
     border-color: #7096bd !important;
-    border-width: 2px;
+    border-width: 2px !important;
     border: solid;
-
+    /* border-radius: 15px !important; */
   }
 
   .sem {
@@ -390,6 +390,7 @@ body {
     margin-left: 5px !important;
     margin-right: 5px !important;
     margin-bottom: 0px !important;
+    text-align: left;
   }
 
   .row {
@@ -402,22 +403,50 @@ body {
   .lists {
     border: solid;
     border-color: #7096bd !important;
-    border-width: 2px;
+    border-width: 2px !important;
+    margin-left: 10px;
+    margin-right: 10px;
     /* border-color: black; */
   }
 
-  /* #sem1, #sem3, #sem5, #sem7 {
-    float: left;
-  }
-  #sem2, #sem4, #sem6, #sem8 {
-    float: right;
-  } */
-
   .even {
-
+    background-color: #d2ddef !important;
   }
 
   .odd {
-    background-color: ;
+    background-color: #eaeef7 !important;
   }
-}
+
+  .infoTable {
+    margin-top: 0;
+    padding: 0 !important;
+    /* width: 100%; */
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  h2 {
+    margin-top: 0;
+  }
+
+  .mainBody {
+    margin-top: 0;
+  }
+
+  .table {
+    font-size: 10px;
+    /* width: 80%; */
+    border: solid;
+    border-color: #7096bd !important;
+    border-width: 2px !important;
+  }
+  tr {
+    height: 5px;
+    border: solid;
+    border-color: #7096bd !important;
+    border-width: 2px !important;
+  }
+
+
+/* } */
+
