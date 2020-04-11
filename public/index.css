@@ -9,7 +9,7 @@ html {
 }
 
 body {
-	background-color: white;
+  background-color: white;
 }
 
 .mainBody {
@@ -331,13 +331,55 @@ body {
   }
 }
 
+.table {
+  font-size: 10px !important;
+  /* width: 80%; */
+  border: solid !important;
+  border-color: #7096bd !important;
+  border-width: 2px !important;
+}
+tr {
+  height: 5px !important;
+}
+
+td, th {
+  border: solid !important;
+  background-color: #7096bd !important;
+  border-color: white !important;
+
+  /* border-color: white; */
+  border-width: 2px !important;
+}
+
+.leftCol {
+  background-color: #d2ddef !important;
+  border-color: white !important;
+
+  color: darkblue !important;
+  font-weight: bold !important;
+}
+
+.rightCol {
+  background-color: #eaeef7 !important;
+  border-color: white !important;
+
+  color: black;
+  font-weight: bold;
+}
+
 /* ----------- Styling Information for clean print view ----------- */
-/* @media print { */
+@media print {
   * {
-    background: transparent !important; */
-    color: #000 ! important;
-    box-shadow: none !important;
-    text-shadow: none !important;
+    /* background: transparent !important; */
+    /* color: #000 ! important; */
+    /* box-shadow: none !important; */
+    /* text-shadow: none !important; */
+    -webkit-print-color-adjust: exact !important;
+  }
+
+  body {
+    -webkit-print-color-adjust: exact !important;
+
   }
 
   .navbar {
@@ -433,20 +475,5 @@ body {
     margin-top: 0;
   }
 
-  .table {
-    font-size: 10px;
-    /* width: 80%; */
-    border: solid;
-    border-color: #7096bd !important;
-    border-width: 2px !important;
-  }
-  tr {
-    height: 5px;
-    border: solid;
-    border-color: #7096bd !important;
-    border-width: 2px !important;
-  }
-
-
-/* } */
+}
 
