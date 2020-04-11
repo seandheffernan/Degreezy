@@ -93,10 +93,13 @@ app.controller('ctrl', function ($scope, $http) {
       $('.carousel-control-next').show();
 
       $('.outside').addClass('carousel-inner');
-      $('.inside').removeClass('row');
-      $('.inside').removeClass('even');
-      $('.inside').removeClass('odd');
+      $('.outside').removeClass('row');
 
+      // $('.inside').removeClass('row');
+
+      // $('.inside').closest('div').replaceWith(function() {
+      //   return '<span>' + this.innerHTML + '</span>';
+      // });
 
     } else {
       $('.sem_col').removeClass('carousel-item');
@@ -108,9 +111,10 @@ app.controller('ctrl', function ($scope, $http) {
       $('.carousel-control-next').hide();
 
       $('.outside').removeClass('carousel-inner');
-      $('.inside').addClass('row');
-      $('.inside').addClass('even');
-      $('.inside').addClass('odd');
+      $('.outside').addClass('row');
+      // $('.inside').addClass('row');
+
+
 
 
     }
