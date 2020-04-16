@@ -15,14 +15,14 @@ export const userModel = mongoose.Schema({
 });
 
 export function get_user(token, callback) {
-    let user_model = mongoose.model('User', userSchema);
+    let user_model = mongoose.model('User', userModel);
     user_model.findOne({usertoken: token}, {}, function (data, err) {
         callback(data, err);
     });
 }
 
 export function insert_user(user_details, callback) {
-    let user_model = mongoose.model('User', userSchema);
+    let user_model = mongoose.model('User', userModel);
     user_model.create(user_details, function(err) {
         if (err) {
             console.log(err);
@@ -34,16 +34,16 @@ export function insert_user(user_details, callback) {
 
 export function fetch_create_user(req, res) {
     let token = req.user;
-    const userModel = mongoose.model("User", userSchema);
+    const user_model = mongoose.model("User", userModel);
     const semesterModel = mongoose.model("Semesters", semester);
-    userModel.findOne({usertoken: token}, {}, function (err, data) {
+    user_model.findOne({usertoken: token}, {}, function (err, data) {
         if (err) {
             console.log(err);
         } else {
             if (!data) {
                 // Make Semesters
                 // Assuming eight semesters
-                let newUser = new userModel({usertoken: token});
+                let newUser = new user_model({usertoken: token});
                 console.log(newUser);
                 for (let i = 0; i < 10; i++) {
                     let newSemester = new semesterModel({});
