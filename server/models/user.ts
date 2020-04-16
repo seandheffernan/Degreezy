@@ -5,13 +5,24 @@ import {semester} from "./semester";
 import {get_connection} from './connection'
 
 export const userModel = mongoose.Schema({
+    rin: Number,
     usertoken: String,
-    year: Number,
+    class: Number,
     classes_taken: [String],
     programs: [mongoose.Schema.Types.ObjectID],
     concentration: String,
     name: String,
-    schedule: [mongoose.Schema.Types.ObjectID]
+    schedule: [mongoose.Schema.Types.ObjectID],
+    MajorAdvisor: String,
+    ClassDeanAdvisor: String,
+    Degree: String,
+    College: String,
+    Majors: [String],
+    Minor: String,
+    Concentration: String,
+    Level: String,
+    Cohort: String,
+    OverallGPA: Number
 });
 
 export function get_user(token, callback) {
@@ -43,7 +54,7 @@ export function fetch_create_user(req, res) {
             if (!data) {
                 // Make Semesters
                 // Assuming eight semesters
-                let newUser = new user_model({usertoken: token});
+                let newUser = new user_model({usertoken: token, name: req.query.name, rin: req.query.rin, class: req.query.class});
                 console.log(newUser);
                 for (let i = 0; i < 10; i++) {
                     let newSemester = new semesterModel({});
