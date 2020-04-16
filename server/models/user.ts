@@ -57,9 +57,11 @@ export function fetch_create_user(req, res) {
                         if (err) console.log(err);
                         console.log("New User created");
                     });
+                data = newUser;
             }
+            let queryUser = encodeURIComponent(JSON.stringify(data));
             console.log("Logged in");
-            res.redirect('/')
+            res.redirect('/?result=' + queryUser);
         }
     })
 }
