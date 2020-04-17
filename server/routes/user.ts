@@ -1,5 +1,5 @@
 import express from 'express';
-import { push_semester, pull_semester, insert_user, get_user, add_course_taken, check_prereq, check_coreq } from '../models/user';
+import { push_semester, pull_semester, insert_user, get_user, add_course_taken, check_prereq, check_coreq, get_progress } from '../models/user';
 
 const user_router = express.Router();
 
@@ -89,5 +89,16 @@ user_router.get('/courses/coreq', (req, res) =>{
             res.send(result);
         }
     })
+})
+
+user_router.get('/getprogress', (req, res) => {
+    console.log(req.query.name);
+    get_progress(req.query.name, function(result, err) {
+        if (err) {
+            res.send(err)
+        } else {
+            res.send(result)
+        }
+    }
 })
 export default user_router;
