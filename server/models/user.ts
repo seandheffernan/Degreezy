@@ -129,18 +129,21 @@ export function get_progress(name, callback) {
                     courseCount = program_data.elective_courses[i].count;
                     reqComplete = true;
                     for (let j = 0; j < program_data.elective_courses[i].length; i++) {
-                        if (!findArray(user_data.classes_taken, program_data.elective_courses[i])) {
-                            return_data += '{ "name": "' + program_data.elective_courses[i].name + '", "Completed": false },';
-                            reqComplete = false;
-                            break;   
+                        if (findArray(user_data.classes_taken, program_data.elective_courses[i])) {
+                            courseCount--;
+                            if (courseCount == 0) {
+                                break;
+                            }
                         }
                     }
-                    if (reqComplete) {
+                    if (courseCount <= 0) {
                         return_data += '{ "name": "' + program_data.elective_courses[i].name + '", "Completed": true },';
+                    } else {
+                        return_data += '{ "name": "' + program_data.elective_courses[i].name + '", "Completed": false },';
                     }
                 }
             });
-            return return_data;
+            callback(return_data);
         }
     });
 }
