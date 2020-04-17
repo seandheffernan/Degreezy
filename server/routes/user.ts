@@ -99,6 +99,6 @@ user_router.get('/getprogress', (req, res) => {
         } else {
             res.send(result)
         }
-    }
+    })
 })
 export default user_router;
