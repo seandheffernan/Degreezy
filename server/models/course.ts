@@ -18,7 +18,7 @@ course.index({'$**': 'text'});
 export function get_course(searchString, callback) {
     let course_model = mongoose.model('Course', course);
     // course_model.findOne({course_code: code, course_number: number}, {}, function (data, err) {
-    course_model.find({$text: {$search: searchString}}, function (data, err) {
+    course_model.find({name: { $regex: '.*' + searchString + '.*'}}, function (data, err) {
         callback(data, err);
     });
 }

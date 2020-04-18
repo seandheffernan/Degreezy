@@ -5,7 +5,7 @@ import {get_course, insert_course, build_course} from "../models/course";
 const course_router = express.Router();
 
 course_router.get('/', (req, res) => {
-    get_course(req.query.searchString, function(err, data) {
+    get_course(req.query.searchString.toUpperCase(), function(err, data) {
         if (err) {
             res.send(err);
         } else {
