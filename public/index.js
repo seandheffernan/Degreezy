@@ -228,21 +228,20 @@ app.controller('ctrl', function ($scope, $http) {
 // 	}
 // }
 
-// // search
-// function myFunction() {
-//   var input, filter, ul, li, a, i, txtValue;
-//   input = document.getElementById("myInput");
-//   filter = input.value.toUpperCase();
-//   ul = document.getElementById("myUL");
-//   li = ul.getElementsByTagName("li");
-//   for (i = 0; i < li.length; i++) {
-//     a = li[i].getElementsByTagName("a")[0];
-//     txtValue = a.textContent || a.innerText;
-//     if (txtValue.toUpperCase().indexOf(filter) > -1) {
-//       li[i].style.display = "";
-//     } else {
-//       li[i].style.display = "none";
-//     }
-//   }
-// }
+// search
+function searchFunction() {
+  var input = document.getElementById("myInput");
+  var filter = input.value.toUpperCase();
+  var ul = document.getElementById("queue");
+  var li = ul.getElementsByTagName("li");
+  for (i = 0; i < li.length; i++) {
+    var a = li[i]
+    var txtValue = a.textContent || a.innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+  }
+}
 
