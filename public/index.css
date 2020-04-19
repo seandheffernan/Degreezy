@@ -16,14 +16,36 @@ body {
   margin-top: 5%;
 }
 
+.top_container {
+  display: block;
+  height: 255px;
+  overflow: scroll;
+  background-color: white;
+  margin-bottom: 50px;
+}
+
 .sticky {
   position: -webkit-sticky;
   position: sticky;
   /*padding-top: 50px;*/
   top: 40px;
-  background-color: white;
+  /*margin-top: 40px;*/
+  /*background-color: white;*/
   z-index: 3;
+  /*height: 200px;*/
 }
+
+.search_sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  /*padding-top: 50px;*/
+  top: 20px;
+  /*margin-top: 40px;*/
+  /*background-color: white;*/
+  /*z-index: 3;*/
+}
+
+
 #myInput {
   width: 100%;
   font-size: 16px;
@@ -33,13 +55,15 @@ body {
 }
 
 .list-item {
+  font-size: 10px;
 	background-color: #F3F3F3;
 	border-radius: 8px;
 	padding: 15px 20px;
 	text-align: center;
-  margin-left: 10px;
+  margin: 5px;
+/*  margin-left: 10px;
   margin-right: 10px;
-  margin-bottom: 5px;
+  margin-bottom: 5px;*/
 
 	display: inline-block;
 

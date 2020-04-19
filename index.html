@@ -44,14 +44,14 @@
           </div>
       </div>
     </nav>
-    <div class = "mainBody">
+    <div class="mainBody">
       <div ng-controller="ctrl" ng-init="run()"> 
-        <div class = "searchAndShow sticky">
+        <div class="searchAndShow sticky top_container">
           <br/>  
-          <div class="sticky container">
+          <div class="container search_sticky">
             <input type="text" id="myInput" onkeyup="searchFunction()" placeholder="Search for classes" title="Search for classes">
           </div>
-          <div class="sticky lists container">
+          <div class="lists container">
             <div class="row justify-content-center">
               <ul class="col-md-auto list" id="queue">
                 <li ng-repeat="i in courses" class="list-item" id="{{i}}">{{i.name}}</li>  
