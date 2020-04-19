@@ -6,6 +6,7 @@ html {
 
 * {
   font-family: "Spartan", sans-serif;
+  font-weight: 500;
 }
 
 body {
@@ -67,6 +68,8 @@ body {
 
 .list-item {
   font-size: 10px;
+  color: #707070;
+  /*font-weight: 500;*/
   /*background-color: #F3F3F3;*/
   background-color: #fafafa;
 	border-radius: 8px;
@@ -97,7 +100,9 @@ body {
 
 .sem {
   display: block;
+  border-radius: 10px;
   margin-bottom: 20px;
+  margin-top: 20px;
   padding: 10px;
   min-height: 400px;
   /*background-color: rgba(0, 0, 0, 0.1);*/
@@ -107,12 +112,23 @@ body {
 
 .semTitle{
   position: absolute;
-  bottom: 10%;
+  bottom: 0%;
   right: 10%;
-  font-size: 20px;
-  font-weight: bold;
-  font-variant-caps: small-caps;
-  color: white;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 5px;
+/*  padding: 20px;*/
+  border-radius: 0px 0px 15px 15px;
+  font-size: 15px;
+  font-weight: 600;
+  font-variant-caps: all-small-caps;
+  color: #C0C0C0;
+  /*background-color: #C0C0C0;*/
+  background-color: #ededed;
+  
+  z-index: -1;
+
+  /*color: white;*/
 
 }
 /* Dragula from https://codepen.io/nikkipantony/pen/qoKORX */
