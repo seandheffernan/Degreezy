@@ -16,6 +16,10 @@ body {
   margin-top: 5%;
 }
 
+.container {
+  /*width: 90%;*/
+}
+
 .top_container {
   display: block;
   height: 255px;
@@ -95,7 +99,7 @@ body {
   display: block;
   margin-bottom: 20px;
   padding: 10px;
-  min-height: 300px;
+  min-height: 400px;
   /*background-color: rgba(0, 0, 0, 0.1);*/
   background-color: #ededed;
 
