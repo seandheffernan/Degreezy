@@ -4,7 +4,7 @@ app.controller('ctrl', function ($scope, $http) {
   $scope.run = function(){
     $http({
       method: 'GET',
-        url: '/courses?searchString=CSCI'
+        url: '/courses?searchString='
       }).then(function successCallback(response) {
           $scope.courses = response.data;
           console.log("Success!");
