@@ -178,18 +178,18 @@ function searchFunction() {
   }
 }
 
-// function reqCheck(){
-//   $http({
-//     method: 'GET',
-//     url: '/semesters/push',
-//     dataType: 'JSON',
-//     data: to_insert
-//   }).then(function successCallback(response) {
-//       console.log("PUT successful");
-//   }, function errorCallback(response) {
-//       console.log(response.data);
-// });
-// }
+function reqCheck(){
+  $http({
+    method: 'GET',
+    url: '/semesters/push',
+    dataType: 'JSON',
+    data: to_insert
+  }).then(function successCallback(response) {
+      console.log("PUT successful");
+  }, function errorCallback(response) {
+      console.log(response.data);
+});
+}
 
 
 // removeOnSpill: false
