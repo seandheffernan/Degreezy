@@ -92,11 +92,12 @@ user_router.get('/courses/coreq', (req, res) =>{
 })
 
 user_router.get('/getprogress', (req, res) => {
-    console.log(req.query.name);
+    console.log(req.query.id);
     get_progress(req.query.name, function(result, err) {
         if (err) {
             res.send(err)
         } else {
+            console.log(result);
             res.send(result)
         }
     })
