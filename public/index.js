@@ -78,6 +78,7 @@ app.controller('ctrl', function ($scope, $http) {
     }
 
   }
+  var creditCount;
 
   var drake = dragula([
     document.getElementById("queue"),
@@ -160,7 +161,35 @@ app.controller('ctrl', function ($scope, $http) {
 
 /* Dragula inspired by https://codepen.io/nikkipantony/pen/qoKORX */
 
+// search
+function searchFunction() {
+  var input = document.getElementById("myInput");
+  var filter = input.value.toUpperCase();
+  var ul = document.getElementById("queue");
+  var li = ul.getElementsByTagName("li");
+  for (i = 0; i < li.length; i++) {
+    var a = li[i]
+    var txtValue = a.textContent || a.innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+  }
+}
 
+// function reqCheck(){
+//   $http({
+//     method: 'GET',
+//     url: '/semesters/push',
+//     dataType: 'JSON',
+//     data: to_insert
+//   }).then(function successCallback(response) {
+//       console.log("PUT successful");
+//   }, function errorCallback(response) {
+//       console.log(response.data);
+// });
+// }
 
 
 // removeOnSpill: false
@@ -228,20 +257,5 @@ app.controller('ctrl', function ($scope, $http) {
 // 	}
 // }
 
-// search
-function searchFunction() {
-  var input = document.getElementById("myInput");
-  var filter = input.value.toUpperCase();
-  var ul = document.getElementById("queue");
-  var li = ul.getElementsByTagName("li");
-  for (i = 0; i < li.length; i++) {
-    var a = li[i]
-    var txtValue = a.textContent || a.innerText;
-    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-      li[i].style.display = "";
-    } else {
-      li[i].style.display = "none";
-    }
-  }
-}
+
 
