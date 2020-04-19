@@ -67,7 +67,7 @@ app.controller('ctrl', function ($scope, $http) {
 
             for (let j in head) {
               // alert(JSON.stringify(head[j]));
-              all_semester_content[i-1].push(head[j].course);
+              all_semester_content[i-1].push(head[j]);
             }
             $scope.sem_content = all_semester_content;
 
