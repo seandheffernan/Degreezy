@@ -4,7 +4,7 @@ app.controller('ctrl', function ($scope, $http) {
   $scope.run = function(){
     $http({
       method: 'GET',
-        url: '/courses?searchString=CSCI'
+        url: '/courses?searchString='
       }).then(function successCallback(response) {
           $scope.courses = response.data;
           console.log("Success!");
@@ -56,7 +56,7 @@ app.controller('ctrl', function ($scope, $http) {
 
     for (let i = 1; i <= 8; i++) {
       var string = "sem" + i;
-      var link = '/semesters?semester_name=' + string
+      var link = '/semesters?_id=' + string
       // alert(link);
 
       $http({
@@ -67,7 +67,7 @@ app.controller('ctrl', function ($scope, $http) {
 
             for (let j in head) {
               // alert(JSON.stringify(head[j]));
-              all_semester_content[i-1].push(head[j].course);
+              all_semester_content[i-1].push(head[j]);
             }
             $scope.sem_content = all_semester_content;
 
@@ -78,6 +78,7 @@ app.controller('ctrl', function ($scope, $http) {
     }
 
   }
+  var creditCount;
 
   // Carousel (mobile only view)
   $(window).on('load resize', function() {
@@ -158,12 +159,12 @@ app.controller('ctrl', function ($scope, $http) {
         // alert(semesterID + " " + course_json.name);
         var to_delete = {
           course: course_json.name,
-          name: sourceID
+          _id: sourceID
         };
 
         var to_insert = {
           course: course_json.name,
-          name: semesterID
+          _id: semesterID
         };
       } else {
         // alert(semesterID);
@@ -171,12 +172,12 @@ app.controller('ctrl', function ($scope, $http) {
         // alert(semesterID + " " + course_json);
         var to_delete = {
           course: course_json[0],
-          name: sourceID
+          _id: sourceID
         };
 
         var to_insert = {
           course: course_json[0],
-          name: semesterID
+          _id: semesterID
         };
       }
 
@@ -208,7 +209,35 @@ app.controller('ctrl', function ($scope, $http) {
 
 /* Dragula inspired by https://codepen.io/nikkipantony/pen/qoKORX */
 
+// search
+function searchFunction() {
+  var input = document.getElementById("myInput");
+  var filter = input.value.toUpperCase();
+  var ul = document.getElementById("queue");
+  var li = ul.getElementsByTagName("li");
+  for (i = 0; i < li.length; i++) {
+    var a = li[i]
+    var txtValue = a.textContent || a.innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+  }
+}
 
+// function reqCheck(){
+//   $http({
+//     method: 'GET',
+//     url: '/semesters/push',
+//     dataType: 'JSON',
+//     data: to_insert
+//   }).then(function successCallback(response) {
+//       console.log("PUT successful");
+//   }, function errorCallback(response) {
+//       console.log(response.data);
+// });
+// }
 
 
 // removeOnSpill: false
@@ -276,21 +305,5 @@ app.controller('ctrl', function ($scope, $http) {
 // 	}
 // }
 
-// // search
-// function myFunction() {
-//   var input, filter, ul, li, a, i, txtValue;
-//   input = document.getElementById("myInput");
-//   filter = input.value.toUpperCase();
-//   ul = document.getElementById("myUL");
-//   li = ul.getElementsByTagName("li");
-//   for (i = 0; i < li.length; i++) {
-//     a = li[i].getElementsByTagName("a")[0];
-//     txtValue = a.textContent || a.innerText;
-//     if (txtValue.toUpperCase().indexOf(filter) > -1) {
-//       li[i].style.display = "";
-//     } else {
-//       li[i].style.display = "none";
-//     }
-//   }
-// }
+
 

@@ -1,13 +1,18 @@
 import mongoose from 'mongoose';
-import {course} from "./course";
+import program_router from '../routes/program';
 
 export const Programs = mongoose.Schema({
     name: String,
-    ismajor: Boolean,
-    electivecredits: Number,
-    classes_required: [
+    major_courses: [
+        String
+    ],
+    elective_courses: [
         {
-            course: course
+            name: String,
+            count: Number,
+            classes: [
+                String
+            ]
         }
     ]
 });
@@ -19,6 +24,32 @@ export async function insert_program(program_details, callback) {
             console.log(err);
         } else {
             callback(err);
+        }
+    });
+}
+
+export async function get_program(program_name, callback) {
+    let program_model = mongoose.model('Program', Programs);
+    program_model.findOne({name: program_name}, function(err, data) {
+        console.log(data);
+        callback(data, err);
+    });
+}
+
+export async function build_programs(callback) {
+    let program_model = mongoose.model('Program', Programs);
+    let programsJson = require('../../database_info/Programs.json');
+    program_model.deleteMany({}, function(err) {
+        if (err) {
+            console.log(err);
+        } else {
+            program_model.collection.insertMany(programsJson, function(err) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    callback(err);
+                }
+            });
         }
     });
 }

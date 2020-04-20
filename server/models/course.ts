@@ -4,16 +4,8 @@ import mongoose from 'mongoose';
 export const course = mongoose.Schema({
     course_code: String,
     course_number: Number,
-    prerequisites: [
-        {
-            course: mongoose.Schema.Types.ObjectID
-        }
-    ],
-    corequisites: [
-        {
-            course: mongoose.Schema.Types.ObjectID
-        }
-    ],
+    prerequisites: [String],
+    corequisites: [String],
     name: String,
     majorRestricted: Boolean,
     semester: String,
@@ -26,7 +18,7 @@ course.index({'$**': 'text'});
 export function get_course(searchString, callback) {
     let course_model = mongoose.model('Course', course);
     // course_model.findOne({course_code: code, course_number: number}, {}, function (data, err) {
-    course_model.find({$text: {$search: searchString}}, function (data, err) {
+    course_model.find({name: { $regex: '.*' + searchString + '.*'}}, function (data, err) {
         callback(data, err);
     });
 }
@@ -38,6 +30,24 @@ export function insert_course(course_details, callback) {
             console.log(err);
         } else {
             callback(err);
+        }
+    });
+}
+
+export function build_course(callback) {
+    let course_model = mongoose.model('Course', course);
+    let coursesJson = require('../../database_info/SpringCourses.json');
+    course_model.deleteMany({}, function(err) {
+        if (err) {
+            console.log(err);
+        } else {
+            course_model.collection.insertMany(coursesJson, function(err) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    callback(err);
+                }
+            });
         }
     });
 }

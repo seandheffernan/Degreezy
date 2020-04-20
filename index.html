@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link href="https://fonts.googleapis.com/css?family=Spartan&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Spartan:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <!--       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
@@ -52,12 +52,12 @@
     </nav>
     <div class="mainBody">
       <div ng-controller="ctrl" ng-init="run()"> 
-        <div class="searchAndShow sticky">
-          <br/>  
-          <div class="sticky container">
-            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for classes" title="Search for classes">
+        <div class="searchAndShow sticky top_container">
+          <br/>
+          <div class="container search_sticky">
+            <input type="text" id="myInput" onkeyup="searchFunction()" placeholder="Search for classes" title="Search for classes">
           </div>
-          <div class="sticky lists container">
+          <div class="lists container inside_container">
             <div class="row justify-content-center">
               <ul class="col-md-auto list" id="queue">
                 <li ng-repeat="i in courses" class="list-item" id="{{i}}">{{i.name}}</li>  
@@ -66,7 +66,7 @@
           </div>
         </div>
       
-        <div id="slider" class="slideIn">
+<!--         <div id="slider" class="slideIn">
           <div class="slideOutTab">
             <div>
               <p> Search for classes </p>
@@ -80,6 +80,58 @@
             </div>
             <div class="modal-footer"> </div>
           </div>
+        </div> -->
+
+        <div class="infoTable container">        
+          <table class="tableNoBS table-bordered">
+            <thead>
+              <tr>
+                <th colspan="6"> Degreezy Audit </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="leftCol">Student</td>
+                <td class="rightCol">Sehat, Ace</td>
+                <td class="leftCol">Degree</td>
+                <td class="rightCol">BS Computer Science/ITWS</td>
+                <td class="leftCol">Level</td>
+                <td class="rightCol">Undergraduate</td>
+              </tr>
+              <tr>                
+                <td class="leftCol">ID</td>
+                <td class="rightCol">661661661</td>
+                <td class="leftCol">College</td>
+                <td class="rightCol">School of Science</td>
+                <td class="leftCol">Cohort</td>
+                <td class="rightCol">Transfer Spring 2019</td>
+              </tr>
+              <tr>
+                <td class="leftCol">Class</td>
+                <td class="rightCol">Junior</td>
+                <td class="leftCol">Major</td>
+                <td class="rightCol">Computer Science / ITWS</td>                
+                <td class="leftCol">Overall GPA</td>
+                <td class="rightCol">5.0</td>
+              </tr>
+              <tr>
+                <td class="leftCol">Major Advisor</td>
+                <td class="rightCol">Holzbaur</td>
+                <td class="leftCol">Minor</td>
+                <td class="rightCol"> N.A </td>
+                <td class="leftCol"> Holds </td>
+                <td class="rightCol"> N.A </td>
+              </tr>
+              <tr>
+                <td class="leftCol">Class Dean Advisor</td>
+                <td class="rightCol"></td>
+                <td class="leftCol">Concentration</td>
+                <td class="rightCol">Really Hard</td>
+                <td class="leftCol"></td>
+                <td class="rightCol"></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
 <!-- ORIGINAL FOR REFERENCE -->
