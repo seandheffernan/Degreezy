@@ -101,56 +101,77 @@ export function pull_semester(token, semester_id, callback) {
     });
 }
 
-export function get_progress(name, callback) {
+export async function get_progress(name, callback) {
     let user_model = mongoose.model('User', userModel);
-    user_model.findOne({username: name}, {}, function(err, data) {
-        if (err) {
-            console.log(err);
-        } else {
-            let user_data = data;
-            let program_model = mongoose.model('Program', Programs);
-            let return_data = '{ "requirements: [';
-            let program_data;
-            let courseCount;
-            let reqComplete = true;
-            program_model.findOne({ name: user_data.programs[0]}, {}, function(err, obj) {
-                program_data = obj;
-                for (let i = 0; i < program_data.major_courses.length; i++) {
-                    if (!findArray(user_data.classes_taken, program_data.major_courses[i])) {
-                        return_data += '{ "name": "Major Requirements", "Completed": false },';
-                        reqComplete = false;
+    let user_data = await user_model.findOne({name: name}, {});
+    let program_model = mongoose.model('Program', Programs);
+    let return_data = '{ "concentrations" : [';
+    let program_data;
+    let courseCount;
+    let reqComplete = true;
+    for (let programNum = 0; programNum < user_data.programs.length; programNum++) {
+        program_data = await program_model.findOne({ _id : user_data.programs[programNum]}, {});
+        return_data += '{"concentration" : "' + program_data.name + '",';
+        return_data += '"requirements" : [';
+        for (let i = 0; i < program_data.major_courses.length; i++) {
+            if (!findArray(program_data.major_courses[i], user_data.classes_taken)) {
+                return_data += '{ "name": "Major Requirements", "Completed": false },';
+                reqComplete = false;
+                break;
+            }
+        }
+        if (reqComplete) {
+            return_data += '{ "name": "Major Requirements", "Completed": true },'
+        }
+        for (let i = 0; i < program_data.elective_courses.length; i++) {
+            courseCount = program_data.elective_courses[i].count;
+            // console.log(program_data.elective_courses[i].name);
+            // console.log(courseCount);
+            reqComplete = true;
+            let finalValue = false;
+            if (i == program_data.elective_courses.length - 1) {
+                finalValue = true;
+            }
+            for (let j = 0; j < program_data.elective_courses[i].classes.length; j++) {
+                if (findArray(program_data.elective_courses[i].classes[j], user_data.classes_taken)) {
+                    courseCount--;
+                    // console.log(courseCount);
+                    if (courseCount == 0) {
                         break;
                     }
                 }
-                if (reqComplete) {
-                    return_data += '{ "name": "Major Requirements", "Completed": false },'
+            }
+            if (courseCount <= 0) {
+                return_data += '{ "name": "' + program_data.elective_courses[i].name + '", "Completed": true }';
+                if (!finalValue) {
+                    return_data += ','
                 }
-                for (let i = 0; i < program_data.elective_courses.length; i++) {
-                    courseCount = program_data.elective_courses[i].count;
-                    reqComplete = true;
-                    for (let j = 0; j < program_data.elective_courses[i].length; i++) {
-                        if (!findArray(user_data.classes_taken, program_data.elective_courses[i])) {
-                            return_data += '{ "name": "' + program_data.elective_courses[i].name + '", "Completed": false },';
-                            reqComplete = false;
-                            break;   
-                        }
-                    }
-                    if (reqComplete) {
-                        return_data += '{ "name": "' + program_data.elective_courses[i].name + '", "Completed": true },';
-                    }
+                // console.log(return_data);
+            } else {
+                return_data += '{ "name": "' + program_data.elective_courses[i].name + '", "Completed": false }';
+                if (!finalValue) {
+                    return_data += ','
                 }
-            });
-            return return_data;
+                // console.log(return_data);
+            }
         }
-    });
+        return_data += ']}'
+        if (programNum != user_data.programs.length - 1) {
+            return_data += ',';
+        }
+    }
+    return_data += ']}';
+    callback(return_data);
 }
 
 export function findArray(value, array) {
     for (let i = 0; i < array.length; i++) {
         if (array[i] == value) {
+            // console.log(value + ' found');
             return true;
         }
     }
+    // console.log(value + ' not found');
     return false;
 }
 
