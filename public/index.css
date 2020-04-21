@@ -126,7 +126,7 @@ body {
   /*background-color: #C0C0C0;*/
   background-color: #ededed;
   
-  z-index: -1;
+  z-index: 1;
 
   /*color: white;*/
 
