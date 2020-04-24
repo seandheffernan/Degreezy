@@ -90,23 +90,23 @@ app.controller('ctrl', function ($scope, $http) {
       $('.sem_col').removeClass('col-sm-6');
       $('.sem_col').removeClass('col-xs-6');
 
+      $('.sem').css('border-radius', 0);
+      $('.sem').css('min-height', '30rem');
+
       $('.carousel-control-prev').show();
       $('.carousel-control-next').show();
 
       $('.outside').addClass('carousel-inner');
       $('.outside').removeClass('row');
 
-      // $('.inside').removeClass('row');
-
-      // $('.inside').closest('div').replaceWith(function() {
-      //   return '<span>' + this.innerHTML + '</span>';
-      // });
-
     } else {
       $('.sem_col').removeClass('carousel-item');
       $('.sem_col').addClass('col-md-6');
       $('.sem_col').addClass('col-sm-6');
       $('.sem_col').addClass('col-xs-6');
+
+      $('.sem').css('border-radius', 10);
+      $('.sem').css('min-height', '400px');
 
       $('.carousel-control-prev').hide();
       $('.carousel-control-next').hide();
