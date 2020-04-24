@@ -93,6 +93,7 @@ app.controller('ctrl', function ($scope, $http) {
       $('.sem').css('border-radius', 0);
       $('.sem').css('min-height', '30rem');
 
+      $('.carousel-indicators').show();
       $('.carousel-control-prev').show();
       $('.carousel-control-next').show();
 
@@ -108,6 +109,7 @@ app.controller('ctrl', function ($scope, $http) {
       $('.sem').css('border-radius', 10);
       $('.sem').css('min-height', '400px');
 
+      $('.carousel-indicators').hide();
       $('.carousel-control-prev').hide();
       $('.carousel-control-next').hide();
 

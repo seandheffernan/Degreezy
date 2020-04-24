@@ -157,7 +157,7 @@ body {
   /*background-color: blue;*/
   opacity: 1;
   margin-bottom: 30px;
-  margin-top: 20px;
+  /*margin-top: 20px;*/
   margin-left: 10px;
   margin-right: 10px;
   width: 50px;
@@ -173,6 +173,23 @@ body {
 
 .carousel-control-prev:hover, .carousel-control-next:hover {
   background-color: #C0C0C0;
+}
+
+.carousel-indicators {
+  background-color: #ededed;
+  /*margin-bottom: -10px;*/
+  position: absolute;
+  top: 0;
+  height: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-left: 65px;
+  margin-right: 65px;
+/*  margin-left: 10px;
+  margin-right: 10px;*/
+
+  /*width: 100px;*/
+
 }
 
 /* Carousel */
