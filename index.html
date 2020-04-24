@@ -26,30 +26,25 @@
     <header>
 
     </header>
-    <nav role="navigation" class="navbar navbar-default navbar-fixed-top">
-      <div class="container-fluid">
-          <!-- Brand and toggle get grouped for better mobile display -->
-          <div class="navbar-header">
-              <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
-                  <span class="sr-only">Toggle navigation</span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-              </button>
-              <a href="#" class="navbar-brand">Degreezy</a>
-          </div>
-          <!-- Collection of nav links and other content for toggling -->
-          <div id="navbarCollapse" class="collapse navbar-collapse" data-toggle="collapse" data-target="#navbarCollapse">
-              <ul class="nav navbar-nav">
-                  <li class="active"><a href="#">Home</a></li>
-                  <li><a href="#">Profile</a></li>
-              </ul>
-              <ul class="nav navbar-nav navbar-right">
-                  <li><a href="#">Logout</a></li>
-              </ul>
-          </div>
+
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Degreezy</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Logout</a>
+          </li>
+        </ul>
       </div>
     </nav>
+
     <div class="mainBody">
       <div ng-controller="ctrl" ng-init="run()"> 
         <div class="searchAndShow sticky top_container">

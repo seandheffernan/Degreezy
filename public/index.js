@@ -144,16 +144,19 @@ app.controller('ctrl', function ($scope, $http) {
   // uses target of the drag (where it will be dropped) &
   // uses source of the drag (where the dragged element originated from)
   drake.on('drop', (el, target, source) => {
-    // alert(el.id);
+    alert(el.id);
     $scope.drop(source.id, target.id, el.id);
+    // console.log(source.id);
     el.classList.add('ex-moved');
   });
   $scope.drop = function(sourceID, semesterID, courseInfo){
     console.log("INFO:" +courseInfo);
+    // alert(courseInfo);
 
     var course_json = JSON.parse(courseInfo);
 
     if (sourceID != semesterID) {
+      // dragging from the queue
       if (course_json.name) {
         // alert(sourceID + " " + course_json.name);
         // alert(semesterID + " " + course_json.name);
@@ -166,7 +169,9 @@ app.controller('ctrl', function ($scope, $http) {
           course: course_json.name,
           _id: semesterID
         };
-      } else {
+      }
+      // dragging from semesters
+      else {
         // alert(semesterID);
         // alert(sourceID + " " + course_json);
         // alert(semesterID + " " + course_json);
