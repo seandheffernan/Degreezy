@@ -30,7 +30,7 @@ app.controller('ctrl', function ($scope, $http) {
     //   running on page load; comment out afterwards
     // *************************************************
 
-    // for (let i = 1; i <= 8; i++) {
+    // for (let i = 1; i <= 10; i++) {
     //   var string = "sem" + i;
     //   var object = {
     //     courses: [],
