@@ -3,6 +3,10 @@ import {Programs} from "./program";
 import {course} from "./course";
 import {semester} from "./semester";
 import {get_connection} from './connection'
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 
 export const userModel = mongoose.Schema({
     rin: Number,
@@ -12,7 +16,7 @@ export const userModel = mongoose.Schema({
     programs: [mongoose.Schema.Types.ObjectID],
     concentration: String,
     name: String,
-    schedule: [mongoose.Schema.Types.ObjectID],
+    schedule: [{type: mongoose.Schema.Types.ObjectID, ref: "Semester"}],
     MajorAdvisor: String,
     ClassDeanAdvisor: String,
     Degree: String,
@@ -47,34 +51,44 @@ export function fetch_create_user(req, res) {
     let token = req.user;
     const user_model = mongoose.model("User", userModel);
     const semesterModel = mongoose.model("Semester", semester);
-    user_model.findOne({usertoken: token}, {}, function (err, data) {
+    user_model.findOne({usertoken: token}, {})
+        .populate('schedule').exec(function(err, data) {
         if (err) {
             console.log(err);
         } else {
             if (!data) {
                 // Make Semesters
+<<<<<<< HEAD
                 // Assuming eight semesters
                 let newUser = new user_model({usertoken: token});
+=======
+                // Assuming semesters
+                let newUser = new user_model({usertoken: token});
+                // Send this version to the browser
+                let newUserSend = JSON.parse(JSON.stringify(newUser));
+>>>>>>> master
                 console.log(newUser);
                 for (let i = 0; i < 10; i++) { // TODO: Tie Loop Duration to a Variable
                     let newSemester = new semesterModel({});
                     newUser.schedule[i] = newSemester._id;
+                    // Adds semester objects instead of just ID
+                    newUserSend.schedule[i] = JSON.parse(JSON.stringify(newSemester));
                     newSemester.save(function (err) {
                         if (err) console.log(err);
                     });
                 }
-                    // New User
-                    newUser.save(function (err) {
-                        if (err) console.log(err);
-                        console.log("New User created");
-                    });
-                data = newUser;
+                // New User
+                newUser.save(function (err) {
+                    if (err) console.log(err);
+                    console.log("New User created");
+                });
+                data = newUserSend;
             }
             let queryUser = encodeURIComponent(JSON.stringify(data));
             console.log("Logged in");
             res.redirect('/?result=' + queryUser);
         }
-    })
+    });
 }
 
 export function push_semester(token, semester_id, callback) {
