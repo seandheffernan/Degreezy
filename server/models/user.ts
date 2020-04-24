@@ -58,15 +58,10 @@ export function fetch_create_user(req, res) {
         } else {
             if (!data) {
                 // Make Semesters
-<<<<<<< HEAD
-                // Assuming eight semesters
-                let newUser = new user_model({usertoken: token});
-=======
                 // Assuming semesters
                 let newUser = new user_model({usertoken: token});
                 // Send this version to the browser
                 let newUserSend = JSON.parse(JSON.stringify(newUser));
->>>>>>> master
                 console.log(newUser);
                 for (let i = 0; i < 10; i++) { // TODO: Tie Loop Duration to a Variable
                     let newSemester = new semesterModel({});
