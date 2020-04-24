@@ -23,7 +23,7 @@ body {
 
 .top_container {
   display: block;
-  max-height: 263px;
+  height: 263px;
   overflow: scroll;
   background-color: white;
   /*opacity: 0.5;*/
