@@ -329,11 +329,11 @@ export async function buildCSV(name, callback) {
 
 export async function update_user (rcsId, user_change_data, callback) {
     let user_model = mongoose.model('User', userModel);
-    user_model.findOneAndUpdate({usertoken: rcsId}, user_change_data, function(err, data) {
+    user_model.findOneAndUpdate({usertoken: rcsId.toUpperCase()}, user_change_data, function(err) {
         if (err) {
-            callback(err, data);
+            callback(err);
         } else {
-            callback(null, data);
+            callback(null);
         }
     })
 }

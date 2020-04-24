@@ -1,5 +1,5 @@
 import express from 'express';
-import { push_semester, pull_semester, insert_user, get_user, add_course_taken, check_prereq, check_coreq, get_progress, buildCSV } from '../models/user';
+import { push_semester, pull_semester, insert_user, get_user, add_course_taken, check_prereq, check_coreq, get_progress, buildCSV, update_user} from '../models/user';
 
 const user_router = express.Router();
 
@@ -113,4 +113,14 @@ user_router.get('/exportCSV', (req, res) => {
         }
     })
 })
+
+user_router.post('/update', (req, res) => {
+    update_user(req.query.rcsid, req.body, function(err) {
+        if (err) {
+            res.send(err);
+        } else {
+            res.send("User Information Updated");
+        }
+    });
+});
 export default user_router;
