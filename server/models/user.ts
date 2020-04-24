@@ -54,9 +54,9 @@ export function fetch_create_user(req, res) {
             if (!data) {
                 // Make Semesters
                 // Assuming eight semesters
-                let newUser = new user_model({usertoken: token, name: req.query.name, rin: req.query.rin, class: req.query.class});
+                let newUser = new user_model({usertoken: token});
                 console.log(newUser);
-                for (let i = 0; i < 10; i++) {
+                for (let i = 0; i < 10; i++) { // TODO: Tie Loop Duration to a Variable
                     let newSemester = new semesterModel({});
                     newUser.schedule[i] = newSemester._id;
                     newSemester.save(function (err) {
@@ -309,6 +309,17 @@ export async function check_coreq(token, course_name, callback, taken=false) { /
         result = "Wrong course name or faulty user token";
         callback(result);
     }
+}
+
+export async function update_user (rcsId, user_change_data, callback) {
+    let user_model = mongoose.model('User', userModel);
+    user_model.findOneAndUpdate({usertoken: rcsId}, user_change_data, function(err, data) {
+        if (err) {
+            callback(err, data);
+        } else {
+            callback(null, data);
+        }
+    })
 }
 
 export const user_test = {
