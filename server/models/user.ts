@@ -46,7 +46,7 @@ export function insert_user(user_details, callback) {
 export function fetch_create_user(req, res) {
     let token = req.user;
     const user_model = mongoose.model("User", userModel);
-    const semesterModel = mongoose.model("Semesters", semester);
+    const semesterModel = mongoose.model("Semester", semester);
     user_model.findOne({usertoken: token}, {}, function (err, data) {
         if (err) {
             console.log(err);
@@ -309,6 +309,22 @@ export async function check_coreq(token, course_name, callback, taken=false) { /
         result = "Wrong course name or faulty user token";
         callback(result);
     }
+}
+
+export async function buildCSV(name, callback) {
+    const user_model = mongoose.model('User', userModel);
+    const semester_model = mongoose.model("Semester", semester);
+    let user = await user_model.findOne({name: name});
+    let csv = 'Semester, Class 1, Class 2, Class 3, Class 4, Class 5, Class 6\n';
+    for (let i = 0; i < user.schedule.length; i++) {
+        let semester = await semester_model.findOne({_id: user.schedule[i]});
+        csv += i + ', ';
+        for (let j = 0; j < semester.courses.length - 1; j++) {
+            csv += semester.courses[j] + ', ';
+        }
+        csv += semester.courses[semester.courses.length - 1] + '\n';
+    }
+    callback(csv);
 }
 
 export async function update_user (rcsId, user_change_data, callback) {
