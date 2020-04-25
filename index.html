@@ -201,7 +201,15 @@
           <div class="modal-content">
             <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
               <h4 class="modal-title"> Requirements </h4> </div>
-            <div class="modal-body">
+              <div class="requirements" ng-repeat= "i in reqs">
+                <p>{{i.concentration}}</p>
+                <div ng-repeat="n in i.requirements">
+                  <div class="custom-control custom-checkbox" >
+                    <label class="custom-control-label {{n.Completed}}" for="defaultChecked2">{{n.name}}</label>
+                </div>
+                </div>
+              </div>
+            <!-- <div class="modal-body">
               <p>Major: Computer Science</p>
               <p>Credits: 0 / 128</p>
               <br/>
@@ -241,7 +249,7 @@
                 <label class="custom-control-label" for="defaultChecked2">Computer Science Capstone</label>
               </div>
               <br/>
-            </div>
+            </div> -->
             <div class="modal-footer"> </div>
           </div>
         </div>

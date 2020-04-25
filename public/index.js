@@ -4,7 +4,7 @@ app.controller('ctrl', function ($scope, $http) {
   $scope.run = function(){
     $http({
       method: 'GET',
-        url: '/courses?searchString=CSCI'
+        url: '/courses?searchString='
       }).then(function successCallback(response) {
           $scope.courses = response.data;
           console.log("Success!");
@@ -181,10 +181,11 @@ function searchFunction() {
 function reqCheck(){
   $http({
     method: 'GET',
-    url: '/semesters/push',
+    url: '',
     dataType: 'JSON',
     data: to_insert
   }).then(function successCallback(response) {
+
       console.log("PUT successful");
   }, function errorCallback(response) {
       console.log(response.data);
