@@ -1,6 +1,10 @@
 var app = angular.module('app', []);
 app.controller('ctrl', function ($scope, $http) {
   // $scope.Math=window.Math;
+
+  const param = new URLSearchParams(location.search);
+  $scope.userObj = JSON.parse(param.get("result"));
+
   $scope.run = function(){
     $http({
       method: 'GET',
@@ -11,46 +15,6 @@ app.controller('ctrl', function ($scope, $http) {
       }, function errorCallback(response) {
           console.log(response.data);
     })
-    // to be implemented
-    // $http({
-    //     method: 'GET',
-    //     url: '/schedules'
-    //   }).then(function successCallback(response) {
-    //       $scope.schedule = response.data.semesters;
-    //       console.log("Success!");
-    //   }, function errorCallback(response) {
-    //       console.log(response.data);
-    // });
-
-
-
-    // TEMP SETUP OF THE SEMESTERS IN THE LOCAL DATABASE
-    // Instructions: Uncomment the blocked off section
-    //   below to get the semester database up and
-    //   running on page load; comment out afterwards
-    // *************************************************
-
-    // for (let i = 1; i <= 8; i++) {
-    //   var string = "sem" + i;
-    //   var object = {
-    //     courses: [],
-    //     name: string
-    //   };
-
-    //   $http({
-    //       method: 'POST',
-    //       url: '/semesters',
-    //       dataType: 'JSON',
-    //       data: object
-    //     }).then(function successCallback(response) {
-    //         // $scope.schedule = response.data.semesters;
-    //         console.log("Success!");
-    //     }, function errorCallback(response) {
-    //         console.log(response.data);
-    //   });
-    // }
-
-    // *************************************************
 
     var all_semester_content = [[], [], [], [], [], [], [], []];
 
@@ -76,8 +40,35 @@ app.controller('ctrl', function ($scope, $http) {
             console.log(response.data);
       });
     }
-
   }
+
+  $scope.originalProfile = {
+    usertoken: '',
+    firstName: 'RPI',
+    lastName: 'Student',
+    semesterAdmitted: 'Spring 2016',
+    expectedGraduation: 'Fall 2023',
+    firstProgram: '',
+    secondProgram: ''
+  };
+
+  $scope.profile = angular.copy($scope.originalProfile);
+
+  $scope.submitProfileForm = function () {
+
+      var onSuccess = function (data, status, headers, config) {
+          alert('Profile Updated');
+      };
+
+      var onError = function (data, status, headers, config) {
+          alert('Error occured.');
+      }
+
+      $http.post('users/update?token=' + profile:$scope.profile.token, { profile:$scope.profile })
+          .success(onSuccess)
+          .error(onError);
+
+    };
 
   $scope.runPrograms = function(){
     $http({
@@ -88,8 +79,12 @@ app.controller('ctrl', function ($scope, $http) {
           console.log("Success!");
       }, function errorCallback(response) {
           console.log(response.data);
-    })
-  }
+    });
+  };
+
+
+
+
 
   var creditCount;
 

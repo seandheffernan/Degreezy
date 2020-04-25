@@ -64,25 +64,25 @@
         <div id="slider" class="slideIn" ng-init="runPrograms()">
           <div id="slideOutTab">
             <div>
-              <p> Search for classes </p>
+              <p> Update Profile </p>
             </div>
           </div>
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title"> Add classes here </h4> </div>
+              <h4 class="modal-title"> Profile </h4> </div>
               <div class="modal-body">
-                <form class="text-center border border-light" action="#!">
+                <form class="text-center border border-light" ng-submit="submitProfileForm()">
   
-                  <input type="text" class="form-control" placeholder="RIN">
+                  <input type="text" class="form-control" placeholder="RCS ID" value="{{userObj.usertoken}}" ng-model="profile.usertoken" disabled>
               
                   <div class="form-row">
                       <div class="col">
                           <!-- First name -->
-                          <input type="text" style="float: left;" class="form-control" placeholder="First name">
+                          <input type="text" style="float: left;" class="form-control" placeholder="First name" ng-model="profile.firstName">
                       </div>
                       <div class="col">
                           <!-- Last name -->
-                          <input type="text" style="float: right;" class="form-control" placeholder="Last name">
+                          <input type="text" style="float: right;" class="form-control" placeholder="Last name" ng-model="profile.lastName">
                       </div>
                   </div>
                   
@@ -94,7 +94,7 @@
                   </div>
   
                   <div class="form-group">
-                    <select class="form-control" id="expGrad">
+                    <select class="form-control" id="expGrad" ng-model="profile.semesterAdmitted">
                       <option value="" disabled selected>Semester Admitted</option>
                       <option>Spring 2016</option>
                       <option>Fall 2016</option>
@@ -108,7 +108,7 @@
                   </div>
   
                   <div class="form-group">
-                    <select class="form-control" id="expGrad">
+                    <select class="form-control" id="expGrad" ng-model="profile.expectedGraduation">
                       <option value="" disabled selected>Expected Graduation</option>
                       <option>Spring 2020</option>
                       <option>Fall 2020</option>
@@ -123,7 +123,7 @@
   
                   <div class="form-group">
                     <label for="Major">Select Major</label>
-                    <select class="form-control" id="Major">
+                    <select class="form-control" id="Major" ng-model="profile.firstProgram">
                       <option value="" disabled selected>Select Major</option>
                       <option ng-repeat="program in programInfo">{{program.name}}</option>
                     </select>
@@ -132,12 +132,11 @@
                   <div id="secondMajor" style="display: none;">
                     <div class="form-group">
                       <label for="Major2">Select Second Major</label>
-                      <select class="form-control" id="Major2">
+                      <select class="form-control" id="Major2" ng-model="profile.secondProgram">
                         <option value="" disabled selected>Select Major</option>
                         <option ng-repeat="program in programInfo">{{program.name}}</option>
                       </select>
                     </div>
-  
                   </div>
 
                   <!-- Sign up button -->
