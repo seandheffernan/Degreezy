@@ -77,9 +77,10 @@ body {
   /*text-align: right;*/
   position: fixed;
   /*top: 70%;*/
-  bottom: 20px;
-  right: 20px;
+  bottom: 10px;
+  right: 10px;
   /*margin-bottom: 15px;*/
+  z-index: 3;
 }
 
 #sub, #add {
@@ -87,6 +88,8 @@ body {
   /*padding: 10px;*/
   width: 45px;
   height: 45px;
+  /*background-color: white;*/
+
 }
 
 #sub {
@@ -198,6 +201,7 @@ body {
   margin-left: 10px;
   margin-right: 10px;
   width: 50px;
+  z-index: 1;
 }
 
 .carousel-control-prev {
@@ -222,6 +226,7 @@ body {
   padding-right: 10px;
   margin-left: 65px;
   margin-right: 65px;
+  z-index: 1;
 /*  margin-left: 10px;
   margin-right: 10px;*/
 

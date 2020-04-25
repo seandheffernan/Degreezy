@@ -112,6 +112,8 @@ app.controller('ctrl', function ($scope, $http) {
 
         $(string).find('div').show();
         $(simple).removeClass('slide-hide-on-mobile');
+        // $(simple).show();
+
         $(indic_string).show();
 
         // if (s == num_semesters) {
@@ -125,10 +127,13 @@ app.controller('ctrl', function ($scope, $http) {
         var simple = '#sem' + number;
         var indic_string = '#indicator_hide' + number;
 
-        $(string).removeClass('active');
+        // $(string).removeClass('active');
 
         $(string).find('div').hide();
         $(simple).addClass('slide-hide-on-mobile');
+        // $(simple).hide();
+
+
         $(indic_string).hide();
 
         // if (s == num_semesters) {
