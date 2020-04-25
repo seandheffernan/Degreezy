@@ -74,15 +74,23 @@ body {
 }*/
 
 #semester_edits {
-  text-align: center;
+  /*text-align: right;*/
+  position: fixed;
+  /*top: 70%;*/
+  bottom: 20px;
+  right: 20px;
   /*margin-bottom: 15px;*/
 }
 
 #sub, #add {
-  border-radius: 50px;
+  border-radius: 50%;
   /*padding: 10px;*/
-/*  width: 100px;
-  height: 100px;*/
+  width: 45px;
+  height: 45px;
+}
+
+#sub {
+  margin-bottom: 10px;
 }
 
 .fa-minus, .fa-plus {
