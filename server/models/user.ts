@@ -46,7 +46,7 @@ export function insert_user(user_details, callback) {
 export function fetch_create_user(req, res) {
     let token = req.user;
     const user_model = mongoose.model("User", userModel);
-    const semesterModel = mongoose.model("Semesters", semester);
+    const semesterModel = mongoose.model("Semester", semester);
     user_model.findOne({usertoken: token}, {}, function (err, data) {
         if (err) {
             console.log(err);
