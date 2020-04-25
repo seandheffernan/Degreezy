@@ -10,7 +10,6 @@ export const userModel = mongoose.Schema({
     programs: [mongoose.Schema.Types.ObjectID],
     first_name: String,
     last_name: String,
-    name: String,
     schedule: [{type: mongoose.Schema.Types.ObjectID, ref: "Semester"}],
     semesterAdmitted: String,
     expectedGraduation: String
