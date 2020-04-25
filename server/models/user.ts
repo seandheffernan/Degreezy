@@ -4,7 +4,6 @@ import {course} from "./course";
 import {semester} from "./semester";
 import {get_connection} from './connection'
 
-
 export const userModel = mongoose.Schema({
     rin: Number,
     usertoken: String,
@@ -60,7 +59,7 @@ export function fetch_create_user(req, res) {
                 // Send this version to the browser
                 let newUserSend = JSON.parse(JSON.stringify(newUser));
                 console.log(newUser);
-                for (let i = 0; i < 10; i++) {
+                for (let i = 0; i < 10; i++) { // TODO: Tie Loop Duration to a Variable
                     let newSemester = new semesterModel({});
                     newUser.schedule[i] = newSemester._id;
                     // Adds semester objects instead of just ID
@@ -331,6 +330,17 @@ export async function buildCSV(name, callback) {
         csv += semester.courses[semester.courses.length - 1] + '\n';
     }
     callback(csv);
+}
+
+export async function update_user (rcsId, user_change_data, callback) {
+    let user_model = mongoose.model('User', userModel);
+    user_model.findOneAndUpdate({usertoken: rcsId.toUpperCase()}, user_change_data, function(err) {
+        if (err) {
+            callback(err);
+        } else {
+            callback(null);
+        }
+    })
 }
 
 export const user_test = {
