@@ -317,7 +317,7 @@ export async function check_coreq(token, course_name, callback, taken=false) { /
 
 export async function buildCSV(name, callback) {
     const user_model = mongoose.model('User', userModel);
-    const semester_model = mongoose.model("Semesters", semester);
+    const semester_model = mongoose.model("Semester", semester);
     let user = await user_model.findOne({name: name});
     let csv = 'Semester, Class 1, Class 2, Class 3, Class 4, Class 5, Class 6\n';
     for (let i = 0; i < user.schedule.length; i++) {
