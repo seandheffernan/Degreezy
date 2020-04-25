@@ -3,10 +3,6 @@ import {Programs} from "./program";
 import {course} from "./course";
 import {semester} from "./semester";
 import {get_connection} from './connection'
-<<<<<<< HEAD
-=======
-
->>>>>>> master
 
 export const userModel = mongoose.Schema({
     rin: Number,
