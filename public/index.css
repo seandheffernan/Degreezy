@@ -292,7 +292,7 @@ body {
   transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
 }
 
-.slideOutTab2 {
+#slideOutTab2 {
   margin-top: 50px;
   position: absolute;
   left: -40px;
@@ -304,7 +304,7 @@ body {
   border-radius: 15px 0px 0px 15px
 }
 
-.slideOutTab2 div {
+#slideOutTab2 div {
   text-align: center;
   position: relative;
   right: 70px;
@@ -317,7 +317,7 @@ body {
   writing-mode: lr-tb;
 }
 
-.slideOutTab {
+#slideOutTab {
   margin-top: 50px;
   position: absolute;
   right: -40px;
@@ -329,7 +329,7 @@ body {
   border-radius: 0px 15px 15px 0px
 }
 
-.slideOutTab div {
+#slideOutTab div {
   text-align: center;
   position: relative;
   right: 70px;
@@ -346,11 +346,23 @@ body {
   height: 62vh;
 }
 
+
+input[type=text] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 15px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
 .infoTable {
   display: none;
 }
-
-
 /* ----------- Styling Information for clean print view ----------- */
 @media print {
   * {

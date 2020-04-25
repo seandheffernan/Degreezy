@@ -81,6 +81,19 @@ app.controller('ctrl', function ($scope, $http) {
     }
     $scope.reqCheck();
   }
+
+  $scope.runPrograms = function(){
+    $http({
+      method: 'GET',
+        url: '/programs/all'
+      }).then(function successCallback(response) {
+          $scope.programInfo = response.data;
+          console.log("Success!");
+      }, function errorCallback(response) {
+          console.log(response.data);
+    })
+  }
+
   var creditCount;
 
   // Carousel (mobile only view)
