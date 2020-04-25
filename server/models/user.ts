@@ -3,7 +3,6 @@ import {Programs} from "./program";
 import {course} from "./course";
 import {semester} from "./semester";
 import {get_connection} from './connection'
-var mongoose_csv = require('mongoose-csv');
 
 
 export const userModel = mongoose.Schema({
@@ -26,8 +25,6 @@ export const userModel = mongoose.Schema({
     Cohort: String,
     OverallGPA: Number
 });
-
-userModel.plugin(mongoose_csv);
 
 export function get_user(token, callback) {
     let user_model = mongoose.model('User', userModel);
