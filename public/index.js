@@ -52,9 +52,9 @@ app.controller('ctrl', function ($scope, $http) {
 
     // *************************************************
 
-    var all_semester_content = [[], [], [], [], [], [], [], []];
+    var all_semester_content = [[], [], [], [], [], [], [], [], [], []];
 
-    for (let i = 1; i <= 8; i++) {
+    for (let i = 1; i <= 10; i++) {
       var string = "sem" + i;
       var link = '/semesters?_id=' + string
       // alert(link);
@@ -76,6 +76,15 @@ app.controller('ctrl', function ($scope, $http) {
             console.log(response.data);
       });
     }
+
+
+    
+
+
+
+
+
+
 
   }
   var creditCount;
