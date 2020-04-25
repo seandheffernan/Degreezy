@@ -13,6 +13,7 @@ app.controller('ctrl', function ($scope, $http) {
       }, function errorCallback(response) {
           console.log(response.data);
     })
+    
     // to be implemented
     // $http({
     //     method: 'GET',
@@ -78,7 +79,7 @@ app.controller('ctrl', function ($scope, $http) {
             console.log(response.data);
       });
     }
-
+    $scope.reqCheck();
   }
   var creditCount;
 
@@ -186,13 +187,13 @@ app.controller('ctrl', function ($scope, $http) {
   $scope.reqCheck = function (){
       var urlString = "/users/getprogress?token=";
       var userToken = $scope.userObj['usertoken'];
+      // var userToken = 'Joe Ross';
       $http({
         method: 'GET',
         url: urlString+userToken
      }).then(function successCallback(response) {
-          $scope.reqs = response.data;
-          console.log("Requirements data: "+ response.data);
-          console.log("PUT successful");
+          $scope.require = response.data.concentrations;
+          console.log("Requirements data: "+ JSON.stringify(response.data.concentrations));
       }, function errorCallback(response) {
           console.log(response.data);
     });
