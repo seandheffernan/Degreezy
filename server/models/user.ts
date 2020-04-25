@@ -5,27 +5,15 @@ import {semester} from "./semester";
 import {get_connection} from './connection'
 
 export const userModel = mongoose.Schema({
-    rin: Number,
     usertoken: String,
-    class: Number,
     classes_taken: [String],
     programs: [mongoose.Schema.Types.ObjectID],
-    concentration: String,
     first_name: String,
     last_name: String,
+    name: String,
     schedule: [{type: mongoose.Schema.Types.ObjectID, ref: "Semester"}],
-    MajorAdvisor: String,
-    ClassDeanAdvisor: String,
-    Degree: String,
-    College: String,
-    Majors: [String],
-    Minor: String,
-    Concentration: String,
-    Level: String,
-    Cohort: String,
-    OverallGPA: Number,
     semesterAdmitted: String,
-    semesterGraduating: String
+    expectedGraduation: String
 });
 
 export function get_user(token, callback) {
