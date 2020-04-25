@@ -23,8 +23,9 @@ body {
 
 .top_container {
   display: block;
-  height: 263px;
-  overflow: scroll;
+  height: 205px;
+  /*height: 263px;*/
+  overflow: hidden;
   background-color: white;
   /*opacity: 0.5;*/
   margin-bottom: 50px;
@@ -57,7 +58,6 @@ body {
   z-index: 3;
 }
 
-
 #myInput {
   width: 100%;
   font-size: 16px;
@@ -66,12 +66,20 @@ body {
   margin-bottom: 12px;
 }
 
+.sticky_edits {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 320px;
+  z-index: 3;
+}
+
 #semester_edits {
   text-align: center;
+  margin-bottom: 15px;
 }
 
 #sub, #add {
-  
+  border-radius: 20px;
 }
 
 

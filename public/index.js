@@ -78,17 +78,42 @@ app.controller('ctrl', function ($scope, $http) {
     }
 
 
-    var num_semesters = 8;
+    let num_semesters = 8;
+
+    function update_semesters() {
+      for (var s = 1; s <= num_semesters; s++) {
+        var string = "#sem_hide" + s;
+        var indic_string = "#indicator_hide" + s;
+
+        $(string).show();
+        $(indic_string).show();
+      }
+
+      for (var s = num_semesters; s < 10; s++) {
+        var number = s + 1;
+        var string = "#sem_hide" + number;
+        var indic_string = "#indicator_hide" + number;
+
+        $(string).hide();
+        $(indic_string).hide();
+      }
+    }
 
     $scope.sub = function() {
-      alert("-1");
+      if (num_semesters > 1) {
+        num_semesters = num_semesters - 1;
+      }
+
+      update_semesters();
     }
     
     $scope.add = function() {
-      alert("+1");
+      if (num_semesters < 10) {
+        num_semesters = num_semesters + 1;
+      }
+
+      update_semesters();
     }
-
-
 
 
 

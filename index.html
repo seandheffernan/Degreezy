@@ -190,86 +190,81 @@
         </div>
         </div> -->
 
-        <form id="semester_edits">
-          <button type="button" class="btn btn-outline-secondary" id="sub" ng-click="sub()">- sub</button>
-          <button type="button" class="btn btn-outline-secondary" id="add" ng-click="add()">+ add</button>
-        </form>
-
         <div id="carousel" class="lists container carousel slide">
           <ol class="carousel-indicators">
-            <li data-target="#carousel" data-slide-to="0" class="active"></li>
-            <li data-target="#carousel" data-slide-to="1"></li>
-            <li data-target="#carousel" data-slide-to="2"></li>
-            <li data-target="#carousel" data-slide-to="3"></li>
-            <li data-target="#carousel" data-slide-to="4"></li>
-            <li data-target="#carousel" data-slide-to="5"></li>
-            <li data-target="#carousel" data-slide-to="6"></li>
-            <li data-target="#carousel" data-slide-to="7"></li>
-            <li data-target="#carousel" data-slide-to="8"></li>
-            <li data-target="#carousel" data-slide-to="9"></li>
+            <li data-target="#carousel" id="indicator_hide1" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel" id="indicator_hide2" data-slide-to="1"></li>
+            <li data-target="#carousel" id="indicator_hide3" data-slide-to="2"></li>
+            <li data-target="#carousel" id="indicator_hide4" data-slide-to="3"></li>
+            <li data-target="#carousel" id="indicator_hide5" data-slide-to="4"></li>
+            <li data-target="#carousel" id="indicator_hide6" data-slide-to="5"></li>
+            <li data-target="#carousel" id="indicator_hide7" data-slide-to="6"></li>
+            <li data-target="#carousel" id="indicator_hide8" data-slide-to="7"></li>
+            <li data-target="#carousel" id="indicator_hide9" data-slide-to="8"></li>
+            <li data-target="#carousel" id="indicator_hide10" data-slide-to="9"></li>
           </ol>
           <div class="outside row">
 
-            <div class="sem_col col-md-6 col-sm-6 col-xs-6 active">
+            <div class="sem_col col-md-6 col-sm-6 col-xs-6 active" id="sem_hide1">
               <ul class="sem" id="sem1">
                 <li ng-repeat="i in sem_content[0]" class="list-item" id="{{i}}">{{i}}</li>
               </ul>
               <div class="semTitle">Year 1 Semester 1</div>
             </div>
-            <div class="sem_col col-md-6 col-sm-6 col-xs-6" >
+            <div class="sem_col col-md-6 col-sm-6 col-xs-6" id="sem_hide2">
               <ul class="sem" id="sem2">
                 <li ng-repeat="i in sem_content[1]" class="list-item" id="{{i}}">{{i}}</li>
               </ul>
               <div class="semTitle">Year 1 Semester 2</div>
             </div>
 
-            <div class="sem_col col-md-6 col-sm-6 col-xs-6" >
+            <div class="sem_col col-md-6 col-sm-6 col-xs-6" id="sem_hide3">
               <ul class="sem" id="sem3">
                 <li ng-repeat="i in sem_content[2]" class="list-item" id="{{i}}">{{i}}</li>
               </ul>
               <div class="semTitle">Year 2 Semester 1</div>
             </div>
-            <div class="sem_col col-md-6 col-sm-6 col-xs-6" >
+            <div class="sem_col col-md-6 col-sm-6 col-xs-6" id="sem_hide4">
               <ul class="sem" id="sem4">
                 <li ng-repeat="i in sem_content[3]" class="list-item" id="{{i}}">{{i}}</li>
               </ul>
               <div class="semTitle">Year 2 Semester 2</div>
             </div>
 
-            <div class="sem_col col-md-6 col-sm-6 col-xs-6" >
+            <div class="sem_col col-md-6 col-sm-6 col-xs-6" id="sem_hide5">
               <ul class="sem" id="sem5">
                 <li ng-repeat="i in sem_content[4]" class="list-item" id="{{i}}">{{i}}</li>
               </ul>
               <div class="semTitle">Year 3 Semester 1</div>
             </div>
-            <div class="sem_col col-md-6 col-sm-6 col-xs-6" >
+            <div class="sem_col col-md-6 col-sm-6 col-xs-6" id="sem_hide6">
               <ul class="sem" id="sem6">
                 <li ng-repeat="i in sem_content[5]" class="list-item" id="{{i}}">{{i}}</li>
               </ul>
               <div class="semTitle">Year 3 Semester 2</div>
             </div>
 
-            <div class="sem_col col-md-6 col-sm-6 col-xs-6" >
+            <div class="sem_col col-md-6 col-sm-6 col-xs-6" id="sem_hide7">
               <ul class="sem" id="sem7">
                 <li ng-repeat="i in sem_content[6]" class="list-item" id="{{i}}">{{i}}</li>
               </ul>
               <div class="semTitle">Year 4 Semester 1</div>
             </div>
-            <div class="sem_col col-md-6 col-sm-6 col-xs-6" >
+            <div class="sem_col col-md-6 col-sm-6 col-xs-6" id="sem_hide8">
               <ul class="sem" id="sem8">
                 <li ng-repeat="i in sem_content[7]" class="list-item" id="{{i}}">{{i}}</li>
               </ul>
               <div class="semTitle">Year 4 Semester 2</div>
             </div>
 
-            <div class="sem_col col-md-6 col-sm-6 col-xs-6" >
-              <ul class="sem" id="sem7">
+            <div class="sem_col col-md-6 col-sm-6 col-xs-6" id="sem_hide9">
+              <ul class="sem" id="sem9">
                 <li ng-repeat="i in sem_content[8]" class="list-item" id="{{i}}">{{i}}</li>
               </ul>
               <div class="semTitle">Year 5 Semester 1</div>
             </div>
-            <div class="sem_col col-md-6 col-sm-6 col-xs-6" >
-              <ul class="sem" id="sem8">
+            <div class="sem_col col-md-6 col-sm-6 col-xs-6" id="sem_hide10">
+              <ul class="sem" id="sem10">
                 <li ng-repeat="i in sem_content[9]" class="list-item" id="{{i}}">{{i}}</li>
               </ul>
               <div class="semTitle">Year 5 Semester 2</div>
@@ -287,7 +282,15 @@
           </a>
 
         </div>
+
+        <form id="semester_edits">
+          <button type="button" class="btn btn-outline-secondary" id="sub" ng-click="sub()">- sub semester</button>
+          <button type="button" class="btn btn-outline-secondary" id="add" ng-click="add()">+ add semester</button>
+        </form>
+
+        
         </div>
+
 
 
         <!-- // SlideOut -->
