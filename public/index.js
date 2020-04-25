@@ -80,23 +80,73 @@ app.controller('ctrl', function ($scope, $http) {
 
     let num_semesters = 8;
 
-    function update_semesters() {
-      for (var s = 1; s <= num_semesters; s++) {
-        var string = "#sem_hide" + s;
-        var indic_string = "#indicator_hide" + s;
+    // function update_semesters() {
+    //   for (var s = 1; s <= num_semesters; s++) {
+    //     var string = "#sem_hide" + s;
+    //     var indic_string = "#indicator_hide" + s;
 
-        $(string).show();
+    //     $(string).show();
+    //     $(indic_string).show();
+    //   }
+
+    //   for (var s = num_semesters; s < 10; s++) {
+    //     var number = s + 1;
+    //     var string = "#sem_hide" + number;
+    //     var indic_string = "#indicator_hide" + number;
+
+    //     $(string).hide();
+    //     $(indic_string).hide();
+    //   }
+    // }
+
+    function update_semesters() {
+      // for (var s = 1; s <= 10; s++) {
+      //   var string = '#sem' + s;
+      //   $(string).removeClass('active');
+      // }
+
+      for (var s = 1; s <= num_semesters; s++) {
+        var string = '#sem_hide' + s;
+        var simple = '#sem' + s;
+        var indic_string = '#indicator_hide' + s;
+
+        $(string).find('div').show();
+        $(simple).removeClass('slide-hide-on-mobile');
         $(indic_string).show();
+
+        // if (s == num_semesters) {
+        //   $(string).addClass('active');
+        // }
       }
 
       for (var s = num_semesters; s < 10; s++) {
         var number = s + 1;
-        var string = "#sem_hide" + number;
-        var indic_string = "#indicator_hide" + number;
+        var string = '#sem_hide' + number;
+        var simple = '#sem' + number;
+        var indic_string = '#indicator_hide' + number;
 
-        $(string).hide();
+        $(string).removeClass('active');
+
+        $(string).find('div').hide();
+        $(simple).addClass('slide-hide-on-mobile');
         $(indic_string).hide();
+
+        // if (s == num_semesters) {
+        //   $(string).addClass('active');
+        // }
       }
+
+      // for (var s = 1; s < 10; s++) {
+      //   var number = s + 1;
+      //   var simple = '#sem' + s;
+      //   var next = '#sem' + number;
+      //   // $(simple).removeClass('active');
+      //   // if ($(next).hasClass('slide-hide-on-mobile')) {
+      //   //   alert(simple);
+      //   // }
+      // }
+
+      // $('#sem_hide1').addClass('active');
     }
 
     $scope.sub = function() {
@@ -116,7 +166,7 @@ app.controller('ctrl', function ($scope, $http) {
     }
 
 
-
+    update_semesters();
 
   }
   var creditCount;
@@ -165,6 +215,11 @@ app.controller('ctrl', function ($scope, $http) {
   });
 
 
+  $("selector").on("slide.bs.carousel", function(){
+      if($(nextslide).hasClass("slide-hide-on-mobile")){
+        alert('blah');
+      }
+  });
 
 
 
