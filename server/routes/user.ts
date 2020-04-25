@@ -1,5 +1,5 @@
 import express from 'express';
-import { push_semester, pull_semester, insert_user, get_user, add_course_taken, check_prereq, check_coreq, get_progress } from '../models/user';
+import { push_semester, pull_semester, insert_user, get_user, add_course_taken, check_prereq, check_coreq, get_progress, buildCSV, update_user} from '../models/user';
 
 const user_router = express.Router();
 
@@ -92,14 +92,34 @@ user_router.get('/courses/coreq', (req, res) =>{
 })
 
 user_router.get('/getprogress', (req, res) => {
-    console.log(req.query.id);
-    get_progress(req.query.name, function(result, err) {
+    get_progress(req.query.token, function(result, err) {
         if (err) {
-            res.send(err)
+            res.send(err);
         } else {
             console.log(result);
-            res.send(result)
+            res.send(result);
         }
     })
 })
+
+user_router.get('/exportCSV', (req, res) => {
+    buildCSV(req.query.token, function(result, err) {
+        if (err) {
+            res.send(err);
+        } else {
+            console.log(result);
+            res.send(result);
+        }
+    })
+})
+
+user_router.post('/update', (req, res) => {
+    update_user(req.query.token, req.body, function(err) {
+        if (err) {
+            res.send(err);
+        } else {
+            res.send("User Information Updated");
+        }
+    });
+});
 export default user_router;

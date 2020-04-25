@@ -12,7 +12,7 @@ export const userModel = mongoose.Schema({
     programs: [mongoose.Schema.Types.ObjectID],
     concentration: String,
     name: String,
-    schedule: [mongoose.Schema.Types.ObjectID],
+    schedule: [{type: mongoose.Schema.Types.ObjectID, ref: "Semester"}],
     MajorAdvisor: String,
     ClassDeanAdvisor: String,
     Degree: String,
@@ -46,35 +46,40 @@ export function insert_user(user_details, callback) {
 export function fetch_create_user(req, res) {
     let token = req.user;
     const user_model = mongoose.model("User", userModel);
-    const semesterModel = mongoose.model("Semesters", semester);
-    user_model.findOne({usertoken: token}, {}, function (err, data) {
+    const semesterModel = mongoose.model("Semester", semester);
+    user_model.findOne({usertoken: token}, {})
+        .populate('schedule').exec(function(err, data) {
         if (err) {
             console.log(err);
         } else {
             if (!data) {
                 // Make Semesters
-                // Assuming eight semesters
-                let newUser = new user_model({usertoken: token, name: req.query.name, rin: req.query.rin, class: req.query.class});
+                // Assuming semesters
+                let newUser = new user_model({usertoken: token});
+                // Send this version to the browser
+                let newUserSend = JSON.parse(JSON.stringify(newUser));
                 console.log(newUser);
-                for (let i = 0; i < 10; i++) {
-                    let newSemester = new semesterModel({});
+                for (let i = 0; i < 10; i++) { // TODO: Tie Loop Duration to a Variable
+                    let newSemester = new semesterModel({name: token + "_sem" + (i + 1).toString()});
                     newUser.schedule[i] = newSemester._id;
+                    // Adds semester objects instead of just ID
+                    newUserSend.schedule[i] = JSON.parse(JSON.stringify(newSemester));
                     newSemester.save(function (err) {
                         if (err) console.log(err);
                     });
                 }
-                    // New User
-                    newUser.save(function (err) {
-                        if (err) console.log(err);
-                        console.log("New User created");
-                    });
-                data = newUser;
+                // New User
+                newUser.save(function (err) {
+                    if (err) console.log(err);
+                    console.log("New User created");
+                });
+                data = newUserSend;
             }
             let queryUser = encodeURIComponent(JSON.stringify(data));
             console.log("Logged in");
             res.redirect('/?result=' + queryUser);
         }
-    })
+    });
 }
 
 export function push_semester(token, semester_id, callback) {
@@ -101,9 +106,9 @@ export function pull_semester(token, semester_id, callback) {
     });
 }
 
-export async function get_progress(name, callback) {
+export async function get_progress(usertoken, callback) {
     let user_model = mongoose.model('User', userModel);
-    let user_data = await user_model.findOne({name: name}, {});
+    let user_data = await user_model.findOne({usertoken: usertoken}, {});
     let program_model = mongoose.model('Program', Programs);
     let return_data = '{ "concentrations" : [';
     let program_data;
@@ -309,6 +314,40 @@ export async function check_coreq(token, course_name, callback, taken=false) { /
         result = "Wrong course name or faulty user token";
         callback(result);
     }
+}
+
+export async function buildCSV(token, callback) {
+    const user_model = mongoose.model('User', userModel);
+    const semester_model = mongoose.model("Semester", semester);
+    let user = await user_model.findOne({usertoken: token});
+    let csv = 'Semester, Class 1, Class 2, Class 3, Class 4, Class 5, Class 6\n';
+    // console.log('hello');
+    // if (user.schedule == null) {
+    //     console.log('lamo');
+    //     callback(csv);
+    //     return;
+    // }
+    // console.log('ey');
+    for (let i = 0; i < user.schedule.length; i++) {
+        let semester = await semester_model.findOne({_id: user.schedule[i]});
+        csv += i + ', ';
+        for (let j = 0; j < semester.courses.length - 1; j++) {
+            csv += semester.courses[j] + ', ';
+        }
+        csv += semester.courses[semester.courses.length - 1] + '\n';
+    }
+    callback(csv);
+}
+
+export async function update_user (rcsId, user_change_data, callback) {
+    let user_model = mongoose.model('User', userModel);
+    user_model.findOneAndUpdate({usertoken: rcsId.toUpperCase()}, user_change_data, function(err) {
+        if (err) {
+            callback(err);
+        } else {
+            callback(null);
+        }
+    })
 }
 
 export const user_test = {

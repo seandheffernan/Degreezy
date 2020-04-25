@@ -62,21 +62,112 @@
           </div>
         </div>
       
-<!--         <div id="slider" class="slideIn">
-          <div class="slideOutTab">
+        <div id="slider" class="slideIn" ng-init="runPrograms()">
+          <div id="slideOutTab">
             <div>
               <p> Search for classes </p>
             </div>
           </div>
           <div class="modal-content">
-            <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <div class="modal-header">
               <h4 class="modal-title"> Add classes here </h4> </div>
-            <div class="modal-body">
-              <p>Classes Offered…</p>
-            </div>
+              <div class="modal-body">
+                <form class="text-center border border-light" action="#!">
+  
+                  <input type="text" class="form-control" placeholder="RIN">
+              
+                  <div class="form-row">
+                      <div class="col">
+                          <!-- First name -->
+                          <input type="text" style="float: left;" class="form-control" placeholder="First name">
+                      </div>
+                      <div class="col">
+                          <!-- Last name -->
+                          <input type="text" style="float: right;" class="form-control" placeholder="Last name">
+                      </div>
+                  </div>
+                  
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="hasDual" onclick="displaySecondMajor()">
+                    <label class="form-check-label" for="hasDual">
+                      Dual Major
+                    </label>
+                  </div>
+  
+                  <div class="form-group">
+                    <select class="form-control" id="expGrad">
+                      <option value="" disabled selected>Semester Admitted</option>
+                      <option>Spring 2016</option>
+                      <option>Fall 2016</option>
+                      <option>Spring 2017</option>
+                      <option>Fall 2017</option>
+                      <option>Spring 2018</option>
+                      <option>Fall 2018</option>
+                      <option>Spring 2019</option>
+                      <option>Fall 2019</option>
+                    </select>
+                  </div>
+  
+                  <div class="form-group">
+                    <select class="form-control" id="expGrad">
+                      <option value="" disabled selected>Expected Graduation</option>
+                      <option>Spring 2020</option>
+                      <option>Fall 2020</option>
+                      <option>Spring 2021</option>
+                      <option>Fall 2021</option>
+                      <option>Spring 2022</option>
+                      <option>Fall 2022</option>
+                      <option>Spring 2023</option>
+                      <option>Fall 2023</option>
+                    </select>
+                  </div>
+  
+                  <div class="form-group">
+                    <label for="Major">Select Major</label>
+                    <select class="form-control" id="Major">
+                      <option value="" disabled selected>Select Major</option>
+                      <option ng-repeat="program in programInfo">{{program.name}}</option>
+                    </select>
+                  </div>
+    
+                  <div id="secondMajor" style="display: none;">
+                    <div class="form-group">
+                      <label for="Major2">Select Second Major</label>
+                      <select class="form-control" id="Major2">
+                        <option value="" disabled selected>Select Major</option>
+                        <option ng-repeat="program in programInfo">{{program.name}}</option>
+                      </select>
+                    </div>
+  
+                  </div>
+
+                  <!-- Sign up button -->
+                  <button class="btn btn-info my-4 btn-block" type="submit">Update</button>
+              
+              </form>
+                <!-- <form id="addForm" name="addForm" method="post">
+                  <fieldset> 
+                    <div class="formData">
+                      <label class="field" for="name">Name: </label>
+                      <div class="value" style="width: 40%; margin-left:0; margin-right:0; float: left;"><input type="text" size="30" placeholder="Assignment Name..." maxlength="33" name="name" id="name"/></div>
+                      <div class="value" style="width: 40%; margin-left:0; margin-right:0; float: right;"><input type="text" size="30" placeholder="Assignment Name..." maxlength="33" name="name" id="name"/></div>
+                      <br/>
+                      <label class="field" for="description">Description:</label>
+                      <div class="value"><input type="text" size="30" placeholder="Assignment Description..." maxlength="150" name="description" id="description"/></div>
+                      <label class="field" for="difficulty">Difficulty:</label>
+                      <div class="value"><input type="text" size="30" placeholder="Difficulty 1-3..." maxlength="1" name="difficulty" id="difficulty"/></div>
+                      <label class="field" for="etc">Etc:</label>
+                      <div class="value"><input type="text" size="30"  placeholder="Optional Additives..." maxlength="120" name="etc" id="etc"/></div>
+      
+                     <input type="submit" value="Add Task" id="save" name="save"/>
+      
+                    </div>
+                  </fieldset>
+                </form> -->
+              </div>
             <div class="modal-footer"> </div>
           </div>
-        </div> -->
+        </div>
 
         <div class="infoTable container">        
           <table class="tableNoBS table-bordered">
@@ -295,19 +386,20 @@
 
 
         </div>
+      </div>
 
 
 
         <!-- // SlideOut -->
         <div id="slider2" class="slideIn2">
         <!--   // Tab -->
-          <div class="slideOutTab2">
+          <div id="slideOutTab2">
             <div>
               <p> Check Requirements </p>
             </div>
           </div>
           <div class="modal-content">
-            <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <div class="modal-header">
               <h4 class="modal-title"> Requirements </h4> </div>
             <div class="modal-body">
               <p>Major: Computer Science</p>
@@ -358,35 +450,38 @@
   
     <script src="index.js"></script>
     <script>
-      $("#slider").click(function () {
-        if ($(this).hasClass("slideIn")) {
-          $(this).removeClass("slideIn");
-          $(this).addClass("slideOut");
+      $("#slideOutTab").click(function () {
+        if ($(this).parent().hasClass("slideIn")) {
+          $(this).parent().removeClass("slideIn");
+          $(this).parent().addClass("slideOut");
         } 
         else {
-          $(this).removeClass("slideOut");
-          $(this).addClass("slideIn");
+          $(this).parent().removeClass("slideOut");
+          $(this).parent().addClass("slideIn");
         }
       });
 
-      $("#slider2").click(function () {
-        if ($(this).hasClass("slideIn2")) {
-          $(this).removeClass("slideIn2");
-          $(this).addClass("slideOut2");
+      $("#slideOutTab2").click(function () {
+        if ($(this).parent().hasClass("slideIn2")) {
+          $(this).parent().removeClass("slideIn2");
+          $(this).parent().addClass("slideOut2");
         } 
         else {
-          $(this).removeClass("slideOut2");
-          $(this).addClass("slideIn2");
+          $(this).parent().removeClass("slideOut2");
+          $(this).parent().addClass("slideIn2");
         }
       });
-
-      // this.$slider = $('#slider');
-
-      // // Slideout show
-
-      // this.$slider.find('.slideOutTab').on('click', function() {
-      //   $("#slider").toggleClass('showSlideOut');
-      // });
+    </script>
+    <script>
+      function displaySecondMajor() {
+        var checkBox = document.getElementById("hasDual");
+        var secondMajor = document.getElementById("secondMajor");
+        if (checkBox.checked == true){
+          secondMajor.style.display = "block";
+        } else {
+          secondMajor.style.display = "none";
+        }
+      }
     </script>
   </body>
 </html>
