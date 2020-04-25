@@ -14,7 +14,7 @@ user_router.get('/', (req, res) => {
 });
 
 user_router.post('/', (req, res) => {
-    console.log(req.body);
+    console.log("Post: / " + req.body);
     insert_user(req.body, function(err){
         if (err) {
             res.send(err);
@@ -25,7 +25,7 @@ user_router.post('/', (req, res) => {
 });
 
 user_router.put('/push', (req, res) => {
-    console.log(req.body);
+    console.log("/Push " + req.body);
     push_semester(req.body.token, req.body.semester_id, function(err) {
         if (err) {
             res.send(err);
@@ -36,7 +36,7 @@ user_router.put('/push', (req, res) => {
 });
 
 user_router.post('/pull', (req, res) => {
-    console.log(req.body);
+    console.log("/pull " + req.body);
     pull_semester(req.body.token, req.body.semester_id, function(err){
         if (err) {
             res.send(err);
@@ -92,11 +92,11 @@ user_router.get('/courses/coreq', (req, res) =>{
 })
 
 user_router.get('/getprogress', (req, res) => {
-    get_progress(req.query.token, function(result, err) {
+  get_progress(req.query.token, function(result, err) {
         if (err) {
             res.send(err);
         } else {
-            console.log(result);
+            console.log('get progress ' + result);
             res.send(result);
         }
     })

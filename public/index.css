@@ -346,9 +346,6 @@ body {
   height: 62vh;
 }
 
-.infoTable {
-  display: none;
-}
 
 input[type=text] {
   width: 100%;
@@ -366,7 +363,6 @@ input[type=text] {
 .infoTable {
   display: none;
 }
-
 /* ----------- Styling Information for clean print view ----------- */
 @media print {
   * {
