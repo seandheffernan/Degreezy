@@ -32,8 +32,11 @@ export function insert_semester(semester_details, callback) {
 
 export function push_course(_id, course_name, callback) {
     let semester_model = mongoose.model('Semester', semester);
-    //var course = {course: course_name};
-    semester_model.findOneAndUpdate({name: _id}, {$push: {courses: course_name}}, function (err) {
+    let conditions = {
+        name: _id,
+        'courses': { $ne: course_name}
+    }
+    semester_model.findOneAndUpdate(conditions, {$push: {courses: course_name}}, function (err) {
         if (err) {
             console.log(err);
         } else {

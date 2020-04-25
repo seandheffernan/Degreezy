@@ -23,7 +23,7 @@ body {
 
 .top_container {
   display: block;
-  height: 255px;
+  height: 263px;
   overflow: scroll;
   background-color: white;
   /*opacity: 0.5;*/
@@ -41,7 +41,7 @@ body {
   position: sticky;
   /*padding-top: 50px;*/
   top: 40px;
-  /*margin-top: 40px;*/
+  margin-top: 60px;
   /*background-color: white;*/
   z-index: 3;
   /*height: 200px;*/
@@ -101,7 +101,7 @@ body {
 .sem {
   display: block;
   border-radius: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   margin-top: 20px;
   padding: 10px;
   min-height: 400px;
@@ -111,9 +111,12 @@ body {
 }
 
 .semTitle{
+  /*display: block;*/
   position: absolute;
-  bottom: 0%;
-  right: 10%;
+  /*bottom: 0%;*/
+  margin-top: -35px;
+  /*right: 12%;*/
+  right: 15%;
   padding-left: 20px;
   padding-right: 20px;
   padding-bottom: 5px;
@@ -126,11 +129,84 @@ body {
   /*background-color: #C0C0C0;*/
   background-color: #ededed;
   
-  z-index: -1;
+  z-index: 1;
 
   /*color: white;*/
 
 }
+
+.carousel-item {
+/*  margin-left: 50px;
+  margin-right: 50px;*/
+  padding-left: 50px;
+  padding-right: 50px;
+
+
+}
+
+/*.carousel-control-prev {
+  background-color: blue;
+}
+
+.carousel-control-next {
+  background-color: blue;
+}
+*/
+.carousel-control-prev, .carousel-control-next {
+  background-color: #ededed;
+  /*background-color: blue;*/
+  opacity: 1;
+  margin-bottom: 30px;
+  margin-top: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 50px;
+}
+
+.carousel-control-prev {
+  border-radius: 10px 0 0 10px;
+}
+
+.carousel-control-next {
+  border-radius: 0 10px 10px 0;
+}
+
+.carousel-control-prev:hover, .carousel-control-next:hover {
+  background-color: #C0C0C0;
+}
+
+/* Carousel */
+/*@media (min-width: 767px) {
+  .carousel-item {
+    display: block;
+    float: none;
+    margin-right: 0;
+    margin-top: 12px;
+  }
+  .carousel-control, 
+  .carousel-indicators {
+    display: none;
+  }
+  
+  .carousel-caption {
+    color: black;
+    position: static;
+    text-align: left;
+    text-shadow: none;
+  }
+  
+  .carousel-caption h3 {
+    font-weight: bold;
+    margin-top: 4px;
+    margin-bottom: 8px;
+  }
+}*/
+
+
+
+
+
+
 /* Dragula from https://codepen.io/nikkipantony/pen/qoKORX */
 .gu-mirror {
   position: fixed !important;

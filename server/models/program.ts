@@ -36,6 +36,14 @@ export async function get_program(program_name, callback) {
     });
 }
 
+export async function get_all_programs(callback) {
+    let program_model = mongoose.model('Program', Programs);
+    program_model.find({}, function(err, data) {
+        console.log(data);
+        callback(data, err);
+    });
+}
+
 export async function build_programs(callback) {
     let program_model = mongoose.model('Program', Programs);
     let programsJson = require('../../database_info/Programs.json');

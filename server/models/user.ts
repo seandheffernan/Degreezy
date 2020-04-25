@@ -3,6 +3,8 @@ import {Programs} from "./program";
 import {course} from "./course";
 import {semester} from "./semester";
 import {get_connection} from './connection'
+var mongoose_csv = require('mongoose-csv');
+
 
 export const userModel = mongoose.Schema({
     rin: Number,
@@ -12,7 +14,7 @@ export const userModel = mongoose.Schema({
     programs: [mongoose.Schema.Types.ObjectID],
     concentration: String,
     name: String,
-    schedule: [{type: mongoose.Schema.Types.ObjectID, ref: "Semesters"}],
+    schedule: [{type: mongoose.Schema.Types.ObjectID, ref: "Semester"}],
     MajorAdvisor: String,
     ClassDeanAdvisor: String,
     Degree: String,
@@ -24,6 +26,8 @@ export const userModel = mongoose.Schema({
     Cohort: String,
     OverallGPA: Number
 });
+
+userModel.plugin(mongoose_csv);
 
 export function get_user(token, callback) {
     let user_model = mongoose.model('User', userModel);
@@ -46,7 +50,7 @@ export function insert_user(user_details, callback) {
 export function fetch_create_user(req, res) {
     let token = req.user;
     const user_model = mongoose.model("User", userModel);
-    const semesterModel = mongoose.model("Semesters", semester);
+    const semesterModel = mongoose.model("Semester", semester);
     user_model.findOne({usertoken: token}, {})
         .populate('schedule').exec(function(err, data) {
         if (err) {
@@ -314,6 +318,22 @@ export async function check_coreq(token, course_name, callback, taken=false) { /
         result = "Wrong course name or faulty user token";
         callback(result);
     }
+}
+
+export async function buildCSV(name, callback) {
+    const user_model = mongoose.model('User', userModel);
+    const semester_model = mongoose.model("Semester", semester);
+    let user = await user_model.findOne({name: name});
+    let csv = 'Semester, Class 1, Class 2, Class 3, Class 4, Class 5, Class 6\n';
+    for (let i = 0; i < user.schedule.length; i++) {
+        let semester = await semester_model.findOne({_id: user.schedule[i]});
+        csv += i + ', ';
+        for (let j = 0; j < semester.courses.length - 1; j++) {
+            csv += semester.courses[j] + ', ';
+        }
+        csv += semester.courses[semester.courses.length - 1] + '\n';
+    }
+    callback(csv);
 }
 
 export const user_test = {
