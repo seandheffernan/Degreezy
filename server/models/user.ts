@@ -11,7 +11,8 @@ export const userModel = mongoose.Schema({
     classes_taken: [String],
     programs: [mongoose.Schema.Types.ObjectID],
     concentration: String,
-    name: String,
+    first_name: String,
+    last_name: String,
     schedule: [{type: mongoose.Schema.Types.ObjectID, ref: "Semester"}],
     MajorAdvisor: String,
     ClassDeanAdvisor: String,
@@ -22,7 +23,9 @@ export const userModel = mongoose.Schema({
     Concentration: String,
     Level: String,
     Cohort: String,
-    OverallGPA: Number
+    OverallGPA: Number,
+    semesterAdmitted: String,
+    semesterGraduating: String
 });
 
 export function get_user(token, callback) {
