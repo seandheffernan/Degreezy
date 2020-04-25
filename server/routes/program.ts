@@ -26,7 +26,7 @@ program_router.get('/', (req, res) => {
     
 });
 
-program_router.get('/all', (res) => {
+program_router.get('/all', (req, res) => {
     get_all_programs(function (err, data) {
         if (err) {
             res.send(err);
@@ -36,7 +36,7 @@ program_router.get('/all', (res) => {
     });
 });
 
-program_router.post('/build', (res) => {
+program_router.post('/build', (req, res) => {
     build_programs(function (err) {
         if (err) {
             res.send(err);
