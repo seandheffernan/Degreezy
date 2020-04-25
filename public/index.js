@@ -78,8 +78,15 @@ app.controller('ctrl', function ($scope, $http) {
     }
 
 
-    
+    var num_semesters = 8;
 
+    $scope.sub = function() {
+      alert("-1");
+    }
+    
+    $scope.add = function() {
+      alert("+1");
+    }
 
 
 

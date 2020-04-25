@@ -66,6 +66,15 @@ body {
   margin-bottom: 12px;
 }
 
+#semester_edits {
+  text-align: center;
+}
+
+#sub, #add {
+  
+}
+
+
 .list-item {
   font-size: 10px;
   color: #707070;
