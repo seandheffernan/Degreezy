@@ -350,12 +350,14 @@ body {
   display: none;
 }
 /* Styling for Requirements Slide */
+
 .requirements.true {
   background: (0, 128, 0, .5);
 }
 .requirements.false{
   background: (128, 0, 0, .5);
 }
+
 /* ----------- Styling Information for clean print view ----------- */
 @media print {
   * {

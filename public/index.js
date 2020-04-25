@@ -1,6 +1,8 @@
 var app = angular.module('app', []);
 app.controller('ctrl', function ($scope, $http) {
   // $scope.Math=window.Math;
+  const param = new URLSearchParams(location.search);
+  $scope.userObj = JSON.parse(param.get("result"));
   $scope.run = function(){
     $http({
       method: 'GET',
@@ -120,14 +122,6 @@ app.controller('ctrl', function ($scope, $http) {
 
     }
   });
-
-
-
-
-
-
-
-
   var drake = dragula([
     document.getElementById("queue"),
     document.getElementById("sem1"),
@@ -144,10 +138,13 @@ app.controller('ctrl', function ($scope, $http) {
   // uses target of the drag (where it will be dropped) &
   // uses source of the drag (where the dragged element originated from)
   drake.on('drop', (el, target, source) => {
+    //getprogress  reruns
+    
     // alert(el.id);
     $scope.drop(source.id, target.id, el.id);
     // console.log(source.id);
     el.classList.add('ex-moved');
+    $scope.reqCheck();
   });
   $scope.drop = function(sourceID, semesterID, courseName){
 
@@ -186,7 +183,20 @@ app.controller('ctrl', function ($scope, $http) {
 
 
   }
-
+  $scope.reqCheck = function (){
+      var urlString = "/users/getprogress?usertoken=";
+      var userToken = $scope.userObj['usertoken'];
+      $http({
+        method: 'GET',
+        url: urlString+userToken
+     }).then(function successCallback(response) {
+          $scope.reqs = response.data;
+          console.log("Requirements data: "+ response.data);
+          console.log("PUT successful");
+      }, function errorCallback(response) {
+          console.log(response.data);
+    });
+  }
 
 });
 
@@ -210,19 +220,7 @@ function searchFunction() {
   }
 }
 
-function reqCheck(){
-  $http({
-    method: 'GET',
-    url: '',
-    dataType: 'JSON',
-    data: to_insert
-  }).then(function successCallback(response) {
 
-      console.log("PUT successful");
-  }, function errorCallback(response) {
-      console.log(response.data);
-});
-}
 
 
 // removeOnSpill: false
