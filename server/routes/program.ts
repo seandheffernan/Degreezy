@@ -1,5 +1,5 @@
 import express from 'express';
-import {insert_program, get_program, build_programs} from "../models/program"
+import {insert_program, get_program, build_programs, get_all_programs} from "../models/program"
 
 const program_router = express.Router();
 
@@ -24,6 +24,16 @@ program_router.get('/', (req, res) => {
         }
     });
     
+});
+
+program_router.get('/all', (req, res) => {
+    get_all_programs(function (err, data) {
+        if (err) {
+            res.send(err);
+        } else {
+            res.send(data);
+        }
+    });
 });
 
 program_router.post('/build', (req, res) => {
