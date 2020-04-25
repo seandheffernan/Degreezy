@@ -184,7 +184,7 @@ app.controller('ctrl', function ($scope, $http) {
 
   }
   $scope.reqCheck = function (){
-      var urlString = "/users/getprogress?usertoken=";
+      var urlString = "/users/getprogress?token=";
       var userToken = $scope.userObj['usertoken'];
       $http({
         method: 'GET',
