@@ -1,6 +1,8 @@
 var app = angular.module('app', []);
 app.controller('ctrl', function ($scope, $http) {
   // $scope.Math=window.Math;
+  const param = new URLSearchParams(location.search);
+  $scope.userObj = JSON.parse(param.get("result"));
   $scope.run = function(){
     $http({
       method: 'GET',
@@ -11,6 +13,7 @@ app.controller('ctrl', function ($scope, $http) {
       }, function errorCallback(response) {
           console.log(response.data);
     });
+
     // to be implemented
     // $http({
     //     method: 'GET',
@@ -76,7 +79,6 @@ app.controller('ctrl', function ($scope, $http) {
             console.log(response.data);
       });
     }
-
 
     let num_semesters = 8;
 
@@ -173,6 +175,7 @@ app.controller('ctrl', function ($scope, $http) {
 
     update_semesters();
 
+    $scope.reqCheck();
   }
 
   $scope.runPrograms = function(){
@@ -232,17 +235,11 @@ app.controller('ctrl', function ($scope, $http) {
     }
   });
 
-
-  $("selector").on("slide.bs.carousel", function(){
-      if($(nextslide).hasClass("slide-hide-on-mobile")){
-        alert('blah');
-      }
-  });
-
-
-
-
-
+  // $("selector").on("slide.bs.carousel", function(){
+  //     if($(nextslide).hasClass("slide-hide-on-mobile")){
+  //       alert('blah');
+  //     }
+  // });
 
   var drake = dragula([
     document.getElementById("queue"),
@@ -262,10 +259,13 @@ app.controller('ctrl', function ($scope, $http) {
   // uses target of the drag (where it will be dropped) &
   // uses source of the drag (where the dragged element originated from)
   drake.on('drop', (el, target, source) => {
+    //getprogress  reruns
+    
     // alert(el.id);
     $scope.drop(source.id, target.id, el.id);
     // console.log(source.id);
     el.classList.add('ex-moved');
+    $scope.reqCheck();
   });
   $scope.drop = function(sourceID, semesterID, courseName){
 
@@ -304,7 +304,20 @@ app.controller('ctrl', function ($scope, $http) {
 
 
   }
-
+  $scope.reqCheck = function (){
+      var urlString = "/users/getprogress?token=";
+      var userToken = $scope.userObj['usertoken'];
+      // var userToken = 'Joe Ross';
+      $http({
+        method: 'GET',
+        url: urlString+userToken
+     }).then(function successCallback(response) {
+          $scope.require = response.data.concentrations;
+          console.log("Requirements data: "+ JSON.stringify(response.data.concentrations));
+      }, function errorCallback(response) {
+          console.log(response.data);
+    });
+  }
 
 });
 
@@ -328,18 +341,7 @@ function searchFunction() {
   }
 }
 
-// function reqCheck(){
-//   $http({
-//     method: 'GET',
-//     url: '/semesters/push',
-//     dataType: 'JSON',
-//     data: to_insert
-//   }).then(function successCallback(response) {
-//       console.log("PUT successful");
-//   }, function errorCallback(response) {
-//       console.log(response.data);
-// });
-// }
+
 
 
 // removeOnSpill: false

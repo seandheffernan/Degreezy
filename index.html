@@ -389,7 +389,6 @@
       </div>
 
 
-
         <!-- // SlideOut -->
         <div id="slider2" class="slideIn2">
         <!--   // Tab -->
@@ -402,52 +401,25 @@
             <div class="modal-header">
               <h4 class="modal-title"> Requirements </h4> </div>
             <div class="modal-body">
-              <p>Major: Computer Science</p>
-              <p>Credits: 0 / 128</p>
-              <br/>
-              <br/>
-              <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="defaultChecked2" checked>
-                <label class="custom-control-label" for="defaultChecked2">Enrolled</label>
+              
+              <!-- <h5>{{require.concentrations}}</h5> -->
+              <div ng-repeat='i in require'>
+                <h6>Major: {{i.concentration | limitTo: 4}}</h6>
+                <p>Concentration: {{i.concentration.substring(6)}}</p>
+                <div ng-repeat="n in i.requirements">
+                  <div class="custom-control custom-checkbox" >
+                    <input type="checkbox" class="custom-control-input" id="defaultChecked2" ng-checked='{{n.Completed}}'>
+                    <label class="custom-control-label"  for="defaultChecked2" >{{n.name}}</label>
+                  </div>
+                </div>
               </div>
-              <br/>
-              <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="defaultChecked2">
-                <label class="custom-control-label" for="defaultChecked2">Communication Design Elective</label>
-              </div>
-              <br/>
-              <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="defaultChecked2">
-                <label class="custom-control-label" for="defaultChecked2">Assessment Elective</label>
-              </div>
-              <br/>
-              <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="defaultChecked2">
-                <label class="custom-control-label" for="defaultChecked2">Science Option</label>
-              </div>
-              <br/>
-              <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="defaultChecked2">
-                <label class="custom-control-label" for="defaultChecked2">Mathematics Option</label>
-              </div>
-              <br/>
-              <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="defaultChecked2">
-                <label class="custom-control-label" for="defaultChecked2">Computer Science Options</label>
-              </div>
-              <br/>
-              <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="defaultChecked2">
-                <label class="custom-control-label" for="defaultChecked2">Computer Science Capstone</label>
-              </div>
-              <br/>
             </div>
-            <div class="modal-footer"> </div>
           </div>
+          <div class="modal-footer"> </div>
         </div>
+    
       </div>
     </div>
-  
     <script src="index.js"></script>
     <script>
       $("#slideOutTab").click(function () {
