@@ -3,7 +3,6 @@ import {Programs} from "./program";
 import {course} from "./course";
 import {semester} from "./semester";
 import {get_connection} from './connection'
-var mongoose_csv = require('mongoose-csv');
 
 
 export const userModel = mongoose.Schema({
@@ -14,7 +13,7 @@ export const userModel = mongoose.Schema({
     programs: [mongoose.Schema.Types.ObjectID],
     concentration: String,
     name: String,
-    schedule: [mongoose.Schema.Types.ObjectID],
+    schedule: [{type: mongoose.Schema.Types.ObjectID, ref: "Semester"}],
     MajorAdvisor: String,
     ClassDeanAdvisor: String,
     Degree: String,
@@ -26,8 +25,6 @@ export const userModel = mongoose.Schema({
     Cohort: String,
     OverallGPA: Number
 });
-
-userModel.plugin(mongoose_csv);
 
 export function get_user(token, callback) {
     let user_model = mongoose.model('User', userModel);
@@ -51,34 +48,39 @@ export function fetch_create_user(req, res) {
     let token = req.user;
     const user_model = mongoose.model("User", userModel);
     const semesterModel = mongoose.model("Semester", semester);
-    user_model.findOne({usertoken: token}, {}, function (err, data) {
+    user_model.findOne({usertoken: token}, {})
+        .populate('schedule').exec(function(err, data) {
         if (err) {
             console.log(err);
         } else {
             if (!data) {
                 // Make Semesters
-                // Assuming eight semesters
-                let newUser = new user_model({usertoken: token, name: req.query.name, rin: req.query.rin, class: req.query.class});
+                // Assuming semesters
+                let newUser = new user_model({usertoken: token});
+                // Send this version to the browser
+                let newUserSend = JSON.parse(JSON.stringify(newUser));
                 console.log(newUser);
                 for (let i = 0; i < 10; i++) {
                     let newSemester = new semesterModel({});
                     newUser.schedule[i] = newSemester._id;
+                    // Adds semester objects instead of just ID
+                    newUserSend.schedule[i] = JSON.parse(JSON.stringify(newSemester));
                     newSemester.save(function (err) {
                         if (err) console.log(err);
                     });
                 }
-                    // New User
-                    newUser.save(function (err) {
-                        if (err) console.log(err);
-                        console.log("New User created");
-                    });
-                data = newUser;
+                // New User
+                newUser.save(function (err) {
+                    if (err) console.log(err);
+                    console.log("New User created");
+                });
+                data = newUserSend;
             }
             let queryUser = encodeURIComponent(JSON.stringify(data));
             console.log("Logged in");
             res.redirect('/?result=' + queryUser);
         }
-    })
+    });
 }
 
 export function push_semester(token, semester_id, callback) {
