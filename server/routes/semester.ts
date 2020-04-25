@@ -26,7 +26,7 @@ semester_router.post('/', (req, res) => {
 
 semester_router.put('/push', (req, res) => {
     console.log(req.body);
-    push_course(req.body._id, req.body.course, function(err) {
+    push_course(req.body.name, req.body.course, function(err) {
         if (err) {
             res.send(err);
         } else {

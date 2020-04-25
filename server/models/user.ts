@@ -106,9 +106,9 @@ export function pull_semester(token, semester_id, callback) {
     });
 }
 
-export async function get_progress(name, callback) {
+export async function get_progress(usertoken, callback) {
     let user_model = mongoose.model('User', userModel);
-    let user_data = await user_model.findOne({name: name}, {});
+    let user_data = await user_model.findOne({usertoken: usertoken}, {});
     let program_model = mongoose.model('Program', Programs);
     let return_data = '{ "concentrations" : [';
     let program_data;
@@ -316,11 +316,18 @@ export async function check_coreq(token, course_name, callback, taken=false) { /
     }
 }
 
-export async function buildCSV(name, callback) {
+export async function buildCSV(token, callback) {
     const user_model = mongoose.model('User', userModel);
     const semester_model = mongoose.model("Semester", semester);
-    let user = await user_model.findOne({name: name});
+    let user = await user_model.findOne({usertoken: token});
     let csv = 'Semester, Class 1, Class 2, Class 3, Class 4, Class 5, Class 6\n';
+    // console.log('hello');
+    // if (user.schedule == null) {
+    //     console.log('lamo');
+    //     callback(csv);
+    //     return;
+    // }
+    // console.log('ey');
     for (let i = 0; i < user.schedule.length; i++) {
         let semester = await semester_model.findOne({_id: user.schedule[i]});
         csv += i + ', ';

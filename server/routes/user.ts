@@ -92,8 +92,7 @@ user_router.get('/courses/coreq', (req, res) =>{
 })
 
 user_router.get('/getprogress', (req, res) => {
-    console.log(req.query.id);
-    get_progress(req.query.name, function(result, err) {
+    get_progress(req.query.token, function(result, err) {
         if (err) {
             res.send(err);
         } else {
@@ -104,7 +103,7 @@ user_router.get('/getprogress', (req, res) => {
 })
 
 user_router.get('/exportCSV', (req, res) => {
-    buildCSV(req.query.name, function(result, err) {
+    buildCSV(req.query.token, function(result, err) {
         if (err) {
             res.send(err);
         } else {
@@ -115,7 +114,7 @@ user_router.get('/exportCSV', (req, res) => {
 })
 
 user_router.post('/update', (req, res) => {
-    update_user(req.query.rcsid, req.body, function(err) {
+    update_user(req.query.token, req.body, function(err) {
         if (err) {
             res.send(err);
         } else {
