@@ -10,7 +10,7 @@ app.controller('ctrl', function ($scope, $http) {
           console.log("Success!");
       }, function errorCallback(response) {
           console.log(response.data);
-    })
+    });
     // to be implemented
     // $http({
     //     method: 'GET',
@@ -139,7 +139,9 @@ app.controller('ctrl', function ($scope, $http) {
     document.getElementById("sem5"),
     document.getElementById("sem6"),
     document.getElementById("sem7"),
-    document.getElementById("sem8")
+    document.getElementById("sem8"),
+    document.getElementById("sem9"),
+    document.getElementById("sem10")
   ]);
 
   // ON DROP
