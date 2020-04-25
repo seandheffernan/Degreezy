@@ -6,6 +6,7 @@ html {
 
 * {
   font-family: "Spartan", sans-serif;
+  font-weight: 500;
 }
 
 body {
@@ -16,14 +17,47 @@ body {
   margin-top: 5%;
 }
 
+.container {
+  /*width: 90%;*/
+}
+
+.top_container {
+  display: block;
+  height: 263px;
+  overflow: scroll;
+  background-color: white;
+  /*opacity: 0.5;*/
+  margin-bottom: 50px;
+}
+
+.inside_container .list-item {
+  background-color: #f7f7f7;
+  /*opacity: 0.8;*/
+  /*background-color: gray;*/
+}
+
 .sticky {
   position: -webkit-sticky;
   position: sticky;
   /*padding-top: 50px;*/
   top: 40px;
-  background-color: white;
+  margin-top: 60px;
+  /*background-color: white;*/
+  z-index: 3;
+  /*height: 200px;*/
+}
+
+.search_sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  /*padding-top: 50px;*/
+  top: 20px;
+  /*margin-top: 40px;*/
+  /*background-color: white;*/
   z-index: 3;
 }
+
+
 #myInput {
   width: 100%;
   font-size: 16px;
@@ -33,13 +67,18 @@ body {
 }
 
 .list-item {
-	background-color: #F3F3F3;
+  font-size: 10px;
+  color: #707070;
+  /*font-weight: 500;*/
+  /*background-color: #F3F3F3;*/
+  background-color: #fafafa;
 	border-radius: 8px;
 	padding: 15px 20px;
 	text-align: center;
-  margin-left: 10px;
+  margin: 5px;
+/*  margin-left: 10px;
   margin-right: 10px;
-  margin-bottom: 5px;
+  margin-bottom: 5px;*/
 
 	display: inline-block;
 
@@ -61,22 +100,113 @@ body {
 
 .sem {
   display: block;
-  margin-bottom: 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  margin-top: 20px;
   padding: 10px;
-  min-height: 300px;
-  background-color: rgba(0, 0, 0, 0.1);
+  min-height: 400px;
+  /*background-color: rgba(0, 0, 0, 0.1);*/
+  background-color: #ededed;
+
 }
 
 .semTitle{
+  /*display: block;*/
   position: absolute;
-  bottom: 10%;
-  right: 10%;
-  font-size: 20px;
-  font-weight: bold;
-  font-variant-caps: small-caps;
-  color: white;
+  /*bottom: 0%;*/
+  margin-top: -35px;
+  /*right: 12%;*/
+  right: 15%;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 5px;
+/*  padding: 20px;*/
+  border-radius: 0px 0px 15px 15px;
+  font-size: 15px;
+  font-weight: 600;
+  font-variant-caps: all-small-caps;
+  color: #C0C0C0;
+  /*background-color: #C0C0C0;*/
+  background-color: #ededed;
+  
+  z-index: 1;
+
+  /*color: white;*/
 
 }
+
+.carousel-item {
+/*  margin-left: 50px;
+  margin-right: 50px;*/
+  padding-left: 50px;
+  padding-right: 50px;
+
+
+}
+
+/*.carousel-control-prev {
+  background-color: blue;
+}
+
+.carousel-control-next {
+  background-color: blue;
+}
+*/
+.carousel-control-prev, .carousel-control-next {
+  background-color: #ededed;
+  /*background-color: blue;*/
+  opacity: 1;
+  margin-bottom: 30px;
+  margin-top: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 50px;
+}
+
+.carousel-control-prev {
+  border-radius: 10px 0 0 10px;
+}
+
+.carousel-control-next {
+  border-radius: 0 10px 10px 0;
+}
+
+.carousel-control-prev:hover, .carousel-control-next:hover {
+  background-color: #C0C0C0;
+}
+
+/* Carousel */
+/*@media (min-width: 767px) {
+  .carousel-item {
+    display: block;
+    float: none;
+    margin-right: 0;
+    margin-top: 12px;
+  }
+  .carousel-control, 
+  .carousel-indicators {
+    display: none;
+  }
+  
+  .carousel-caption {
+    color: black;
+    position: static;
+    text-align: left;
+    text-shadow: none;
+  }
+  
+  .carousel-caption h3 {
+    font-weight: bold;
+    margin-top: 4px;
+    margin-bottom: 8px;
+  }
+}*/
+
+
+
+
+
+
 /* Dragula from https://codepen.io/nikkipantony/pen/qoKORX */
 .gu-mirror {
   position: fixed !important;

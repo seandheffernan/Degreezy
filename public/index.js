@@ -67,7 +67,7 @@ app.controller('ctrl', function ($scope, $http) {
 
             for (let j in head) {
               // alert(JSON.stringify(head[j]));
-              all_semester_content[i-1].push(head[j].course);
+              all_semester_content[i-1].push(head[j]);
             }
             $scope.sem_content = all_semester_content;
 
@@ -79,6 +79,54 @@ app.controller('ctrl', function ($scope, $http) {
 
   }
   var creditCount;
+
+  // Carousel (mobile only view)
+  $(window).on('load resize', function() {
+    $('#carousel').carousel('pause');
+
+    if ( document.documentElement.clientWidth <= 767 ) {
+      $('.sem_col').addClass('carousel-item');
+      $('.sem_col').removeClass('col-md-6');
+      $('.sem_col').removeClass('col-sm-6');
+      $('.sem_col').removeClass('col-xs-6');
+
+      $('.sem').css('border-radius', 0);
+      $('.sem').css('min-height', '30rem');
+
+      $('.carousel-control-prev').show();
+      $('.carousel-control-next').show();
+
+      $('.outside').addClass('carousel-inner');
+      $('.outside').removeClass('row');
+
+    } else {
+      $('.sem_col').removeClass('carousel-item');
+      $('.sem_col').addClass('col-md-6');
+      $('.sem_col').addClass('col-sm-6');
+      $('.sem_col').addClass('col-xs-6');
+
+      $('.sem').css('border-radius', 10);
+      $('.sem').css('min-height', '400px');
+
+      $('.carousel-control-prev').hide();
+      $('.carousel-control-next').hide();
+
+      $('.outside').removeClass('carousel-inner');
+      $('.outside').addClass('row');
+      // $('.inside').addClass('row');
+
+
+
+
+    }
+  });
+
+
+
+
+
+
+
 
   var drake = dragula([
     document.getElementById("queue"),
@@ -98,64 +146,48 @@ app.controller('ctrl', function ($scope, $http) {
   drake.on('drop', (el, target, source) => {
     // alert(el.id);
     $scope.drop(source.id, target.id, el.id);
+    // console.log(source.id);
     el.classList.add('ex-moved');
   });
-  $scope.drop = function(sourceID, semesterID, courseInfo){
-    console.log("INFO:" +courseInfo);
+  $scope.drop = function(sourceID, semesterID, courseName){
 
-    var course_json = JSON.parse(courseInfo);
+    var to_delete = {
+      course: courseName,
+      _id: sourceID
+    };
 
-    if (sourceID != semesterID) {
-      if (course_json.name) {
-        // alert(sourceID + " " + course_json.name);
-        // alert(semesterID + " " + course_json.name);
-        var to_delete = {
-          course: course_json.name,
-          _id: sourceID
-        };
+    var to_insert = {
+      course: courseName,
+      _id: semesterID
+    };
 
-        var to_insert = {
-          course: course_json.name,
-          _id: semesterID
-        };
-      } else {
-        // alert(semesterID);
-        // alert(sourceID + " " + course_json);
-        // alert(semesterID + " " + course_json);
-        var to_delete = {
-          course: course_json[0],
-          _id: sourceID
-        };
+    $http({
+        method: 'POST',
+        url: '/semesters/pull',
+        dataType: 'JSON',
+        data: to_delete
+      }).then(function successCallback(response) {
+          console.log("DELETE successful");
+      }, function errorCallback(response) {
+          console.log(response.data);
+    });
 
-        var to_insert = {
-          course: course_json[0],
-          _id: semesterID
-        };
-      }
+    $http({
+        method: 'PUT',
+        url: '/semesters/push',
+        dataType: 'JSON',
+        data: to_insert
+      }).then(function successCallback(response) {
+          console.log("PUT successful");
+      }, function errorCallback(response) {
+          console.log(response.data);
+    });
 
-      $http({
-          method: 'POST',
-          url: '/semesters/pull',
-          dataType: 'JSON',
-          data: to_delete
-        }).then(function successCallback(response) {
-            console.log("DELETE successful");
-        }, function errorCallback(response) {
-            console.log(response.data);
-      });
 
-      $http({
-          method: 'PUT',
-          url: '/semesters/push',
-          dataType: 'JSON',
-          data: to_insert
-        }).then(function successCallback(response) {
-            console.log("PUT successful");
-        }, function errorCallback(response) {
-            console.log(response.data);
-      });
-    }
+
   }
+
+
 });
 
 

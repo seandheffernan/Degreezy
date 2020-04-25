@@ -4,6 +4,7 @@ import {course} from "./course";
 import {semester} from "./semester";
 import {get_connection} from './connection'
 
+
 export const userModel = mongoose.Schema({
     rin: Number,
     usertoken: String,
@@ -12,7 +13,7 @@ export const userModel = mongoose.Schema({
     programs: [mongoose.Schema.Types.ObjectID],
     concentration: String,
     name: String,
-    schedule: [mongoose.Schema.Types.ObjectID],
+    schedule: [{type: mongoose.Schema.Types.ObjectID, ref: "Semester"}],
     MajorAdvisor: String,
     ClassDeanAdvisor: String,
     Degree: String,
@@ -46,35 +47,40 @@ export function insert_user(user_details, callback) {
 export function fetch_create_user(req, res) {
     let token = req.user;
     const user_model = mongoose.model("User", userModel);
-    const semesterModel = mongoose.model("Semesters", semester);
-    user_model.findOne({usertoken: token}, {}, function (err, data) {
+    const semesterModel = mongoose.model("Semester", semester);
+    user_model.findOne({usertoken: token}, {})
+        .populate('schedule').exec(function(err, data) {
         if (err) {
             console.log(err);
         } else {
             if (!data) {
                 // Make Semesters
-                // Assuming eight semesters
-                let newUser = new user_model({usertoken: token, name: req.query.name, rin: req.query.rin, class: req.query.class});
+                // Assuming semesters
+                let newUser = new user_model({usertoken: token});
+                // Send this version to the browser
+                let newUserSend = JSON.parse(JSON.stringify(newUser));
                 console.log(newUser);
                 for (let i = 0; i < 10; i++) {
                     let newSemester = new semesterModel({});
                     newUser.schedule[i] = newSemester._id;
+                    // Adds semester objects instead of just ID
+                    newUserSend.schedule[i] = JSON.parse(JSON.stringify(newSemester));
                     newSemester.save(function (err) {
                         if (err) console.log(err);
                     });
                 }
-                    // New User
-                    newUser.save(function (err) {
-                        if (err) console.log(err);
-                        console.log("New User created");
-                    });
-                data = newUser;
+                // New User
+                newUser.save(function (err) {
+                    if (err) console.log(err);
+                    console.log("New User created");
+                });
+                data = newUserSend;
             }
             let queryUser = encodeURIComponent(JSON.stringify(data));
             console.log("Logged in");
             res.redirect('/?result=' + queryUser);
         }
-    })
+    });
 }
 
 export function push_semester(token, semester_id, callback) {
@@ -101,56 +107,77 @@ export function pull_semester(token, semester_id, callback) {
     });
 }
 
-export function get_progress(name, callback) {
+export async function get_progress(name, callback) {
     let user_model = mongoose.model('User', userModel);
-    user_model.findOne({username: name}, {}, function(err, data) {
-        if (err) {
-            console.log(err);
-        } else {
-            let user_data = data;
-            let program_model = mongoose.model('Program', Programs);
-            let return_data = '{ "requirements: [';
-            let program_data;
-            let courseCount;
-            let reqComplete = true;
-            program_model.findOne({ name: user_data.programs[0]}, {}, function(err, obj) {
-                program_data = obj;
-                for (let i = 0; i < program_data.major_courses.length; i++) {
-                    if (!findArray(user_data.classes_taken, program_data.major_courses[i])) {
-                        return_data += '{ "name": "Major Requirements", "Completed": false },';
-                        reqComplete = false;
+    let user_data = await user_model.findOne({name: name}, {});
+    let program_model = mongoose.model('Program', Programs);
+    let return_data = '{ "concentrations" : [';
+    let program_data;
+    let courseCount;
+    let reqComplete = true;
+    for (let programNum = 0; programNum < user_data.programs.length; programNum++) {
+        program_data = await program_model.findOne({ _id : user_data.programs[programNum]}, {});
+        return_data += '{"concentration" : "' + program_data.name + '",';
+        return_data += '"requirements" : [';
+        for (let i = 0; i < program_data.major_courses.length; i++) {
+            if (!findArray(program_data.major_courses[i], user_data.classes_taken)) {
+                return_data += '{ "name": "Major Requirements", "Completed": false },';
+                reqComplete = false;
+                break;
+            }
+        }
+        if (reqComplete) {
+            return_data += '{ "name": "Major Requirements", "Completed": true },'
+        }
+        for (let i = 0; i < program_data.elective_courses.length; i++) {
+            courseCount = program_data.elective_courses[i].count;
+            // console.log(program_data.elective_courses[i].name);
+            // console.log(courseCount);
+            reqComplete = true;
+            let finalValue = false;
+            if (i == program_data.elective_courses.length - 1) {
+                finalValue = true;
+            }
+            for (let j = 0; j < program_data.elective_courses[i].classes.length; j++) {
+                if (findArray(program_data.elective_courses[i].classes[j], user_data.classes_taken)) {
+                    courseCount--;
+                    // console.log(courseCount);
+                    if (courseCount == 0) {
                         break;
                     }
                 }
-                if (reqComplete) {
-                    return_data += '{ "name": "Major Requirements", "Completed": false },'
+            }
+            if (courseCount <= 0) {
+                return_data += '{ "name": "' + program_data.elective_courses[i].name + '", "Completed": true }';
+                if (!finalValue) {
+                    return_data += ','
                 }
-                for (let i = 0; i < program_data.elective_courses.length; i++) {
-                    courseCount = program_data.elective_courses[i].count;
-                    reqComplete = true;
-                    for (let j = 0; j < program_data.elective_courses[i].length; i++) {
-                        if (!findArray(user_data.classes_taken, program_data.elective_courses[i])) {
-                            return_data += '{ "name": "' + program_data.elective_courses[i].name + '", "Completed": false },';
-                            reqComplete = false;
-                            break;   
-                        }
-                    }
-                    if (reqComplete) {
-                        return_data += '{ "name": "' + program_data.elective_courses[i].name + '", "Completed": true },';
-                    }
+                // console.log(return_data);
+            } else {
+                return_data += '{ "name": "' + program_data.elective_courses[i].name + '", "Completed": false }';
+                if (!finalValue) {
+                    return_data += ','
                 }
-            });
-            return return_data;
+                // console.log(return_data);
+            }
         }
-    });
+        return_data += ']}'
+        if (programNum != user_data.programs.length - 1) {
+            return_data += ',';
+        }
+    }
+    return_data += ']}';
+    callback(return_data);
 }
 
 export function findArray(value, array) {
     for (let i = 0; i < array.length; i++) {
         if (array[i] == value) {
+            // console.log(value + ' found');
             return true;
         }
     }
+    // console.log(value + ' not found');
     return false;
 }
 
@@ -288,6 +315,22 @@ export async function check_coreq(token, course_name, callback, taken=false) { /
         result = "Wrong course name or faulty user token";
         callback(result);
     }
+}
+
+export async function buildCSV(name, callback) {
+    const user_model = mongoose.model('User', userModel);
+    const semester_model = mongoose.model("Semester", semester);
+    let user = await user_model.findOne({name: name});
+    let csv = 'Semester, Class 1, Class 2, Class 3, Class 4, Class 5, Class 6\n';
+    for (let i = 0; i < user.schedule.length; i++) {
+        let semester = await semester_model.findOne({_id: user.schedule[i]});
+        csv += i + ', ';
+        for (let j = 0; j < semester.courses.length - 1; j++) {
+            csv += semester.courses[j] + ', ';
+        }
+        csv += semester.courses[semester.courses.length - 1] + '\n';
+    }
+    callback(csv);
 }
 
 export const user_test = {

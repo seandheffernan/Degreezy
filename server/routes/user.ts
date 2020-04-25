@@ -1,5 +1,5 @@
 import express from 'express';
-import { push_semester, pull_semester, insert_user, get_user, add_course_taken, check_prereq, check_coreq } from '../models/user';
+import { push_semester, pull_semester, insert_user, get_user, add_course_taken, check_prereq, check_coreq, get_progress, buildCSV } from '../models/user';
 
 const user_router = express.Router();
 
@@ -86,6 +86,29 @@ user_router.get('/courses/coreq', (req, res) =>{
             res.send("The user has not met the corequisites for the course");
         } else {
             res.send("There has been an error with the function");
+            res.send(result);
+        }
+    })
+})
+
+user_router.get('/getprogress', (req, res) => {
+    console.log(req.query.id);
+    get_progress(req.query.name, function(result, err) {
+        if (err) {
+            res.send(err);
+        } else {
+            console.log(result);
+            res.send(result);
+        }
+    })
+})
+
+user_router.get('/exportCSV', (req, res) => {
+    buildCSV(req.query.name, function(result, err) {
+        if (err) {
+            res.send(err);
+        } else {
+            console.log(result);
             res.send(result);
         }
     })
