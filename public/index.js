@@ -4,7 +4,6 @@ app.controller('ctrl', function ($scope, $http) {
 
   const param = new URLSearchParams(location.search);
   $scope.userObj = JSON.parse(param.get("result"));
-
   $scope.run = function(){
     $http({
       method: 'GET',
@@ -14,13 +13,15 @@ app.controller('ctrl', function ($scope, $http) {
           console.log("Success!");
       }, function errorCallback(response) {
           console.log(response.data);
-    })
+    });
 
-    var all_semester_content = [[], [], [], [], [], [], [], []];
+    var userToken = $scope.userObj.usertoken;
+    var all_semester_content = [[], [], [], [], [], [], [], [], [], []];
 
-    for (let i = 1; i <= 8; i++) {
-      var string = "sem" + i;
-      var link = '/semesters?_id=' + string
+    for (let i = 1; i <= 10; i++) {
+      var string = 'sem' + i;
+      var user_string = userToken + '_' + string;
+      var link = '/semesters?_id=' + user_string;
       // alert(link);
 
       $http({
@@ -40,6 +41,103 @@ app.controller('ctrl', function ($scope, $http) {
             console.log(response.data);
       });
     }
+
+    let num_semesters = 8;
+
+    // function update_semesters() {
+    //   for (var s = 1; s <= num_semesters; s++) {
+    //     var string = "#sem_hide" + s;
+    //     var indic_string = "#indicator_hide" + s;
+
+    //     $(string).show();
+    //     $(indic_string).show();
+    //   }
+
+    //   for (var s = num_semesters; s < 10; s++) {
+    //     var number = s + 1;
+    //     var string = "#sem_hide" + number;
+    //     var indic_string = "#indicator_hide" + number;
+
+    //     $(string).hide();
+    //     $(indic_string).hide();
+    //   }
+    // }
+
+    function update_semesters() {
+      // for (var s = 1; s <= 10; s++) {
+      //   var string = '#sem' + s;
+      //   $(string).removeClass('active');
+      // }
+
+      for (var s = 1; s <= num_semesters; s++) {
+        var string = '#sem_hide' + s;
+        var simple = '#sem' + s;
+        var indic_string = '#indicator_hide' + s;
+
+        $(string).find('div').show();
+        $(simple).removeClass('slide-hide-on-mobile');
+        // $(simple).show();
+
+        $(indic_string).show();
+
+        // if (s == num_semesters) {
+        //   $(string).addClass('active');
+        // }
+      }
+
+      for (var s = num_semesters; s < 10; s++) {
+        var number = s + 1;
+        var string = '#sem_hide' + number;
+        var simple = '#sem' + number;
+        var indic_string = '#indicator_hide' + number;
+
+        // $(string).removeClass('active');
+
+        $(string).find('div').hide();
+        $(simple).addClass('slide-hide-on-mobile');
+        // $(simple).hide();
+
+
+        $(indic_string).hide();
+
+        // if (s == num_semesters) {
+        //   $(string).addClass('active');
+        // }
+      }
+
+      // for (var s = 1; s < 10; s++) {
+      //   var number = s + 1;
+      //   var simple = '#sem' + s;
+      //   var next = '#sem' + number;
+      //   // $(simple).removeClass('active');
+      //   // if ($(next).hasClass('slide-hide-on-mobile')) {
+      //   //   alert(simple);
+      //   // }
+      // }
+
+      // $('#sem_hide1').addClass('active');
+    }
+
+    $scope.sub = function() {
+      if (num_semesters > 1) {
+        num_semesters = num_semesters - 1;
+      }
+
+      update_semesters();
+    }
+    
+    $scope.add = function() {
+      if (num_semesters < 10) {
+        num_semesters = num_semesters + 1;
+      }
+
+      update_semesters();
+    }
+
+
+    update_semesters();
+
+    $scope.reqCheck();
   }
 
   $scope.originalProfile = {
@@ -101,6 +199,7 @@ app.controller('ctrl', function ($scope, $http) {
       $('.sem').css('border-radius', 0);
       $('.sem').css('min-height', '30rem');
 
+      $('.carousel-indicators').show();
       $('.carousel-control-prev').show();
       $('.carousel-control-next').show();
 
@@ -116,6 +215,7 @@ app.controller('ctrl', function ($scope, $http) {
       $('.sem').css('border-radius', 10);
       $('.sem').css('min-height', '400px');
 
+      $('.carousel-indicators').hide();
       $('.carousel-control-prev').hide();
       $('.carousel-control-next').hide();
 
@@ -129,12 +229,16 @@ app.controller('ctrl', function ($scope, $http) {
     }
   });
 
+  // $('#carousel').on('slide.bs.carousel', function(){
+  //   // if ( $('#carousel') ) {
+
+  //   // }
 
 
-
-
-
-
+  //   // if($(nextslide).hasClass("slide-hide-on-mobile")){
+  //     alert('blah');
+  //   // }
+  // });
 
   var drake = dragula([
     document.getElementById("queue"),
@@ -145,28 +249,35 @@ app.controller('ctrl', function ($scope, $http) {
     document.getElementById("sem5"),
     document.getElementById("sem6"),
     document.getElementById("sem7"),
-    document.getElementById("sem8")
+    document.getElementById("sem8"),
+    document.getElementById("sem9"),
+    document.getElementById("sem10")
   ]);
 
   // ON DROP
   // uses target of the drag (where it will be dropped) &
   // uses source of the drag (where the dragged element originated from)
   drake.on('drop', (el, target, source) => {
+    //getprogress  reruns
+    
     // alert(el.id);
     $scope.drop(source.id, target.id, el.id);
     // console.log(source.id);
     el.classList.add('ex-moved');
+    $scope.reqCheck();
   });
   $scope.drop = function(sourceID, semesterID, courseName){
+    var userToken = $scope.userObj.usertoken;
+    // alert(userToken);
 
     var to_delete = {
       course: courseName,
-      _id: sourceID
+      _id: userToken + '_' + sourceID
     };
 
     var to_insert = {
       course: courseName,
-      _id: semesterID
+      _id: userToken + '_' + semesterID
     };
 
     $http({
@@ -194,7 +305,20 @@ app.controller('ctrl', function ($scope, $http) {
 
 
   }
-
+  $scope.reqCheck = function (){
+      var urlString = "/users/getprogress?token=";
+      var userToken = $scope.userObj['usertoken'];
+      // var userToken = 'Joe Ross';
+      $http({
+        method: 'GET',
+        url: urlString+userToken
+     }).then(function successCallback(response) {
+          $scope.require = response.data.concentrations;
+          console.log("Requirements data: "+ JSON.stringify(response.data.concentrations));
+      }, function errorCallback(response) {
+          console.log(response.data);
+    });
+  }
 
 });
 
@@ -218,18 +342,7 @@ function searchFunction() {
   }
 }
 
-// function reqCheck(){
-//   $http({
-//     method: 'GET',
-//     url: '/semesters/push',
-//     dataType: 'JSON',
-//     data: to_insert
-//   }).then(function successCallback(response) {
-//       console.log("PUT successful");
-//   }, function errorCallback(response) {
-//       console.log(response.data);
-// });
-// }
+
 
 
 // removeOnSpill: false

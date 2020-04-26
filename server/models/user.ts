@@ -4,26 +4,15 @@ import {course} from "./course";
 import {semester} from "./semester";
 import {get_connection} from './connection'
 
-
 export const userModel = mongoose.Schema({
-    rin: Number,
     usertoken: String,
-    class: Number,
     classes_taken: [String],
     programs: [mongoose.Schema.Types.ObjectID],
-    concentration: String,
-    name: String,
+    first_name: String,
+    last_name: String,
     schedule: [{type: mongoose.Schema.Types.ObjectID, ref: "Semester"}],
-    MajorAdvisor: String,
-    ClassDeanAdvisor: String,
-    Degree: String,
-    College: String,
-    Majors: [String],
-    Minor: String,
-    Concentration: String,
-    Level: String,
-    Cohort: String,
-    OverallGPA: Number
+    semesterAdmitted: String,
+    expectedGraduation: String
 });
 
 export function get_user(token, callback) {
@@ -60,8 +49,8 @@ export function fetch_create_user(req, res) {
                 // Send this version to the browser
                 let newUserSend = JSON.parse(JSON.stringify(newUser));
                 console.log(newUser);
-                for (let i = 0; i < 10; i++) {
-                    let newSemester = new semesterModel({});
+                for (let i = 0; i < 10; i++) { // TODO: Tie Loop Duration to a Variable
+                    let newSemester = new semesterModel({name: token + "_sem" + (i + 1).toString()});
                     newUser.schedule[i] = newSemester._id;
                     // Adds semester objects instead of just ID
                     newUserSend.schedule[i] = JSON.parse(JSON.stringify(newSemester));
@@ -107,9 +96,9 @@ export function pull_semester(token, semester_id, callback) {
     });
 }
 
-export async function get_progress(name, callback) {
+export async function get_progress(usertoken, callback) {
     let user_model = mongoose.model('User', userModel);
-    let user_data = await user_model.findOne({name: name}, {});
+    let user_data = await user_model.findOne({usertoken: usertoken}, {});
     let program_model = mongoose.model('Program', Programs);
     let return_data = '{ "concentrations" : [';
     let program_data;
@@ -193,13 +182,11 @@ export function add_course_taken(token, course_name, callback) {
     });
 }
 
-export async function check_prereq(token, course_name, callback, taken=false) {
+export async function check_prereq(token, course_name, semester_num, callback) {
     var target = null;
     let user_model = mongoose.model('User', userModel);
     target = await user_model.findOne({usertoken: token});
     var target_sem = null;
-    var target_season = null;
-    var target_year = null;
     var target_course = null;
     var prereq_count = 0;
     let course_model = mongoose.model('Course', course);
@@ -207,61 +194,36 @@ export async function check_prereq(token, course_name, callback, taken=false) {
     if (target_course != null && target != null) {
         var prereqs = target_course.prerequisites;
         var target_count =  prereqs.length;
-        var result = "false";
+        var result = false;
         var semester_model = mongoose.model('Semester', semester);
-        if (taken) { //look through the semesters if the class is already inserted
-            for (var index in target.schedule) {
-                var semester_id = target.schedule[index];
-                target_sem = await semester_model.findById(semester_id);
-                if (target_sem){
-                    target_season = target_sem.season;
-                    target_year = target_sem.year;
-                    break;
-                }
-            }
-        }
-        var trimesters = ["Spring","Summer","Fall"]; //to compare semester seasons
-        for (var index in target.schedule) {
+        var index = 0;
+        while (index < semester_num - 1) {
             var semester_id = target.schedule[index];
             target_sem = await semester_model.findById(semester_id);
             for (var i in prereqs) {
                 var prereq = prereqs[i];
                 if (target_sem.courses.includes(prereq)) { //see if semester has said pre reqs
-                    if (taken && (target_season != null && target_year != null)){
-                        if(target_year > target_sem.year) {
-                            prereq_count += 1;
-                            prereqs.splice(i, 1);
-                            break;
-                        } else if(target_year == target_sem.year && (trimesters.indexOf(target_season) > trimesters.indexOf(target_sem.season))){
-                            prereq_count += 1;
-                            prereqs.splice(i, 1);
-                            break;
-                        }
-                    } else {
-                        prereq_count += 1;
-                        prereqs.splice(i, 1);
-                        break;
-                    }
+                    prereq_count += 1;
+                    prereqs.splice(i, 1);
+                    break;
                 }
             }
+            index += 1;
         }
         if (prereq_count == target_count){
-            result = "true";
+            result = true;
         }
         callback(result);
     } else {
-        result = "Wrong course name or faulty user token";
-        callback(result);
+        callback("Wrong course name or faulty user token");
     }
 }
 
-export async function check_coreq(token, course_name, callback, taken=false) { //Its mostly a copypaste of prereq with a slight edit
+export async function check_coreq(token, course_name, semester_num, callback) { //Its mostly a copypaste of prereq with a slight edit
     var target = null;
     let user_model = mongoose.model('User', userModel);
     target = await user_model.findOne({usertoken: token});
     var target_sem = null;
-    var target_season = null;
-    var target_year = null;
     var target_course = null;
     var coreq_count = 0;
     let course_model = mongoose.model('Course', course);
@@ -269,59 +231,43 @@ export async function check_coreq(token, course_name, callback, taken=false) { /
     if (target_course != null && target != null) {
         var coreqs = target_course.corequisites;
         var target_count =  coreqs.length;
-        var result = "false";
+        var result = false;
         var semester_model = mongoose.model('Semester', semester);
-        if (taken) { //look through the semesters if the class is already inserted
-            for (var index in target.schedule) {
-                var semester_id = target.schedule[index];
-                target_sem = await semester_model.findById(semester_id);
-                if (target_sem){
-                    target_season = target_sem.season;
-                    target_year = target_sem.year;
-                    break;
-                }
-            }
-        }
-        var trimesters = ["Spring","Summer","Fall"]; //to compare semester seasons
-        for (var index in target.schedule) {
+        var index = 0;
+        while (index <= semester_num - 1) {
             var semester_id = target.schedule[index];
             target_sem = await semester_model.findById(semester_id);
             for (var i in coreqs) {
-                var prereq = coreqs[i];
-                if (target_sem.courses.includes(prereq)) { //see if semester has said pre reqs
-                    if (taken && (target_season != null && target_year != null)){
-                        if(target_year > target_sem.year) {
-                            coreq_count += 1;
-                            coreqs.splice(i, 1);
-                            break;
-                        } else if(target_year == target_sem.year && (trimesters.indexOf(target_season) >= trimesters.indexOf(target_sem.season))){ // the change: > to >=
-                            coreq_count += 1;
-                            coreqs.splice(i, 1);
-                            break;
-                        }
-                    } else {
-                        coreq_count += 1;
-                        coreqs.splice(i, 1);
-                        break;
-                    }
+                var coreq = coreqs[i];
+                if (target_sem.courses.includes(coreq)) { //see if semester has said pre reqs
+                    coreq_count += 1;
+                    coreqs.splice(i, 1);
+                    break;
                 }
             }
+            index += 1;
         }
         if (coreq_count == target_count){
-            result = "true";
+            result = true;
         }
         callback(result);
     } else {
-        result = "Wrong course name or faulty user token";
-        callback(result);
+        callback("Wrong course name or faulty user token");
     }
 }
 
-export async function buildCSV(name, callback) {
+export async function buildCSV(token, callback) {
     const user_model = mongoose.model('User', userModel);
     const semester_model = mongoose.model("Semester", semester);
-    let user = await user_model.findOne({name: name});
+    let user = await user_model.findOne({usertoken: token});
     let csv = 'Semester, Class 1, Class 2, Class 3, Class 4, Class 5, Class 6\n';
+    // console.log('hello');
+    // if (user.schedule == null) {
+    //     console.log('lamo');
+    //     callback(csv);
+    //     return;
+    // }
+    // console.log('ey');
     for (let i = 0; i < user.schedule.length; i++) {
         let semester = await semester_model.findOne({_id: user.schedule[i]});
         csv += i + ', ';
@@ -331,6 +277,17 @@ export async function buildCSV(name, callback) {
         csv += semester.courses[semester.courses.length - 1] + '\n';
     }
     callback(csv);
+}
+
+export async function update_user (rcsId, user_change_data, callback) {
+    let user_model = mongoose.model('User', userModel);
+    user_model.findOneAndUpdate({usertoken: rcsId.toUpperCase()}, user_change_data, function(err) {
+        if (err) {
+            callback(err);
+        } else {
+            callback(null);
+        }
+    })
 }
 
 export const user_test = {

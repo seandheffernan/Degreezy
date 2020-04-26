@@ -1,5 +1,5 @@
 import express from 'express';
-import { push_semester, pull_semester, insert_user, get_user, add_course_taken, check_prereq, check_coreq, get_progress, buildCSV } from '../models/user';
+import { push_semester, pull_semester, insert_user, get_user, add_course_taken, check_prereq, check_coreq, get_progress, buildCSV, update_user} from '../models/user';
 
 const user_router = express.Router();
 
@@ -14,7 +14,7 @@ user_router.get('/', (req, res) => {
 });
 
 user_router.post('/', (req, res) => {
-    console.log(req.body);
+    console.log("Post: / " + req.body);
     insert_user(req.body, function(err){
         if (err) {
             res.send(err);
@@ -25,7 +25,7 @@ user_router.post('/', (req, res) => {
 });
 
 user_router.put('/push', (req, res) => {
-    console.log(req.body);
+    console.log("/Push " + req.body);
     push_semester(req.body.token, req.body.semester_id, function(err) {
         if (err) {
             res.send(err);
@@ -36,7 +36,7 @@ user_router.put('/push', (req, res) => {
 });
 
 user_router.post('/pull', (req, res) => {
-    console.log(req.body);
+    console.log("/pull " + req.body);
     pull_semester(req.body.token, req.body.semester_id, function(err){
         if (err) {
             res.send(err);
@@ -57,33 +57,33 @@ user_router.put('/courses/push', (req, res) => {
 })
 
 user_router.get('/courses/prereq', (req, res) =>{
-    var taken;
-    if(req.query.taken){
-        taken = (req.query.taken == "true");
-    } else {taken = false}
-    check_prereq(req.query.token, req.query.course_name, function(result){
-        if(result == "true") {
-            console.log("sucess");
-            res.send("The user has met the prerequisites for the course");
-        } else if(result == "false") {
+    check_prereq(req.query.token, req.query.course_name, req.query.semester_num, function(result){
+        if(result == true) {
+            console.log("success");
+            res.send(true);
+            //res.send("The user has met the prerequisites for the course");
+        } else if(result == false) {
             console.log("failure");
-            res.send("The user has not met the prerequisites for the course");
+            res.send(false);
+            //res.send("The user has not met the prerequisites for the course");
         } else {
             console.log(result);
-            //res.send(result);
             res.send("There has been an error with the function");
+            res.send(result);
         }
-    }, taken)
+    })
 })
 
 user_router.get('/courses/coreq', (req, res) =>{
-    check_coreq(req.query.token, req.query.course_name, function(result){
-        if(result == "true") {
-            console.log("sucess");
-            res.send("The user has met the corequisites for the course");
-        } else if(result == "false"){
+    check_coreq(req.query.token, req.query.course_name, req.query.semester_num, function(result){
+        if(result == true) {
+            console.log("success");
+            res.send(true);
+            //res.send("The user has met the corequisites for the course");
+        } else if(result == false){
             console.log("failure");
-            res.send("The user has not met the corequisites for the course");
+            res.sent(false);
+            //res.send("The user has not met the corequisites for the course");
         } else {
             res.send("There has been an error with the function");
             res.send(result);
@@ -92,8 +92,18 @@ user_router.get('/courses/coreq', (req, res) =>{
 })
 
 user_router.get('/getprogress', (req, res) => {
-    console.log(req.query.id);
-    get_progress(req.query.name, function(result, err) {
+  get_progress(req.query.token, function(result, err) {
+        if (err) {
+            res.send(err);
+        } else {
+            console.log('get progress ' + result);
+            res.send(result);
+        }
+    })
+})
+
+user_router.get('/exportCSV', (req, res) => {
+    buildCSV(req.query.token, function(result, err) {
         if (err) {
             res.send(err);
         } else {
@@ -103,14 +113,13 @@ user_router.get('/getprogress', (req, res) => {
     })
 })
 
-user_router.get('/exportCSV', (req, res) => {
-    buildCSV(req.query.name, function(result, err) {
+user_router.post('/update', (req, res) => {
+    update_user(req.query.token, req.body, function(err) {
         if (err) {
             res.send(err);
         } else {
-            console.log(result);
-            res.send(result);
+            res.send("User Information Updated");
         }
-    })
-})
+    });
+});
 export default user_router;
