@@ -41,6 +41,14 @@ app.get('/login', passport.authenticate('cas'), function(req, res) {
     fetch_create_user(req, res);
 });
 
+app.get('/logout', (req, res) => {
+    res.redirect('/landing')
+});
+
+app.get('/landing', (req, res) => {
+    res.send("This is the landing page :)")
+});
+
 // Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
