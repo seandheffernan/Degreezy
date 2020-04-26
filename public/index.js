@@ -140,31 +140,43 @@ app.controller('ctrl', function ($scope, $http) {
     $scope.reqCheck();
   }
 
-  $scope.originalProfile = {
-    usertoken: '',
-    firstName: 'RPI',
-    lastName: 'Student',
-    semesterAdmitted: 'Spring 2016',
-    expectedGraduation: 'Fall 2023',
-    firstProgram: '',
-    secondProgram: ''
-  };
+  // $scope.originalProfile = {
+  //   usertoken: '',
+  //   firstName: 'RPI',
+  //   lastName: 'Student',
+  //   semesterAdmitted: 'Spring 2016',
+  //   expectedGraduation: 'Fall 2023',
+  //   firstProgram: '',
+  //   secondProgram: ''
+  // };
 
-  $scope.profile = angular.copy($scope.originalProfile);
+  // $scope.profile = angular.copy($scope.originalProfile);
 
   $scope.submitProfileForm = function () {
 
-      var onSuccess = function (data, status, headers, config) {
-          alert('Profile Updated');
-      };
 
-      var onError = function (data, status, headers, config) {
-          alert('Error occured.');
+      var updateProfile = {
+        first_name: $scope.profile.firstName,
+        last_name: $scope.profile.lastName,
+        semesterAdmitted: $scope.profile.semesterAdmitted,
+        expectedGraduation: $scope.profile.expectedGraduation,
+        programs: [ $scope.profile.firstProgram , $scope.profile.secondProgram ]
       }
 
-      $http.post('users/update?token=' + profile:$scope.profile.token, { profile:$scope.profile })
-          .success(onSuccess)
-          .error(onError);
+      console.log(updateProfile.programs);
+      
+      console.log()
+      $http({
+          method: 'POST',
+          url: 'users/update?token=' + $scope.userObj.usertoken,
+          dataType: 'JSON',
+          data: updateProfile
+      }).then(function successCallback(response) {
+          console.log("Profile updated"); 
+      }, function errorCallback(response) {
+          console.log("HELP!!!");
+          console.log(response.data);
+      });
 
     };
 

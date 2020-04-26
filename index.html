@@ -74,12 +74,12 @@
               <div class="modal-body">
                 <form class="text-center border border-light" ng-submit="submitProfileForm()">
   
-                  <input type="text" class="form-control" placeholder="RCS ID" value="{{userObj.usertoken}}" ng-model="profile.usertoken" disabled>
+                  <input type="text" class="form-control" placeholder="{{userObj.usertoken}}" value="{{userObj.usertoken}}" ng-model="profile.usertoken" disabled>
               
                   <div class="form-row">
                       <div class="col">
                           <!-- First name -->
-                          <input type="text" style="float: left;" class="form-control" placeholder="First name" ng-model="profile.firstName">
+                          <input type="text" style="float: left;" class="form-control" ng-value="userObj.first_name" ng-model="profile.firstName">
                       </div>
                       <div class="col">
                           <!-- Last name -->
@@ -126,7 +126,7 @@
                     <label for="Major">Select Major</label>
                     <select class="form-control" id="Major" ng-model="profile.firstProgram">
                       <option value="" disabled selected>Select Major</option>
-                      <option ng-repeat="program in programInfo">{{program.name}}</option>
+                      <option ng-repeat="program in programInfo" ng-value="program._id">{{program.name}}</option>
                     </select>
                   </div>
     
@@ -135,7 +135,7 @@
                       <label for="Major2">Select Second Major</label>
                       <select class="form-control" id="Major2" ng-model="profile.secondProgram">
                         <option value="" disabled selected>Select Major</option>
-                        <option ng-repeat="program in programInfo">{{program.name}}</option>
+                        <option ng-repeat="program in programInfo" ng-value="program._id">{{program.name}}</option>
                       </select>
                     </div>
                   </div>
