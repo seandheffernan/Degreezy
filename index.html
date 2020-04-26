@@ -12,12 +12,13 @@
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+      <script src="https://kit.fontawesome.com/83a8b959e4.js" crossorigin="anonymous"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.js"></script>
-    <title>Testing</title>
+    <title>Degreezy</title>
 
     <link rel="stylesheet" type='text/css' href="index.css" />
   </head>
@@ -64,25 +65,25 @@
         <div id="slider" class="slideIn" ng-init="runPrograms()">
           <div id="slideOutTab">
             <div>
-              <p> Search for classes </p>
+              <p> Update Profile </p>
             </div>
           </div>
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title"> Add classes here </h4> </div>
+              <h4 class="modal-title"> Profile </h4> </div>
               <div class="modal-body">
-                <form class="text-center border border-light" action="#!">
+                <form class="text-center border border-light" ng-submit="submitProfileForm()">
   
-                  <input type="text" class="form-control" placeholder="RIN">
+                  <input type="text" class="form-control" placeholder="{{userObj.usertoken}}" value="userObj.usertoken" ng-model="profile.usertoken" disabled>
               
                   <div class="form-row">
                       <div class="col">
                           <!-- First name -->
-                          <input type="text" style="float: left;" class="form-control" placeholder="First name">
+                          <input type="text" style="float: left;" class="form-control" ng-value="userObj.first_name" ng-model="profile.firstName">
                       </div>
                       <div class="col">
                           <!-- Last name -->
-                          <input type="text" style="float: right;" class="form-control" placeholder="Last name">
+                          <input type="text" style="float: right;" class="form-control" ng-value="userObj.last_name" ng-model="profile.lastName">
                       </div>
                   </div>
                   
@@ -94,7 +95,7 @@
                   </div>
   
                   <div class="form-group">
-                    <select class="form-control" id="expGrad">
+                    <select class="form-control" id="expGrad" ng-model="profile.semesterAdmitted">
                       <option value="" disabled selected>Semester Admitted</option>
                       <option>Spring 2016</option>
                       <option>Fall 2016</option>
@@ -108,7 +109,7 @@
                   </div>
   
                   <div class="form-group">
-                    <select class="form-control" id="expGrad">
+                    <select class="form-control" id="expGrad" ng-model="profile.expectedGraduation">
                       <option value="" disabled selected>Expected Graduation</option>
                       <option>Spring 2020</option>
                       <option>Fall 2020</option>
@@ -123,21 +124,20 @@
   
                   <div class="form-group">
                     <label for="Major">Select Major</label>
-                    <select class="form-control" id="Major">
+                    <select class="form-control" id="Major" ng-model="profile.firstProgram">
                       <option value="" disabled selected>Select Major</option>
-                      <option ng-repeat="program in programInfo">{{program.name}}</option>
+                      <option ng-repeat="program in programInfo" ng-value="program._id">{{program.name}}</option>
                     </select>
                   </div>
     
                   <div id="secondMajor" style="display: none;">
                     <div class="form-group">
                       <label for="Major2">Select Second Major</label>
-                      <select class="form-control" id="Major2">
+                      <select class="form-control" id="Major2" ng-model="profile.secondProgram">
                         <option value="" disabled selected>Select Major</option>
-                        <option ng-repeat="program in programInfo">{{program.name}}</option>
+                        <option ng-repeat="program in programInfo" ng-value="program._id">{{program.name}}</option>
                       </select>
                     </div>
-  
                   </div>
 
                   <!-- Sign up button -->
@@ -282,65 +282,84 @@
         </div> -->
 
         <div id="carousel" class="lists container carousel slide">
+          <ol class="carousel-indicators">
+            <li data-target="#carousel" id="indicator_hide1" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel" id="indicator_hide2" data-slide-to="1"></li>
+            <li data-target="#carousel" id="indicator_hide3" data-slide-to="2"></li>
+            <li data-target="#carousel" id="indicator_hide4" data-slide-to="3"></li>
+            <li data-target="#carousel" id="indicator_hide5" data-slide-to="4"></li>
+            <li data-target="#carousel" id="indicator_hide6" data-slide-to="5"></li>
+            <li data-target="#carousel" id="indicator_hide7" data-slide-to="6"></li>
+            <li data-target="#carousel" id="indicator_hide8" data-slide-to="7"></li>
+            <li data-target="#carousel" id="indicator_hide9" data-slide-to="8"></li>
+            <li data-target="#carousel" id="indicator_hide10" data-slide-to="9"></li>
+          </ol>
           <div class="outside row">
 
-          <!-- <span class="inside row odd"> -->
-            <div class="sem_col col-md-6 col-sm-6 col-xs-6 active">
+            <div class="sem_col col-md-6 col-sm-6 col-xs-6 active" id="sem_hide1">
               <ul class="sem" id="sem1">
                 <li ng-repeat="i in sem_content[0]" class="list-item" id="{{i}}">{{i}}</li>
               </ul>
               <div class="semTitle">Year 1 Semester 1</div>
             </div>
-            <div class="sem_col col-md-6 col-sm-6 col-xs-6" >
+            <div class="sem_col col-md-6 col-sm-6 col-xs-6" id="sem_hide2">
               <ul class="sem" id="sem2">
                 <li ng-repeat="i in sem_content[1]" class="list-item" id="{{i}}">{{i}}</li>
               </ul>
               <div class="semTitle">Year 1 Semester 2</div>
             </div>
-          <!-- </span> -->
-          <!-- <span class="inside row even"> -->
-            <div class="sem_col col-md-6 col-sm-6 col-xs-6" >
+
+            <div class="sem_col col-md-6 col-sm-6 col-xs-6" id="sem_hide3">
               <ul class="sem" id="sem3">
                 <li ng-repeat="i in sem_content[2]" class="list-item" id="{{i}}">{{i}}</li>
               </ul>
               <div class="semTitle">Year 2 Semester 1</div>
             </div>
-            <div class="sem_col col-md-6 col-sm-6 col-xs-6" >
+            <div class="sem_col col-md-6 col-sm-6 col-xs-6" id="sem_hide4">
               <ul class="sem" id="sem4">
                 <li ng-repeat="i in sem_content[3]" class="list-item" id="{{i}}">{{i}}</li>
               </ul>
               <div class="semTitle">Year 2 Semester 2</div>
             </div>
-          <!-- </span> -->
-          <!-- <span class="inside row odd"> -->
-            <div class="sem_col col-md-6 col-sm-6 col-xs-6" >
+
+            <div class="sem_col col-md-6 col-sm-6 col-xs-6" id="sem_hide5">
               <ul class="sem" id="sem5">
                 <li ng-repeat="i in sem_content[4]" class="list-item" id="{{i}}">{{i}}</li>
               </ul>
               <div class="semTitle">Year 3 Semester 1</div>
             </div>
-            <div class="sem_col col-md-6 col-sm-6 col-xs-6" >
+            <div class="sem_col col-md-6 col-sm-6 col-xs-6" id="sem_hide6">
               <ul class="sem" id="sem6">
                 <li ng-repeat="i in sem_content[5]" class="list-item" id="{{i}}">{{i}}</li>
               </ul>
               <div class="semTitle">Year 3 Semester 2</div>
             </div>
-          <!-- </span> -->
-          <!-- <span class="inside row even"> -->
-            <div class="sem_col col-md-6 col-sm-6 col-xs-6" >
+
+            <div class="sem_col col-md-6 col-sm-6 col-xs-6" id="sem_hide7">
               <ul class="sem" id="sem7">
                 <li ng-repeat="i in sem_content[6]" class="list-item" id="{{i}}">{{i}}</li>
               </ul>
               <div class="semTitle">Year 4 Semester 1</div>
             </div>
-            <div class="sem_col col-md-6 col-sm-6 col-xs-6" >
+            <div class="sem_col col-md-6 col-sm-6 col-xs-6" id="sem_hide8">
               <ul class="sem" id="sem8">
                 <li ng-repeat="i in sem_content[7]" class="list-item" id="{{i}}">{{i}}</li>
               </ul>
               <div class="semTitle">Year 4 Semester 2</div>
             </div>
-          <!-- </span> -->
 
+            <div class="sem_col col-md-6 col-sm-6 col-xs-6" id="sem_hide9">
+              <ul class="sem" id="sem9">
+                <li ng-repeat="i in sem_content[8]" class="list-item" id="{{i}}">{{i}}</li>
+              </ul>
+              <div class="semTitle">Year 5 Semester 1</div>
+            </div>
+            <div class="sem_col col-md-6 col-sm-6 col-xs-6" id="sem_hide10">
+              <ul class="sem" id="sem10">
+                <li ng-repeat="i in sem_content[9]" class="list-item" id="{{i}}">{{i}}</li>
+              </ul>
+              <div class="semTitle">Year 5 Semester 2</div>
+            </div>
           </div>
 
           <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
@@ -354,6 +373,16 @@
 
         </div>
 
+        <form id="semester_edits">
+          <button type="button" class="btn btn-secondary" id="sub" ng-click="sub()">
+            <i class="fas fa-minus fa-large"></i>
+          </button>
+          <br/>
+          <button type="button" class="btn btn-secondary" id="add" ng-click="add()">
+            <i class="fas fa-plus fa-large"></i>
+          </button>
+        </form>
+
         <!-- // SlideOut -->
         <div id="slider2" class="slideIn2">
         <!--   // Tab -->
@@ -364,17 +393,16 @@
           </div>
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title"> Requirements </h4> </div>
+              <h4 class="modal-title"> Requirements </h4> 
+            </div>
             <div class="modal-body">
-              
-              <!-- <h5>{{require.concentrations}}</h5> -->
               <div ng-repeat='i in require'>
                 <h6>Major: {{i.concentration | limitTo: 4}}</h6>
                 <p>Concentration: {{i.concentration.substring(6)}}</p>
                 <div ng-repeat="n in i.requirements">
                   <div class="custom-control custom-checkbox" >
-                    <input type="checkbox" class="custom-control-input" id="defaultChecked2" ng-checked='{{n.Completed}}'>
-                    <label class="custom-control-label"  for="defaultChecked2" >{{n.name}}</label>
+                    <input type="checkbox" class="custom-control-input" ng-checked='{{n.Completed}}'>
+                    <label class="custom-control-label">{{n.name}}</label>
                   </div>
                 </div>
               </div>
@@ -383,9 +411,10 @@
           <div class="modal-footer"> </div>
         </div>
     
+    
       </div>
     </div>
-    <script src="index.js"></script>
+      <script src="index.js"></script>
     <script>
       $("#slideOutTab").click(function () {
         if ($(this).parent().hasClass("slideIn")) {
