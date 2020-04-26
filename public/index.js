@@ -271,12 +271,14 @@ app.controller('ctrl', function ($scope, $http) {
 
     var to_delete = {
       course: courseName,
-      _id: userToken + '_' + sourceID
+      _id: userToken + '_' + sourceID,
+      token: userToken
     };
 
     var to_insert = {
       course: courseName,
-      _id: userToken + '_' + semesterID
+      _id: userToken + '_' + semesterID,
+      token: userToken
     };
 
     $http({
@@ -302,7 +304,7 @@ app.controller('ctrl', function ($scope, $http) {
     });
 
 
-
+    $scope.reqCheck();
   }
   $scope.reqCheck = function (){
       var urlString = "/users/getprogress?token=";
