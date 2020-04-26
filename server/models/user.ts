@@ -12,7 +12,8 @@ export const userModel = mongoose.Schema({
     last_name: String,
     schedule: [{type: mongoose.Schema.Types.ObjectID, ref: "Semester"}],
     semesterAdmitted: String,
-    expectedGraduation: String
+    expectedGraduation: String,
+    semesterCount: Number
 });
 
 export function get_user(token, callback) {
