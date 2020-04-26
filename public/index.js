@@ -55,11 +55,13 @@ app.controller('ctrl', function ($scope, $http) {
 
     // *************************************************
 
+    var userToken = $scope.userObj.usertoken;
     var all_semester_content = [[], [], [], [], [], [], [], [], [], []];
 
     for (let i = 1; i <= 10; i++) {
-      var string = "sem" + i;
-      var link = '/semesters?_id=' + string
+      var string = 'sem' + i;
+      var user_string = userToken + '_' + string;
+      var link = '/semesters?_id=' + user_string;
       // alert(link);
 
       $http({
@@ -273,15 +275,17 @@ app.controller('ctrl', function ($scope, $http) {
     $scope.reqCheck();
   });
   $scope.drop = function(sourceID, semesterID, courseName){
+    var userToken = $scope.userObj.usertoken;
+    // alert(userToken);
 
     var to_delete = {
       course: courseName,
-      _id: sourceID
+      _id: userToken + '_' + sourceID
     };
 
     var to_insert = {
       course: courseName,
-      _id: semesterID
+      _id: userToken + '_' + semesterID
     };
 
     $http({
