@@ -157,6 +157,16 @@ app.controller('ctrl', function ($scope, $http) {
           }
         }
       }
+      //if not false aka TRUE
+      if(!$scope.preReq()){
+        //return false
+        return $scope.preReq();
+      }
+      //if not false AKA TRUE
+      if(!$scope.coReq()){
+        //return false
+        return $scope.coReq();
+      }
     }
   });
 
@@ -221,6 +231,12 @@ app.controller('ctrl', function ($scope, $http) {
       }, function errorCallback(response) {
           console.log(response.data);
     });
+  }
+  $scope.preReq = function (){
+
+  }
+  $scope.coReq = function (){
+
   }
 
 });
