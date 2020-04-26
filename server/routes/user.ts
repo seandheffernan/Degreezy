@@ -67,8 +67,7 @@ user_router.get('/courses/prereq', (req, res) =>{
             res.send(false);
             //res.send("The user has not met the prerequisites for the course");
         } else {
-            console.log(result);
-            res.send("There has been an error with the function");
+            //res.send("There has been an error with the function");
             res.send(result);
         }
     })
@@ -82,10 +81,10 @@ user_router.get('/courses/coreq', (req, res) =>{
             //res.send("The user has met the corequisites for the course");
         } else if(result == false){
             console.log("failure");
-            res.sent(false);
+            res.send(false);
             //res.send("The user has not met the corequisites for the course");
         } else {
-            res.send("There has been an error with the function");
+            //res.send("There has been an error with the function");
             res.send(result);
         }
     })
