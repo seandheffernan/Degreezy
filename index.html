@@ -74,7 +74,7 @@
               <div class="modal-body">
                 <form class="text-center border border-light" ng-submit="submitProfileForm()">
   
-                  <input type="text" class="form-control" placeholder="{{userObj.usertoken}}" value="{{userObj.usertoken}}" ng-model="profile.usertoken" disabled>
+                  <input type="text" class="form-control" placeholder="{{userObj.usertoken}}" value="userObj.usertoken" ng-model="profile.usertoken" disabled>
               
                   <div class="form-row">
                       <div class="col">
@@ -83,7 +83,7 @@
                       </div>
                       <div class="col">
                           <!-- Last name -->
-                          <input type="text" style="float: right;" class="form-control" placeholder="Last name" ng-model="profile.lastName">
+                          <input type="text" style="float: right;" class="form-control" ng-value="userObj.last_name" ng-model="profile.lastName">
                       </div>
                   </div>
                   
