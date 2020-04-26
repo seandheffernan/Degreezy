@@ -197,6 +197,18 @@ app.controller('ctrl', function ($scope, $http) {
   // Carousel (mobile only view)
   $(window).on('load resize', function() {
     $('#carousel').carousel('pause');
+    $('#carousel').carousel('pause');
+
+    $('#carousel').on('slide.bs.carousel', function(slide){
+      // if (slide.relatedTarget).find('slide-hide-on-mobile') {
+      //   alert("blah");
+      // }
+
+      alert(slide.relatedTarget);
+      // if($(nextslide).hasClass("slide-hide-on-mobile")){
+        // alert(slide.to);
+      // }
+    });
 
     if ( document.documentElement.clientWidth <= 767 ) {
       $('.sem_col').addClass('carousel-item');
@@ -236,17 +248,6 @@ app.controller('ctrl', function ($scope, $http) {
 
     }
   });
-
-  // $('#carousel').on('slide.bs.carousel', function(){
-  //   // if ( $('#carousel') ) {
-
-  //   // }
-
-
-  //   // if($(nextslide).hasClass("slide-hide-on-mobile")){
-  //     alert('blah');
-  //   // }
-  // });
 
   var drake = dragula([
     document.getElementById("queue"),
