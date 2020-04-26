@@ -1,9 +1,18 @@
 var app = angular.module('app', []);
+
+// let $scope.num_semesters = 2;
+
 app.controller('ctrl', function ($scope, $http) {
   // $scope.Math=window.Math;
 
   const param = new URLSearchParams(location.search);
   $scope.userObj = JSON.parse(param.get("result"));
+  // let $scope.num_semesters = 8;
+
+  // alert($scope.num_semesters);
+
+
+
   $scope.run = function(){
     $http({
       method: 'GET',
@@ -17,6 +26,65 @@ app.controller('ctrl', function ($scope, $http) {
 
     var userToken = $scope.userObj.usertoken;
     var all_semester_content = [[], [], [], [], [], [], [], [], [], []];
+
+    function update_semesters() {
+      for (var s = 1; s <= $scope.num_semesters; s++) {
+        var string = '#sem_hide' + s;
+        var simple = '#sem' + s;
+        var indic_string = '#indicator_hide' + s;
+
+        $(string).find('div').show();
+        $(string).removeClass('slide-hide-on-mobile');
+
+        $(indic_string).show();
+      }
+
+      for (var s = $scope.num_semesters; s < 10; s++) {
+        var number = s + 1;
+        var string = '#sem_hide' + number;
+        var simple = '#sem' + number;
+        var indic_string = '#indicator_hide' + number;
+
+        $(string).find('div').hide();
+        $(string).addClass('slide-hide-on-mobile');
+
+        $(indic_string).hide();
+
+        // prevents accessing hidden semesters when adding/subtracting
+        if ( $(string).hasClass('active') ) {
+          var last_active = '#sem_hide' + $scope.num_semesters;
+          var last_active_indic = '#indicator_hide' + $scope.num_semesters;
+
+          $(string).removeClass('active');
+          $(indic_string).removeClass('active');
+
+          $(last_active).addClass('active');
+          $(last_active_indic).addClass('active');
+
+        }
+      }
+
+    }
+
+    $http({
+      method: 'GET',
+        url: '/users?token=' + userToken
+      }).then(function successCallback(response) {
+          // $scope.courses = response.data;
+          // console.log("Success!");
+          $scope.num_semesters = response.data.semesterCount;
+          update_semesters();
+
+      }, function errorCallback(response) {
+          console.log(response.data);
+    });
+
+    // let $scope.num_semesters = count;
+    // alert($scope.num_semesters);
+
+    // let default_$scope.num_semesters = $scope.userObj.semesterCount;
+    // alert($scope.num_semesters);
+    // let $scope.num_semesters = default_$scope.num_semesters;
 
     for (let i = 1; i <= 10; i++) {
       var string = 'sem' + i;
@@ -42,68 +110,48 @@ app.controller('ctrl', function ($scope, $http) {
       });
     }
 
-    let num_semesters = 8;
 
-    function update_semesters() {
-
-      for (var s = 1; s <= num_semesters; s++) {
-        var string = '#sem_hide' + s;
-        var simple = '#sem' + s;
-        var indic_string = '#indicator_hide' + s;
-
-        $(string).find('div').show();
-        $(string).removeClass('slide-hide-on-mobile');
-
-        $(indic_string).show();
-      }
-
-      for (var s = num_semesters; s < 10; s++) {
-        var number = s + 1;
-        var string = '#sem_hide' + number;
-        var simple = '#sem' + number;
-        var indic_string = '#indicator_hide' + number;
-
-        $(string).find('div').hide();
-        $(string).addClass('slide-hide-on-mobile');
-
-        $(indic_string).hide();
-
-        // prevents accessing hidden semesters when adding/subtracting
-        if ( $(string).hasClass('active') ) {
-          var last_active = '#sem_hide' + num_semesters;
-          var last_active_indic = '#indicator_hide' + num_semesters;
-
-          $(string).removeClass('active');
-          $(indic_string).removeClass('active');
-
-          $(last_active).addClass('active');
-          $(last_active_indic).addClass('active');
-
-        }
-      }
-
-    }
 
     $scope.sub = function() {
-      if (num_semesters > 1) {
-        num_semesters = num_semesters - 1;
+      if ($scope.num_semesters > 1) {
+        $scope.num_semesters = $scope.num_semesters - 1;
       }
 
       update_semesters();
     }
     
     $scope.add = function() {
-      if (num_semesters < 10) {
-        num_semesters = num_semesters + 1;
+      if ($scope.num_semesters < 10) {
+        $scope.num_semesters = $scope.num_semesters + 1;
       }
 
       update_semesters();
     }
 
-
-    update_semesters();
-
     $scope.reqCheck();
+
+
+    $(window).on('beforeunload', function() {
+      // $('#carousel').carousel('pause');
+
+      var update = {
+        semesterCount: $scope.num_semesters
+      };
+
+      $http({
+        method: 'POST',
+        url: 'users/update?token=' + $scope.userObj.usertoken,
+        dataType: 'JSON',
+        data: update
+      }).then(function successCallback(response) {
+        console.log("Profile updated"); 
+      }, function errorCallback(response) {
+        console.log("HELP!!!");
+        console.log(response.data);
+      });
+      
+    });
+
   }
 
   // $scope.originalProfile = {
