@@ -106,9 +106,6 @@ export async function get_progress(usertoken, callback) {
     let courseCount;
     let reqComplete = true;
     for (let programNum = 0; programNum < user_data.programs.length; programNum++) {
-        if (user_data.programs[programNum] == null) {
-            break;
-        }
         program_data = await program_model.findOne({ _id : user_data.programs[programNum]}, {});
         return_data += '{"concentration" : "' + program_data.name + '",';
         return_data += '"requirements" : [';
@@ -155,6 +152,9 @@ export async function get_progress(usertoken, callback) {
             }
         }
         return_data += ']}'
+        if (user_data.programs[programNum + 1] == null) {
+            break;
+        }
         if (programNum != user_data.programs.length - 1) {
             return_data += ',';
         }
