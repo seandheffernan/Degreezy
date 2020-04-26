@@ -44,30 +44,7 @@ app.controller('ctrl', function ($scope, $http) {
 
     let num_semesters = 8;
 
-    // function update_semesters() {
-    //   for (var s = 1; s <= num_semesters; s++) {
-    //     var string = "#sem_hide" + s;
-    //     var indic_string = "#indicator_hide" + s;
-
-    //     $(string).show();
-    //     $(indic_string).show();
-    //   }
-
-    //   for (var s = num_semesters; s < 10; s++) {
-    //     var number = s + 1;
-    //     var string = "#sem_hide" + number;
-    //     var indic_string = "#indicator_hide" + number;
-
-    //     $(string).hide();
-    //     $(indic_string).hide();
-    //   }
-    // }
-
     function update_semesters() {
-      // for (var s = 1; s <= 10; s++) {
-      //   var string = '#sem' + s;
-      //   $(string).removeClass('active');
-      // }
 
       for (var s = 1; s <= num_semesters; s++) {
         var string = '#sem_hide' + s;
@@ -75,14 +52,9 @@ app.controller('ctrl', function ($scope, $http) {
         var indic_string = '#indicator_hide' + s;
 
         $(string).find('div').show();
-        $(simple).removeClass('slide-hide-on-mobile');
-        // $(simple).show();
+        $(string).removeClass('slide-hide-on-mobile');
 
         $(indic_string).show();
-
-        // if (s == num_semesters) {
-        //   $(string).addClass('active');
-        // }
       }
 
       for (var s = num_semesters; s < 10; s++) {
@@ -91,31 +63,25 @@ app.controller('ctrl', function ($scope, $http) {
         var simple = '#sem' + number;
         var indic_string = '#indicator_hide' + number;
 
-        // $(string).removeClass('active');
-
         $(string).find('div').hide();
-        $(simple).addClass('slide-hide-on-mobile');
-        // $(simple).hide();
-
+        $(string).addClass('slide-hide-on-mobile');
 
         $(indic_string).hide();
 
-        // if (s == num_semesters) {
-        //   $(string).addClass('active');
-        // }
+        // prevents accessing hidden semesters when adding/subtracting
+        if ( $(string).hasClass('active') ) {
+          var last_active = '#sem_hide' + num_semesters;
+          var last_active_indic = '#indicator_hide' + num_semesters;
+
+          $(string).removeClass('active');
+          $(indic_string).removeClass('active');
+
+          $(last_active).addClass('active');
+          $(last_active_indic).addClass('active');
+
+        }
       }
 
-      // for (var s = 1; s < 10; s++) {
-      //   var number = s + 1;
-      //   var simple = '#sem' + s;
-      //   var next = '#sem' + number;
-      //   // $(simple).removeClass('active');
-      //   // if ($(next).hasClass('slide-hide-on-mobile')) {
-      //   //   alert(simple);
-      //   // }
-      // }
-
-      // $('#sem_hide1').addClass('active');
     }
 
     $scope.sub = function() {
@@ -198,9 +164,47 @@ app.controller('ctrl', function ($scope, $http) {
 
   var creditCount;
 
+  $(document).ready(function(){
+    $("#carousel").carousel({
+      interval : false
+    });
+
+
+
+
+    $('#carousel').on('slide.bs.carousel', function(slide){
+      var next_slide = slide.relatedTarget;
+      var next_id = next_slide.id;
+      var next_id_string = '#' + next_slide.id;
+
+      if($(next_id_string).hasClass("slide-hide-on-mobile")) {
+        // generates an error message, but required for expected behavior
+        slide.relatedTarget = getElementById('#sem_hide1');
+
+        // slide.from = 0;
+
+        // if (slide.direction == 'right') {
+        //   // $('.carousel-control-prev').css('background-color', 'pink');
+        // } else {
+        //   // $('.carousel-control-next').css('background-color', 'blue');
+        //   // slide.to = 10;
+        //   // slide.relatedTarget = document.getElementById('#sem_hide1');
+        //   $('#sem_hide1').addClass('active');
+        //   slide.to = 0;
+
+        //   $('#carousel').on('slid.bs.carousel', function(e){
+        //     $('#sem_hide1').removeClass('active');
+        //     slide.from = 0;
+        //   });
+
+        // }
+      }
+    });
+  });
+
   // Carousel (mobile only view)
   $(window).on('load resize', function() {
-    $('#carousel').carousel('pause');
+    // $('#carousel').carousel('pause');
 
     if ( document.documentElement.clientWidth <= 767 ) {
       $('.sem_col').addClass('carousel-item');
@@ -233,24 +237,11 @@ app.controller('ctrl', function ($scope, $http) {
 
       $('.outside').removeClass('carousel-inner');
       $('.outside').addClass('row');
-      // $('.inside').addClass('row');
-
-
-
 
     }
   });
 
-  // $('#carousel').on('slide.bs.carousel', function(){
-  //   // if ( $('#carousel') ) {
 
-  //   // }
-
-
-  //   // if($(nextslide).hasClass("slide-hide-on-mobile")){
-  //     alert('blah');
-  //   // }
-  // });
 
   var drake = dragula([
     document.getElementById("queue"),
@@ -284,12 +275,14 @@ app.controller('ctrl', function ($scope, $http) {
 
     var to_delete = {
       course: courseName,
-      _id: userToken + '_' + sourceID
+      _id: userToken + '_' + sourceID,
+      token: userToken
     };
 
     var to_insert = {
       course: courseName,
-      _id: userToken + '_' + semesterID
+      _id: userToken + '_' + semesterID,
+      token: userToken
     };
 
     $http({
@@ -315,7 +308,7 @@ app.controller('ctrl', function ($scope, $http) {
     });
 
 
-
+    $scope.reqCheck();
   }
   $scope.reqCheck = function (){
       var urlString = "/users/getprogress?token=";
@@ -334,9 +327,6 @@ app.controller('ctrl', function ($scope, $http) {
 
 });
 
-
-/* Dragula inspired by https://codepen.io/nikkipantony/pen/qoKORX */
-
 // search
 function searchFunction() {
   var input = document.getElementById("myInput");
@@ -353,74 +343,4 @@ function searchFunction() {
     }
   }
 }
-
-
-
-
-// removeOnSpill: false
-//   .on("drag", function(el) {
-//     el.className.replace("ex-moved", "");
-//   })
-//   .on("drop", function(el) {
-//     el.className += "ex-moved";
-//   })
-//   .on("over", function(el, container) {
-//     container.className += "ex-over";
-//   })
-//   .on("out", function(el, container) {
-//     container.className.replace("ex-over", "");
-//   });
-
-// const list_items = document.querySelectorAll('.list-item');
-// const lists = document.querySelectorAll('.list');
-// // const lists = document.querySelectorAll('.list-item'); //interesting behavior; can drag elements into elements
-
-// let draggedItem = null;
-
-// for (let i = 0; i < list_items.length; i++) {
-// 	const item = list_items[i];
-
-// 	item.addEventListener('dragstart', function () {
-// 		draggedItem = item;
-// 		setTimeout(function () {
-// 			// item.style.display = 'none';
-//       item.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
-// 		}, 0)
-// 	});
-
-// 	item.addEventListener('dragend', function () {
-// 		setTimeout(function () {
-// 			// draggedItem.style.display = 'block';
-//       draggedItem.style.backgroundColor = '#F3F3F3';
-// 			draggedItem = null;
-// 		}, 0);
-// 	})
-
-// 	for (let j = 0; j < lists.length; j++) {
-// 		const list = lists[j];
-
-// 		list.addEventListener('dragover', function (e) {
-//       e.preventDefault();
-//       this.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
-// 		});
-		
-// 		list.addEventListener('dragenter', function (e) {
-// 			// e.preventDefault();
-// 			// this.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
-// 		});
-
-// 		list.addEventListener('dragleave', function (e) {
-// 			this.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
-// 		});
-
-// 		list.addEventListener('drop', function (e) {
-// 			console.log('drop');
-// 			this.append(draggedItem);
-//       // this.append("hi"); // will print 7 times
-// 			this.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
-// 		});
-// 	}
-// }
-
-
 
