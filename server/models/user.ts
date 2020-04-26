@@ -46,7 +46,7 @@ export function fetch_create_user(req, res) {
             if (!data) {
                 // Make Semesters
                 // Assuming semesters
-                let newUser = new user_model({usertoken: token, first_name: "RPI", last_name: "Student"});
+                let newUser = new user_model({usertoken: token, first_name: "RPI", last_name: "Student", semesterCount: 8});
                 // Send this version to the browser
                 let newUserSend = JSON.parse(JSON.stringify(newUser));
                 console.log(newUser);
