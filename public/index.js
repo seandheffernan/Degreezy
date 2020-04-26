@@ -94,7 +94,6 @@ app.controller('ctrl', function ($scope, $http) {
     })
   }
 
-  var creditCount;
 
   // Carousel (mobile only view)
   $(window).on('load resize', function() {
@@ -146,18 +145,30 @@ app.controller('ctrl', function ($scope, $http) {
     document.getElementById("sem6"),
     document.getElementById("sem7"),
     document.getElementById("sem8")
-  ]);
+  ],
+  {
+    invalid: function(el, handle){
+      var sems = document.getElementsByClassName('sem');
+      for(i = 0; i < sems.length; i++){
+        var li = handle.getElementsByTagName("li");
+        for(n = 0; n < li.length; n++){
+          if(el.id == li[n].innerHTML){
+            return true;
+          }
+        }
+      }
+    }
+  });
 
   // ON DROP
   // uses target of the drag (where it will be dropped) &
   // uses source of the drag (where the dragged element originated from)
   drake.on('drop', (el, target, source) => {
-    //getprogress  reruns
-    
     // alert(el.id);
     $scope.drop(source.id, target.id, el.id);
     // console.log(source.id);
     el.classList.add('ex-moved');
+    //getprogress  reruns
     $scope.reqCheck();
   });
   $scope.drop = function(sourceID, semesterID, courseName){
