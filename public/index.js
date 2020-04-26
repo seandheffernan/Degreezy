@@ -6,12 +6,8 @@ app.controller('ctrl', function ($scope, $http) {
     // $scope.Math=window.Math;
 
   const param = new URLSearchParams(location.search);
-  $scope.userObj = JSON.parse(param.get("result"));
-  // let $scope.num_semesters = 8;
-
-  // alert($scope.num_semesters);
-
-
+  // $scope.userObj = JSON.parse(param.get("result"));
+  $scope.userToken = JSON.parse(param.get("result"));
 
   $scope.run = function(){
     $http({
@@ -24,7 +20,6 @@ app.controller('ctrl', function ($scope, $http) {
           console.log(response.data);
     });
     
-    var userToken = $scope.userObj.usertoken;
     var all_semester_content = [[], [], [], [], [], [], [], [], [], []];
 
     function update_semesters() {
@@ -68,12 +63,16 @@ app.controller('ctrl', function ($scope, $http) {
 
     $http({
       method: 'GET',
-        url: '/users?token=' + userToken
+        url: '/users?token=' + $scope.userToken
       }).then(function successCallback(response) {
           // $scope.courses = response.data;
           // console.log("Success!");
+          $scope.userObj = response.data;
+          // console.log($scope.userObj);
           $scope.num_semesters = response.data.semesterCount;
           update_semesters();
+          $scope.reqCheck();
+          
 
       }, function errorCallback(response) {
           console.log(response.data);
@@ -88,7 +87,7 @@ app.controller('ctrl', function ($scope, $http) {
 
     for (let i = 1; i <= 10; i++) {
       var string = 'sem' + i;
-      var user_string = userToken + '_' + string;
+      var user_string = $scope.userToken + '_' + string;
       var link = '/semesters?_id=' + user_string;
       // alert(link);
 
@@ -128,7 +127,6 @@ app.controller('ctrl', function ($scope, $http) {
       update_semesters();
     }
 
-    $scope.reqCheck();
 
 
     $(window).on('beforeunload', function() {
@@ -381,7 +379,7 @@ app.controller('ctrl', function ($scope, $http) {
   }
   $scope.reqCheck = function (){
       var urlString = "/users/getprogress?token=";
-      var userToken = $scope.userObj['usertoken'];
+      var userToken = $scope.userObj.usertoken;
       // var userToken = 'Joe Ross';
       $http({
         method: 'GET',
