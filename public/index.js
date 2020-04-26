@@ -235,10 +235,15 @@ app.controller('ctrl', function ($scope, $http) {
     }
   });
 
-  // $("selector").on("slide.bs.carousel", function(){
-  //     if($(nextslide).hasClass("slide-hide-on-mobile")){
-  //       alert('blah');
-  //     }
+  // $('#carousel').on('slide.bs.carousel', function(){
+  //   // if ( $('#carousel') ) {
+
+  //   // }
+
+
+  //   // if($(nextslide).hasClass("slide-hide-on-mobile")){
+  //     alert('blah');
+  //   // }
   // });
 
   var drake = dragula([
