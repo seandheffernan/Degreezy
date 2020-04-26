@@ -192,7 +192,7 @@ export function add_course_taken(token, course_name, callback) {
     });
 }
 
-export async function check_prereq(token, course_name, semester_name, callback) {
+export async function check_prereq(token, course_name, semester_num, callback) {
     var target = null;
     let user_model = mongoose.model('User', userModel);
     target = await user_model.findOne({usertoken: token});
@@ -201,14 +201,13 @@ export async function check_prereq(token, course_name, semester_name, callback) 
     var prereq_count = 0;
     let course_model = mongoose.model('Course', course);
     target_course = await course_model.findOne({name: course_name});
-    target_sem = +semester_name.substr(semester_name.length - 1, semester_name.length); //grab the 'index' of the semester
     if (target_course != null && target != null) {
         var prereqs = target_course.prerequisites;
         var target_count =  prereqs.length;
         var result = false;
         var semester_model = mongoose.model('Semester', semester);
         var index = 0;
-        while (index < target_sem - 1) {
+        while (index < semester_num - 1) {
             var semester_id = target.schedule[index];
             target_sem = await semester_model.findById(semester_id);
             for (var i in prereqs) {
@@ -230,7 +229,7 @@ export async function check_prereq(token, course_name, semester_name, callback) 
     }
 }
 
-export async function check_coreq(token, course_name, semester_name, callback) { //Its mostly a copypaste of prereq with a slight edit
+export async function check_coreq(token, course_name, semester_num, callback) { //Its mostly a copypaste of prereq with a slight edit
     var target = null;
     let user_model = mongoose.model('User', userModel);
     target = await user_model.findOne({usertoken: token});
@@ -239,14 +238,13 @@ export async function check_coreq(token, course_name, semester_name, callback) {
     var coreq_count = 0;
     let course_model = mongoose.model('Course', course);
     target_course = await course_model.findOne({name: course_name});
-    target_sem = +semester_name.substr(semester_name.length - 1, semester_name.length); //grab the 'index' of the semester
     if (target_course != null && target != null) {
         var coreqs = target_course.corequisites;
         var target_count =  coreqs.length;
         var result = false;
         var semester_model = mongoose.model('Semester', semester);
         var index = 0;
-        while (index <= target_sem - 1) {
+        while (index <= semester_num - 1) {
             var semester_id = target.schedule[index];
             target_sem = await semester_model.findById(semester_id);
             for (var i in coreqs) {

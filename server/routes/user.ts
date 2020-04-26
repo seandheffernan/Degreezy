@@ -57,7 +57,7 @@ user_router.put('/courses/push', (req, res) => {
 })
 
 user_router.get('/courses/prereq', (req, res) =>{
-    check_prereq(req.query.token, req.query.course_name, req.query.semester_name, function(result){
+    check_prereq(req.query.token, req.query.course_name, req.query.semester_num, function(result){
         if(result == true) {
             console.log("success");
             res.send("The user has met the prerequisites for the course");
@@ -73,7 +73,7 @@ user_router.get('/courses/prereq', (req, res) =>{
 })
 
 user_router.get('/courses/coreq', (req, res) =>{
-    check_coreq(req.query.token, req.query.course_name, req.query.semester_name, function(result){
+    check_coreq(req.query.token, req.query.course_name, req.query.semester_num, function(result){
         if(result == true) {
             console.log("success");
             res.send("The user has met the corequisites for the course");
