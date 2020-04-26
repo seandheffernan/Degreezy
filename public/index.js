@@ -3,7 +3,7 @@ var app = angular.module('app', []);
 // let $scope.num_semesters = 2;
 
 app.controller('ctrl', function ($scope, $http) {
-  // $scope.Math=window.Math;
+    // $scope.Math=window.Math;
 
   const param = new URLSearchParams(location.search);
   $scope.userObj = JSON.parse(param.get("result"));
@@ -23,7 +23,7 @@ app.controller('ctrl', function ($scope, $http) {
       }, function errorCallback(response) {
           console.log(response.data);
     });
-
+    
     var userToken = $scope.userObj.usertoken;
     var all_semester_content = [[], [], [], [], [], [], [], [], [], []];
 
@@ -169,30 +169,30 @@ app.controller('ctrl', function ($scope, $http) {
   $scope.submitProfileForm = function () {
 
 
-      var updateProfile = {
-        first_name: $scope.profile.firstName,
-        last_name: $scope.profile.lastName,
-        semesterAdmitted: $scope.profile.semesterAdmitted,
-        expectedGraduation: $scope.profile.expectedGraduation,
-        programs: [ $scope.profile.firstProgram , $scope.profile.secondProgram ]
-      }
+    var updateProfile = {
+      first_name: $scope.profile.firstName,
+      last_name: $scope.profile.lastName,
+      semesterAdmitted: $scope.profile.semesterAdmitted,
+      expectedGraduation: $scope.profile.expectedGraduation,
+      programs: [ $scope.profile.firstProgram , $scope.profile.secondProgram ]
+    }
 
-      console.log(updateProfile.programs);
-      
-      console.log()
-      $http({
-          method: 'POST',
-          url: 'users/update?token=' + $scope.userObj.usertoken,
-          dataType: 'JSON',
-          data: updateProfile
-      }).then(function successCallback(response) {
-          console.log("Profile updated"); 
-      }, function errorCallback(response) {
-          console.log("HELP!!!");
-          console.log(response.data);
-      });
+    console.log(updateProfile.programs);
+    
+    console.log()
+    $http({
+        method: 'POST',
+        url: 'users/update?token=' + $scope.userObj.usertoken,
+        dataType: 'JSON',
+        data: updateProfile
+    }).then(function successCallback(response) {
+        console.log("Profile updated"); 
+    }, function errorCallback(response) {
+        console.log("HELP!!!");
+        console.log(response.data);
+    });
 
-    };
+  };
 
   $scope.runPrograms = function(){
     $http({
@@ -203,53 +203,52 @@ app.controller('ctrl', function ($scope, $http) {
           console.log("Success!");
       }, function errorCallback(response) {
           console.log(response.data);
-    });
-  };
-
-
-
-
-
-  var creditCount;
-
-  $(document).ready(function(){
-    $("#carousel").carousel({
-      interval : false
-    });
-
-
-
-
-    $('#carousel').on('slide.bs.carousel', function(slide){
-      var next_slide = slide.relatedTarget;
-      var next_id = next_slide.id;
-      var next_id_string = '#' + next_slide.id;
-
-      if($(next_id_string).hasClass("slide-hide-on-mobile")) {
-        // generates an error message, but required for expected behavior
-        slide.relatedTarget = getElementById('#sem_hide1');
-
-        // slide.from = 0;
-
-        // if (slide.direction == 'right') {
-        //   // $('.carousel-control-prev').css('background-color', 'pink');
-        // } else {
-        //   // $('.carousel-control-next').css('background-color', 'blue');
-        //   // slide.to = 10;
-        //   // slide.relatedTarget = document.getElementById('#sem_hide1');
-        //   $('#sem_hide1').addClass('active');
-        //   slide.to = 0;
-
-        //   $('#carousel').on('slid.bs.carousel', function(e){
-        //     $('#sem_hide1').removeClass('active');
-        //     slide.from = 0;
-        //   });
-
-        // }
-      }
-    });
-  });
-
+        });
+      };
+    
+    
+    
+    
+    
+    
+      $(document).ready(function(){
+        $("#carousel").carousel({
+          interval : false
+        });
+    
+    
+    
+    
+        $('#carousel').on('slide.bs.carousel', function(slide){
+          var next_slide = slide.relatedTarget;
+          var next_id = next_slide.id;
+          var next_id_string = '#' + next_slide.id;
+    
+          if($(next_id_string).hasClass("slide-hide-on-mobile")) {
+            // generates an error message, but required for expected behavior
+            slide.relatedTarget = getElementById('#sem_hide1');
+    
+            // slide.from = 0;
+    
+            // if (slide.direction == 'right') {
+            //   // $('.carousel-control-prev').css('background-color', 'pink');
+            // } else {
+            //   // $('.carousel-control-next').css('background-color', 'blue');
+            //   // slide.to = 10;
+            //   // slide.relatedTarget = document.getElementById('#sem_hide1');
+            //   $('#sem_hide1').addClass('active');
+            //   slide.to = 0;
+    
+            //   $('#carousel').on('slid.bs.carousel', function(e){
+            //     $('#sem_hide1').removeClass('active');
+            //     slide.from = 0;
+            //   });
+    
+            // }
+          }
+        });
+      });
+        
   // Carousel (mobile only view)
   $(window).on('load resize', function() {
     // $('#carousel').carousel('pause');
@@ -303,18 +302,40 @@ app.controller('ctrl', function ($scope, $http) {
     document.getElementById("sem8"),
     document.getElementById("sem9"),
     document.getElementById("sem10")
-  ]);
-
-  // ON DROP
+  ],
+  {
+    invalid: function(el, handle){
+      var sems = document.getElementsByClassName('sem');
+      for(i = 0; i < sems.length; i++){
+        var li = handle.getElementsByTagName("li");
+        for(n = 0; n < li.length; n++){
+          if(el.id == li[n].innerHTML){
+            return true;
+          }
+        }
+      }
+      //if not false aka TRUE
+      if(!$scope.preReq()){
+        //return false
+        return $scope.preReq();
+      }
+      //if not false AKA TRUE
+      if(!$scope.coReq()){
+        //return false
+        return $scope.coReq();
+      }
+    }
+  });
+  
+    // ON DROP
   // uses target of the drag (where it will be dropped) &
   // uses source of the drag (where the dragged element originated from)
   drake.on('drop', (el, target, source) => {
-    //getprogress  reruns
-    
     // alert(el.id);
     $scope.drop(source.id, target.id, el.id);
     // console.log(source.id);
     el.classList.add('ex-moved');
+    //getprogress  reruns
     $scope.reqCheck();
   });
   $scope.drop = function(sourceID, semesterID, courseName){
@@ -372,8 +393,17 @@ app.controller('ctrl', function ($scope, $http) {
           console.log(response.data);
     });
   }
+  $scope.preReq = function (){
+
+  }
+  $scope.coReq = function (){
+
+  }
 
 });
+
+
+/* Dragula inspired by https://codepen.io/nikkipantony/pen/qoKORX */
 
 // search
 function searchFunction() {
