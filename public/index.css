@@ -37,6 +37,13 @@ body {
   /*background-color: gray;*/
 }
 
+/*.bottom_container {
+  background-color: blue;
+  margin-bottom: 100px;
+  height: 500px;
+  z-index: -1;
+}*/
+
 .sticky {
   position: -webkit-sticky;
   position: sticky;
