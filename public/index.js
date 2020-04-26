@@ -84,30 +84,7 @@ app.controller('ctrl', function ($scope, $http) {
 
     let num_semesters = 8;
 
-    // function update_semesters() {
-    //   for (var s = 1; s <= num_semesters; s++) {
-    //     var string = "#sem_hide" + s;
-    //     var indic_string = "#indicator_hide" + s;
-
-    //     $(string).show();
-    //     $(indic_string).show();
-    //   }
-
-    //   for (var s = num_semesters; s < 10; s++) {
-    //     var number = s + 1;
-    //     var string = "#sem_hide" + number;
-    //     var indic_string = "#indicator_hide" + number;
-
-    //     $(string).hide();
-    //     $(indic_string).hide();
-    //   }
-    // }
-
     function update_semesters() {
-      // for (var s = 1; s <= 10; s++) {
-      //   var string = '#sem' + s;
-      //   $(string).removeClass('active');
-      // }
 
       for (var s = 1; s <= num_semesters; s++) {
         var string = '#sem_hide' + s;
@@ -115,14 +92,9 @@ app.controller('ctrl', function ($scope, $http) {
         var indic_string = '#indicator_hide' + s;
 
         $(string).find('div').show();
-        $(simple).removeClass('slide-hide-on-mobile');
-        // $(simple).show();
+        $(string).removeClass('slide-hide-on-mobile');
 
         $(indic_string).show();
-
-        // if (s == num_semesters) {
-        //   $(string).addClass('active');
-        // }
       }
 
       for (var s = num_semesters; s < 10; s++) {
@@ -131,31 +103,25 @@ app.controller('ctrl', function ($scope, $http) {
         var simple = '#sem' + number;
         var indic_string = '#indicator_hide' + number;
 
-        // $(string).removeClass('active');
-
         $(string).find('div').hide();
-        $(simple).addClass('slide-hide-on-mobile');
-        // $(simple).hide();
-
+        $(string).addClass('slide-hide-on-mobile');
 
         $(indic_string).hide();
 
-        // if (s == num_semesters) {
-        //   $(string).addClass('active');
-        // }
+        // prevents accessing hidden semesters when adding/subtracting
+        if ( $(string).hasClass('active') ) {
+          var last_active = '#sem_hide' + num_semesters;
+          var last_active_indic = '#indicator_hide' + num_semesters;
+
+          $(string).removeClass('active');
+          $(indic_string).removeClass('active');
+
+          $(last_active).addClass('active');
+          $(last_active_indic).addClass('active');
+
+        }
       }
 
-      // for (var s = 1; s < 10; s++) {
-      //   var number = s + 1;
-      //   var simple = '#sem' + s;
-      //   var next = '#sem' + number;
-      //   // $(simple).removeClass('active');
-      //   // if ($(next).hasClass('slide-hide-on-mobile')) {
-      //   //   alert(simple);
-      //   // }
-      // }
-
-      // $('#sem_hide1').addClass('active');
     }
 
     $scope.sub = function() {
@@ -197,18 +163,6 @@ app.controller('ctrl', function ($scope, $http) {
   // Carousel (mobile only view)
   $(window).on('load resize', function() {
     $('#carousel').carousel('pause');
-    $('#carousel').carousel('pause');
-
-    $('#carousel').on('slide.bs.carousel', function(slide){
-      // if (slide.relatedTarget).find('slide-hide-on-mobile') {
-      //   alert("blah");
-      // }
-
-      alert(slide.relatedTarget);
-      // if($(nextslide).hasClass("slide-hide-on-mobile")){
-        // alert(slide.to);
-      // }
-    });
 
     if ( document.documentElement.clientWidth <= 767 ) {
       $('.sem_col').addClass('carousel-item');
@@ -241,11 +195,27 @@ app.controller('ctrl', function ($scope, $http) {
 
       $('.outside').removeClass('carousel-inner');
       $('.outside').addClass('row');
-      // $('.inside').addClass('row');
 
+    }
+  });
 
+  $('#carousel').on('slide.bs.carousel', function(slide){
+    var next_slide = slide.relatedTarget;
+    var next_id = next_slide.id;
+    var next_id_string = '#' + next_slide.id;
 
-
+    if($(next_id_string).hasClass("slide-hide-on-mobile")) {
+      // slide.relatedTarget = document.getElementById('#sem_hide1');
+      slide.relatedTarget = getElementById('#sem_hide1');
+      // slide.relatedTarget = getElementById('#sem_hide1');
+      // slide.from = 0;
+      // if (slide.direction == 'right') {
+      //   // $('.carousel-control-prev').css('background-color', 'pink');
+      // } else {
+      //   // $('.carousel-control-next').css('background-color', 'blue');
+      //   slide.to = 0;
+      //   slide.relatedTarget = document.getElementById('#sem_hide1');
+      // }
     }
   });
 
