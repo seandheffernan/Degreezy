@@ -66,7 +66,7 @@ export function fetch_create_user(req, res) {
                 });
                 data = newUserSend;
             }
-            let queryUser = encodeURIComponent(JSON.stringify(data));
+            let queryUser = encodeURIComponent(JSON.stringify(data.usertoken));
             console.log("Logged in");
             res.redirect('/?result=' + queryUser);
         }
