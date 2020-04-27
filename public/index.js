@@ -14,7 +14,6 @@ app.controller('ctrl', function ($scope, $http) {
       }, function errorCallback(response) {
           console.log(response.data);
     });
-    
     var userToken = $scope.userObj.usertoken;
     var all_semester_content = [[], [], [], [], [], [], [], [], [], []];
 
@@ -254,21 +253,7 @@ app.controller('ctrl', function ($scope, $http) {
     document.getElementById("sem8"),
     document.getElementById("sem9"),
     document.getElementById("sem10")
-  ],
-  {
-    invalid: function(el, handle){
-      var sems = document.getElementsByClassName('sem');
-      for(i = 0; i < sems.length; i++){
-        var li = handle.getElementsByTagName("li");
-        for(n = 0; n < li.length; n++){
-          if(el.id == li[n].innerHTML){
-            return true;
-          }
-        }
-      }
-    }
-  });
-
+  ]);
     // ON DROP
   // uses target of the drag (where it will be dropped) &
   // uses source of the drag (where the dragged element originated from)
@@ -282,7 +267,9 @@ app.controller('ctrl', function ($scope, $http) {
     // //checks for duplicates
     $scope.duplicates(el, target);
     //check preReq
-    $scope.preReq(el.id, target.id);
+    $scope.preReq(el.id, target.id, source.id);
+    //check coReq
+    $scope.coReq(el.id, target.id, source.id);
   });
   $scope.drop = function(sourceID, semesterID, courseName){
     var userToken = $scope.userObj.usertoken;
@@ -339,25 +326,55 @@ app.controller('ctrl', function ($scope, $http) {
           console.log(response.data);
     });
   }
-  $scope.preReq = function (coursename, semesterNum){
+
+  $scope.preReq = function (coursename, semesterNum, source){
       // users/courses/prereq?token=SAPUTA&course_name=CALCULUS II&semester_num=1
       var courseName = coursename;
       var sem = semesterNum.substring(3);
       var userToken = $scope.userObj['usertoken'];
-      var urlString = "/users/courses/prereq?token=" + userToken + "$course_name=" + courseName + "&semester_num=" + sem;
+      var urlString = "/users/courses/prereq?token=" + userToken + "&course_name=" + courseName + "&semester_num=" + sem;
       console.log('Url string ' + urlString );
       $http({
         method: 'GET',
         url: urlString
      }).then(function successCallback(response) {
-          console.log("Success: " + response.data);
+        console.log("PreReqs: " + response.data);        
+        var item = document.getElementById(courseName);
+        item.parentNode.removeChild(item);
+        if(!response.data){
+          alert("PreReqs not met");
+        }
       }, function errorCallback(response) {
           console.log("fail " +response.data);
     });
+    var data = {name: courseName};
+    $scope.courses.push(data)
   }
-  $scope.coReq = function (){
-// 
+
+  $scope.coReq = function (coursename, semesterNum, source){
+    //localhost:3000/users/courses/coreq?token=SAPUTA&course_name=CALCULUS II&semester_num=1
+    var courseName = coursename;
+    var sem = semesterNum.substring(3);
+    var userToken = $scope.userObj['usertoken'];
+    var urlString = "/users/courses/coreq?token=" + userToken + "&course_name=" + courseName + "&semester_num=" + sem;
+    console.log('Url string ' + urlString );
+    $http({
+      method: 'GET',
+      url: urlString
+    }).then(function successCallback(response) {
+      console.log("CoReqs: " + response.data);
+      var item = document.getElementById(courseName);
+      item.parentNode.removeChild(item);
+      if(!response.data){
+        alert("CoReqs not met");
+      }
+    }, function errorCallback(response) {
+        console.log("fail " +response.data);
+    });
+    var data = {name: courseName};
+    $scope.courses.push(data)
   }
+
   $scope.duplicates = function(el, target){
     var sems = document.getElementsByClassName('sem');
     var counter = 0;
