@@ -41,6 +41,14 @@ app.get('/login', passport.authenticate('cas'), function(req, res) {
     fetch_create_user(req, res);
 });
 
+app.get('/logout', (req, res) => {
+    res.redirect('/landing')
+});
+
+app.get('/landing', (req, res) => {
+    res.sendFile('LandingPage.html', {root: './LandingPage'})
+});
+
 // Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
@@ -54,6 +62,7 @@ var path = require('path');
 app.use('/', express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/public'));
 app.use(express.static(path.join(__dirname, '../public')));
+app.use(express.static(path.join(__dirname, '../LandingPage')));
 
 // Server Start
 const port = 3000;

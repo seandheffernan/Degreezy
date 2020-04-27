@@ -67,13 +67,13 @@ app.controller('ctrl', function ($scope, $http) {
       }).then(function successCallback(response) {
           // $scope.courses = response.data;
           // console.log("Success!");
+          
           $scope.userObj = response.data;
-          // console.log($scope.userObj);
+
           $scope.num_semesters = response.data.semesterCount;
           update_semesters();
           $scope.reqCheck();
           
-
       }, function errorCallback(response) {
           console.log(response.data);
     });
@@ -127,7 +127,20 @@ app.controller('ctrl', function ($scope, $http) {
       update_semesters();
     }
 
-
+    $scope.export = function() {
+      $http({
+        method: 'GET',
+        url: 'users/exportCSV?token=' + $scope.userObj.usertoken,
+      }).then(function successCallback(response) {
+        console.log(response);
+        var myWindow = window.open("", "CSV Data", "width=800, height = 400");
+        var csv = response.data;
+        myWindow.document.write(csv);
+      }, function errorCallback(response) {
+        console.log("Error");
+        console.log(response.data);
+      })
+    }
 
     $(window).on('beforeunload', function() {
       // $('#carousel').carousel('pause');
@@ -184,6 +197,7 @@ app.controller('ctrl', function ($scope, $http) {
         dataType: 'JSON',
         data: updateProfile
     }).then(function successCallback(response) {
+        $scope.reqCheck();
         console.log("Profile updated"); 
     }, function errorCallback(response) {
         console.log("HELP!!!");
