@@ -325,7 +325,10 @@ body {
 
 .slideIn p {
   transform: rotate(-180deg);
-  
+
+  -webkit-transform: rotate(-180deg);
+  -moz-transform: rotate(-180deg);
+  -o-transform: rotate(-180deg);
 }
 
 .slideOut {
@@ -341,8 +344,11 @@ body {
 }
 
 .slideOut p {
-  display: block;
   transform: rotate(-180deg);
+
+  -webkit-transform: rotate(-180deg);
+  -moz-transform: rotate(-180deg);
+  -o-transform: rotate(-180deg);
 }
 
 #slider2 {
@@ -379,8 +385,8 @@ body {
   left: -40px;
   height: 200px;
   width: 40px;
-  -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+  -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, .3);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, .3);
   background: #F2AB34;
   border-radius: 15px 0px 0px 15px
 }
@@ -404,8 +410,8 @@ body {
   right: -40px;
   height: 200px;
   width: 40px;
-  -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+  -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, .3);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, .3);
   background: #F2AB34;
   border-radius: 0px 15px 15px 0px
 }
