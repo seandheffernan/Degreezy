@@ -2,7 +2,8 @@ body {
   height: 100vh;
   margin: 0;
   background-color: #c2e7fa;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Spartan", sans-serif;
+  font-weight: 500;
 }
 
 body:before {
@@ -38,7 +39,7 @@ h1 {
     text-decoration: none;
 }
 
-.navbar {
+/*.navbar {
     color: #868686;
 }
 
@@ -54,7 +55,16 @@ h1 {
 .navbar-brand  >img {
     padding: 5px;
     height: 100%;
-}   
+}   */
+
+nav {
+  /*background-color: #fefefe;*/
+  background-color: #fefefe;
+  /*border-bottom: 5px solid #F5F5F5;*/
+  /*border-bottom: 5px solid #F2F2F2;*/
+  border-bottom: 5px solid #ff934f;
+
+}
 
 .rightSect {
   margin-top: 3%;
