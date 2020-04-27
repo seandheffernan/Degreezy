@@ -474,7 +474,7 @@ input[type=text] {
     display: none;
   }*/
 
-  .navbar, .searchAndShow, #slider, #slider2, #semester_edits {
+  .navbar, .searchAndShow, #slider, #slider2, #semester_edits, .main_container {
     display: none;
   }
 
@@ -484,19 +484,19 @@ input[type=text] {
   }
 
   #print_rcs {
-    float: left;
+    /*float: left;*/
   }
 
   #print_name {
-    float: right;
-    clear: right;
+/*    float: right;
+    clear: right;*/
   }
 
-/*  #print_year {
-    float: left;
+  #print_year {
+    /*float: left;*/
   }
 
-  #print_major {
+/*  #print_major {
     float: right;
   }*/
 
