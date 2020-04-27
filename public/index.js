@@ -67,8 +67,9 @@ app.controller('ctrl', function ($scope, $http) {
       }).then(function successCallback(response) {
           // $scope.courses = response.data;
           // console.log("Success!");
+          
           $scope.userObj = response.data;
-          // console.log($scope.userObj);
+
           $scope.num_semesters = response.data.semesterCount;
           update_semesters();
           $scope.reqCheck();
