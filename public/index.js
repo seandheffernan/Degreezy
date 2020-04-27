@@ -127,6 +127,12 @@ app.controller('ctrl', function ($scope, $http) {
       update_semesters();
     }
 
+    $scope.export = function() {
+      $http({
+        method:
+      })
+    }
+
 
 
     $(window).on('beforeunload', function() {
