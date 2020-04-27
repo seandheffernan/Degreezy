@@ -133,9 +133,9 @@ app.controller('ctrl', function ($scope, $http) {
         url: 'users/exportCSV?token=' + $scope.userObj.usertoken,
       }).then(function successCallback(response) {
         console.log(response);
-        var myWindow = window.open("", "CSV Data", "width=400, height = 200");
+        var myWindow = window.open("", "CSV Data", "width=800, height = 400");
         var csv = response.data;
-        myWindow.document.write(csv + "<br>" + "this");
+        myWindow.document.write(csv);
       }, function errorCallback(response) {
         console.log("Error");
         console.log(response.data);

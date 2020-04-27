@@ -275,7 +275,7 @@ export async function buildCSV(token, callback) {
     for (let i = 0; i < user.semesterCount; i++) {
         console.log(user.schedule[i]);
         let semester = await semester_model.findOne({_id: user.schedule[i]});
-        csv += i + ', ';
+        csv += (i+1) + ', ';
         console.log(semester);
         if (semester.courses.length == 0) {
             for (let j = 0; j < 5; j++) {
