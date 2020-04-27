@@ -265,7 +265,7 @@ export async function buildCSV(token, callback) {
     const semester_model = mongoose.model("Semester", semester);
     let user = await user_model.findOne({usertoken: token});
     let csv = 'Semester, Class 1, Class 2, Class 3, Class 4, Class 5, Class 6\n';
-    for (let i = 0; i < user.semesterCount; i++) {
+    for (let i = 0; i < user.schedule.length; i++) {
         let semester = await semester_model.findOne({_id: user.schedule[i]});
         csv += i + ', ';
         // console.log(semester);
@@ -280,8 +280,9 @@ export async function buildCSV(token, callback) {
                 csv += semester.courses[j] + ', ';
             }
         }
-        csv += semester.courses[semester.courses.length - 1] + '\n';
+        csv += semester.courses[semester.courses.length - 1] + ' newline ';
     }
+    // csv += '</div>';
     callback(csv);
 }
 
