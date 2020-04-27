@@ -266,19 +266,9 @@ app.controller('ctrl', function ($scope, $http) {
           }
         }
       }
-      //if not false aka TRUE
-      if(!$scope.preReq()){
-        //return false
-        return $scope.preReq();
-      }
-      //if not false AKA TRUE
-      if(!$scope.coReq()){
-        //return false
-        return $scope.coReq();
-      }
     }
   });
-  
+
     // ON DROP
   // uses target of the drag (where it will be dropped) &
   // uses source of the drag (where the dragged element originated from)
@@ -289,6 +279,10 @@ app.controller('ctrl', function ($scope, $http) {
     el.classList.add('ex-moved');
     //getprogress  reruns
     $scope.reqCheck();
+    // //checks for duplicates
+    $scope.duplicates(el, target);
+    //check preReq
+    $scope.preReq(el.id, target.id);
   });
   $scope.drop = function(sourceID, semesterID, courseName){
     var userToken = $scope.userObj.usertoken;
@@ -345,11 +339,40 @@ app.controller('ctrl', function ($scope, $http) {
           console.log(response.data);
     });
   }
-  $scope.preReq = function (){
-
+  $scope.preReq = function (coursename, semesterNum){
+      // users/courses/prereq?token=SAPUTA&course_name=CALCULUS II&semester_num=1
+      var courseName = coursename;
+      var sem = semesterNum.substring(3);
+      var userToken = $scope.userObj['usertoken'];
+      var urlString = "/users/courses/prereq?token=" + userToken + "$course_name=" + courseName + "&semester_num=" + sem;
+      console.log('Url string ' + urlString );
+      $http({
+        method: 'GET',
+        url: urlString
+     }).then(function successCallback(response) {
+          console.log("Success: " + response.data);
+      }, function errorCallback(response) {
+          console.log("fail " +response.data);
+    });
   }
   $scope.coReq = function (){
-
+// 
+  }
+  $scope.duplicates = function(el, target){
+    var sems = document.getElementsByClassName('sem');
+    var counter = 0;
+      for(i = 0; i < sems.length; i++){
+        var li = sems[i].getElementsByTagName("li");
+        for(n = 0; n < li.length; n++){
+          if(el.id == li[n].innerHTML){
+            counter += 1;
+          }
+        }
+      }
+      if(counter > 1){
+        var item = document.getElementById(el.id);
+        item.parentNode.removeChild(item);
+      }
   }
 
 });
