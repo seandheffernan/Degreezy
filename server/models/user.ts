@@ -267,7 +267,7 @@ export async function buildCSV(token, callback) {
     const user_model = mongoose.model('User', userModel);
     const semester_model = mongoose.model("Semester", semester);
     let user = await user_model.findOne({usertoken: token});
-    let csv = 'Semester, Class 1, Class 2, Class 3, Class 4, Class 5, Class 6\n';
+    let csv = 'Semester, Class 1, Class 2, Class 3, Class 4, Class 5, Class 6<br>';
     // console.log('hello');
     // if (user.schedule == null) {
     //     console.log('lamo');
@@ -275,13 +275,29 @@ export async function buildCSV(token, callback) {
     //     return;
     // }
     // console.log('ey');
-    for (let i = 0; i < user.schedule.length; i++) {
+    for (let i = 0; i < user.semesterCount; i++) {
+        console.log(user.schedule[i]);
         let semester = await semester_model.findOne({_id: user.schedule[i]});
-        csv += i + ', ';
-        for (let j = 0; j < semester.courses.length - 1; j++) {
-            csv += semester.courses[j] + ', ';
+        csv += (i+1) + ', ';
+        console.log(semester);
+        if (semester.courses.length == 0) {
+            for (let j = 0; j < 5; j++) {
+                csv += ' , ';
+            }
+        } else {
+            for (let j = 0; j < 5; j++) {
+                if (semester.courses[j] == null) {
+                    csv += ' , ';
+                } else {
+                    csv += semester.courses[j] + ', ';
+                }
+            }
         }
-        csv += semester.courses[semester.courses.length - 1] + '\n';
+        if (semester.courses[5] == null) {
+            csv += '<br>';
+        } else {
+            csv += semester.courses[5] + '<br>';
+        }
     }
     callback(csv);
 }
