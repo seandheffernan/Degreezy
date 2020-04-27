@@ -256,7 +256,7 @@
   {
     "course_code": "CSCI",
     "course_number": 4440,
-    "name": "SOFTWARE DESIGN & DOCUME",
+    "name": "SOFTWARE DESIGN & DOCUMENTATION",
     "semester": "Spring",
     "description": "Software system design methodology emphasizing use of object oriented modeling of application domains and of software systems and emphasizing the roles of written and oral communication in software engineering. Project management and software testing. Individual and team projects include specification, software architecture, user interfaces, and documentation of the phases of a project. This is a communication-intensive course.",
     "prerequisites": [
@@ -398,7 +398,7 @@
   {
     "course_code": "CSCI",
     "course_number": 4976,
-    "name": "WEB SCIENCE SYSTEMS DEV",
+    "name": "WEB SCIENCE SYSTEMS DEVELOPMENT",
     "semester": "Spring",
     "description": "Building on the technology covered in Web Systems Development, students will be exposed to current technologies, frameworks, and practices in the area of Web development. Types of topics included will be HTML5/CSS3, API’s for data, Ruby on Rails, node.js, MongoDB, PHP, and RDF. Methodology to be explored will be application design, software versioning, and team development. Lab intensive, this course is intended to complete a foundation for the advanced courses in Data Science and Advanced Web Science.",
     "prerequisites": [
@@ -717,7 +717,7 @@
   {
     "course_code": "MATH",
     "course_number": 1500,
-    "name": "CALCULUS FOR ARCHITECTURE, MANAGEMENT, AND HASS",
+    "name": "CALCULUS FOR ARCHITECTURE MANAGEMENT AND HASS",
     "semester": "Fall",
     "description": "Basic concepts in differential and integral calculus for functions of one variable. Topics will include functions, limits, continuity, derivatives, integration, exponential and logarithmic functions, and techniques of integration. Application areas will include topics in Management, Architecture, and Social Sciences with special emphasis on the role of calculus in introductory probability.",
     "prerequisites": [
@@ -734,7 +734,7 @@
     "description": "Functions of several variables, introductory linear algebra, and other analytical techniques needed for further study in probability, statistics, and operations research. Topics covered include improper integrals, probability density functions, partial derivatives and optimization techniques for functions of several variables, matrix algebra, linear systems, lines and planes in 3-space, linear inequalities, introductory linear programming, introductory combinatorics, and some probability.",
     "prerequisites": [
       "CALCULUS I",
-      "CALCULUS FOR ARCHITECTURE, MANAGEMENT, AND HASS"
+      "CALCULUS FOR ARCHITECTURE MANAGEMENT AND HASS"
     ],
     "corequisites": [
     ],
@@ -837,7 +837,7 @@
     "semester": "Spring",
     "description": "This course develops an understanding of concepts in business statistics and focuses on application of concepts in problem-solving situations. In particular, students learn to present and describe data, analyze probability distributions, make statistical inferences based on data samples, and develop models for prediction and forecasting.",
     "prerequisites": [
-      "CALCULUS FOR ARCHITECTURE, MANAGEMENT, AND HASS",
+      "CALCULUS FOR ARCHITECTURE MANAGEMENT AND HASS",
       "MATHEMATICAL METHODS IN MANAGEMENT AND ECONOMICS"
     ],
     "corequisites": [
