@@ -105,6 +105,9 @@ export async function get_progress(usertoken, callback) {
     let courseCount;
     let reqComplete = true;
     for (let programNum = 0; programNum < user_data.programs.length; programNum++) {
+        if (user_data.programs[programNum] == null) {
+            break;
+        }
         program_data = await program_model.findOne({ _id : user_data.programs[programNum]}, {});
         return_data += '{"concentration" : "' + program_data.name + '",';
         return_data += '"requirements" : [';
