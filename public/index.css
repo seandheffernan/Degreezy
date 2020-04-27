@@ -412,6 +412,11 @@ body {
   height: 62vh;
 }
 
+#slider2 .modal-body {
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
 
 input[type=text] {
   width: 100%;
