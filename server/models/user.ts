@@ -278,7 +278,7 @@ export async function buildCSV(token, callback) {
         csv += i + ', ';
         console.log(semester);
         if (semester.courses.length == 0) {
-            for (let j = 0; j < 6; j++) {
+            for (let j = 0; j < 5; j++) {
                 csv += ' , ';
             }
         } else {
