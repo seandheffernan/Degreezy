@@ -131,7 +131,6 @@ app.controller('ctrl', function ($scope, $http) {
       $http({
         method: 'GET',
         url: 'users/exportCSV?token=' + $scope.userObj.usertoken,
-        dataType: 'JSON',
       }).then(function successCallback(response) {
         console.log(response);
         var myWindow = window.open("", "CSV Data", "width=400, height = 200");
