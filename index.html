@@ -48,16 +48,18 @@
 
     <div class="mainBody">
       <div ng-controller="ctrl" ng-init="run()"> 
-        <div class="searchAndShow sticky top_container">
-          <br/>
-          <div class="container search_sticky">
-            <input type="text" id="myInput" onkeyup="searchFunction()" placeholder="Search for classes" title="Search for classes">
-          </div>
-          <div class="lists container inside_container">
-            <div class="row">
-              <ul class="col-md-auto list" id="queue">
-                <li ng-repeat="i in courses" class="list-item" id="{{i.name}}">{{i.name}}</li>  
-              </ul>
+        <div class="sticky main_container">
+          <div class="searchAndShow top_container">
+            <br/>
+            <div class="container search_sticky">
+              <input type="text" id="myInput" onkeyup="searchFunction()" placeholder="Search for classes" title="Search for classes">
+            </div>
+            <div class="lists container inside_container">
+              <div class="row">
+                <ul class="col-md-auto list" id="queue">
+                  <li ng-repeat="i in courses" class="list-item" id="{{i.name}}">{{i.name}}</li>  
+                </ul>
+              </div>
             </div>
           </div>
         </div>

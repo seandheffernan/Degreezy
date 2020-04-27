@@ -21,6 +21,15 @@ body {
   /*width: 90%;*/
 }
 
+.main_container {
+  height: 220px;
+  /*background-color: rgb(254,254,254, 0.9);*/
+  background-color: #fefefe;
+  /*background-color: blue;*/
+  /*border-radius: 10px;*/
+  margin-bottom: 20px;
+}
+
 .top_container {
   display: block;
   height: 215px;
@@ -28,7 +37,6 @@ body {
   overflow: hidden;
   background-color: #fefefe;
   /*opacity: 0.5;*/
-  margin-bottom: 50px;
 }
 
 .inside_container .list-item {
