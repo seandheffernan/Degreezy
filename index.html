@@ -363,10 +363,15 @@
         </div>
 
         <form id="semester_edits">
+          <button type="button" class="btn btn-secondary" id="csv" onclick="window.print()" >
+            <i class="fas fa-print fa-large"></i>
+          </button>
+          <button type="button" class="btn btn-secondary" id="print" onclick="window.print()" >
+            <i class="fas fa-print fa-large"></i>
+          </button>
           <button type="button" class="btn btn-secondary" id="sub" ng-click="sub()">
             <i class="fas fa-minus fa-large"></i>
           </button>
-          <br/>
           <button type="button" class="btn btn-secondary" id="add" ng-click="add()">
             <i class="fas fa-plus fa-large"></i>
           </button>
