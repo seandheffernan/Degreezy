@@ -257,8 +257,13 @@ app.controller('ctrl', function ($scope, $http) {
       $('.sem_col').removeClass('col-sm-6');
       $('.sem_col').removeClass('col-xs-6');
 
+
+      $('.sem').css('padding-left', '20px');
+      $('.sem').css('padding-right', '20px');
+      $('.sem').css('border', 'none');
+      $('.sem').css('border-bottom', '10px solid #ededed');
       $('.sem').css('border-radius', 0);
-      $('.sem').css('min-height', '30rem');
+      $('.sem').css('min-height', '35rem');
 
       $('.carousel-indicators').show();
       $('.carousel-control-prev').show();
@@ -273,6 +278,7 @@ app.controller('ctrl', function ($scope, $http) {
       $('.sem_col').addClass('col-sm-6');
       $('.sem_col').addClass('col-xs-6');
 
+      $('.sem').css('border', '5px solid #ededed');
       $('.sem').css('border-radius', 10);
       $('.sem').css('min-height', '400px');
 

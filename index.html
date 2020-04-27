@@ -54,7 +54,7 @@
             <input type="text" id="myInput" onkeyup="searchFunction()" placeholder="Search for classes" title="Search for classes">
           </div>
           <div class="lists container inside_container">
-            <div class="row justify-content-center">
+            <div class="row">
               <ul class="col-md-auto list" id="queue">
                 <li ng-repeat="i in courses" class="list-item" id="{{i.name}}">{{i.name}}</li>  
               </ul>
@@ -171,11 +171,11 @@
         </div>
 
         <div class="infoTable container">
-          <h4>{{userObj.usertoken}}</h4>
-          <h4>{{userObj.last_name}}, {{userObj.first_name}}</h4>
+          <h4 id="print_rcs">{{userObj.usertoken}}</h4>
+          <h4 id="print_name">{{userObj.last_name}}, {{userObj.first_name}}</h4>
 
-          <p>{{userObj.semesterAdmitted}} - {{userObj.expectedGraduation}}</p>
-          <div ng-repeat='i in require'>
+          <p id="print_year">{{userObj.semesterAdmitted}} - {{userObj.expectedGraduation}}</p>
+          <div id="print_major" ng-repeat='i in require'>
             <h6>Major: {{i.concentration | limitTo: 4}}</h6>
             <p>Concentration: {{i.concentration.substring(6)}}</p>
           </div>
