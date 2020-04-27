@@ -46,7 +46,7 @@ app.get('/logout', (req, res) => {
 });
 
 app.get('/landing', (req, res) => {
-    res.send("This is the landing page :)")
+    res.sendFile('LandingPage.html', {root: './LandingPage'})
 });
 
 // Middleware
@@ -62,6 +62,7 @@ var path = require('path');
 app.use('/', express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/public'));
 app.use(express.static(path.join(__dirname, '../public')));
+app.use(express.static(path.join(__dirname, '../LandingPage')));
 
 // Server Start
 const port = 3000;
