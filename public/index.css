@@ -478,6 +478,22 @@ input[type=text] {
     display: none;
   }
 
+  #sub {
+    display: none;
+  }
+
+  #add {
+    display: none;
+  }
+
+  #print {
+    display: none;
+  }
+
+  #export {
+    display: none;
+  }
+
   .semTitle {
     top: 4%;
     left: 4%;
