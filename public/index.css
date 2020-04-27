@@ -32,7 +32,7 @@ body {
 }
 
 .inside_container .list-item {
-  background-color: #f7f7f7;
+  background-color: #F5F5F5;
   /*opacity: 0.8;*/
   /*background-color: gray;*/
 }
@@ -113,7 +113,7 @@ body {
   color: #707070;
   /*font-weight: 500;*/
   /*background-color: #F3F3F3;*/
-  background-color: #f7f7f7;
+  background-color: #F5F5F5;
 	border-radius: 8px;
 	padding: 15px 20px;
 	text-align: center;
@@ -149,7 +149,7 @@ body {
   min-height: 400px;
   /*background-color: rgba(0, 0, 0, 0.1);*/
   /*background-color: #ededed;*/
-  border: 5px solid #ededed;
+  border: 5px solid #F5F5F5;
 
 
 }
@@ -172,7 +172,7 @@ body {
   color: #C0C0C0;
   /*background-color: #C0C0C0;*/
   /*background-color: #ededed;*/
-  background-color: #efefef;
+  background-color: #F1F1F1;
   /*border: 5px solid #f7f7f7;*/
 
   
@@ -205,7 +205,7 @@ body {
 }
 */
 .carousel-control-prev, .carousel-control-next {
-  background-color: #ededed;
+  background-color: #F1F1F1;
   /*background-color: blue;*/
   opacity: 1;
   margin-bottom: 30px;
@@ -229,7 +229,7 @@ body {
 }
 
 .carousel-indicators {
-  background-color: #ededed;
+  background-color: #F1F1F1;
   /*margin-bottom: -10px;*/
   position: absolute;
   top: 0;
