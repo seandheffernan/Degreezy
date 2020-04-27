@@ -66,7 +66,7 @@ export function fetch_create_user(req, res) {
                 });
                 data = newUserSend;
             }
-            let queryUser = encodeURIComponent(data.usertoken);
+            let queryUser = encodeURIComponent(JSON.stringify(data.usertoken));
             console.log("Logged in");
             res.redirect('/?result=' + queryUser);
         }
@@ -272,17 +272,25 @@ export async function buildCSV(token, callback) {
     //     return;
     // }
     // console.log('ey');
-    for (let i = 0; i < user_model.semesterCount; i++) {
+    for (let i = 0; i < user.semesterCount; i++) {
+        console.log(user.schedule[i]);
         let semester = await semester_model.findOne({_id: user.schedule[i]});
         csv += i + ', ';
-        for (let j = 0; j < semester.courses.length - 1; j++) {
-            if (semester.courses[j] == null) {
+        console.log(semester);
+        if (semester.courses.length == 0) {
+            for (let j = 0; j < 6; j++) {
                 csv += ' , ';
-            } else {
+            }
+        } else {
+            for (let j = 0; j < semester.courses.length - 1; j++) {
                 csv += semester.courses[j] + ', ';
             }
         }
-        csv += semester.courses[semester.courses.length - 1] + '\n';
+        if (semester.courses.length == 0) {
+            csv += ' \n';
+        } else {
+            csv += semester.courses[semester.courses.length - 1] + '\n';
+        }
     }
     callback(csv);
 }

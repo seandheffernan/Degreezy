@@ -7,7 +7,7 @@ app.controller('ctrl', function ($scope, $http) {
 
   const param = new URLSearchParams(location.search);
   // $scope.userObj = JSON.parse(param.get("result"));
-  $scope.userToken = param.get("result");
+  $scope.userToken = JSON.parse(param.get("result"));
 
   $scope.run = function(){
     $http({
