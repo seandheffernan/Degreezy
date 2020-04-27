@@ -282,14 +282,18 @@ export async function buildCSV(token, callback) {
                 csv += ' , ';
             }
         } else {
-            for (let j = 0; j < semester.courses.length - 1; j++) {
-                csv += semester.courses[j] + ', ';
+            for (let j = 0; j < 5; j++) {
+                if (semester.courses[j] == null) {
+                    csv += ' , ';
+                } else {
+                    csv += semester.courses[j] + ', ';
+                }
             }
         }
-        if (semester.courses.length == 0) {
+        if (semester.courses[5] == null) {
             csv += ' \n';
         } else {
-            csv += semester.courses[semester.courses.length - 1] + '\n';
+            csv += semester.courses[5] + '\n';
         }
     }
     callback(csv);
