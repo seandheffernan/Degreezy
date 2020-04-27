@@ -124,8 +124,8 @@ export async function get_progress(usertoken, callback) {
         }
         for (let i = 0; i < program_data.elective_courses.length; i++) {
             courseCount = program_data.elective_courses[i].count;
-            // console.log(program_data.elective_courses[i].name);
-            // console.log(courseCount);
+            console.log(program_data.elective_courses[i].name);
+            console.log(courseCount);
             reqComplete = true;
             let finalValue = false;
             if (i == program_data.elective_courses.length - 1) {
@@ -134,7 +134,7 @@ export async function get_progress(usertoken, callback) {
             for (let j = 0; j < program_data.elective_courses[i].classes.length; j++) {
                 if (findArray(program_data.elective_courses[i].classes[j], user_data.classes_taken)) {
                     courseCount--;
-                    // console.log(courseCount);
+                    console.log(courseCount);
                     if (courseCount == 0) {
                         break;
                     }
@@ -145,13 +145,13 @@ export async function get_progress(usertoken, callback) {
                 if (!finalValue) {
                     return_data += ','
                 }
-                // console.log(return_data);
+                console.log(return_data);
             } else {
                 return_data += '{ "name": "' + program_data.elective_courses[i].name + '", "Completed": false }';
                 if (!finalValue) {
                     return_data += ','
                 }
-                // console.log(return_data);
+                console.log(return_data);
             }
         }
         return_data += ']}'
@@ -169,11 +169,11 @@ export async function get_progress(usertoken, callback) {
 export function findArray(value, array) {
     for (let i = 0; i < array.length; i++) {
         if (array[i] == value) {
-            // console.log(value + ' found');
+            console.log(value + ' found');
             return true;
         }
     }
-    // console.log(value + ' not found');
+    console.log(value + ' not found');
     return false;
 }
 
