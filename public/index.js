@@ -135,7 +135,7 @@ app.controller('ctrl', function ($scope, $http) {
         console.log(response);
         var myWindow = window.open("", "CSV Data", "width=400, height = 200");
         var csv = response.data;
-        myWindow.document.write(response.data.replace('newline', '<br>'));
+        myWindow.document.write(csv + "<br>" + "this");
       }, function errorCallback(response) {
         console.log("Error");
         console.log(response.data);
