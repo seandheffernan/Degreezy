@@ -1,6 +1,8 @@
 
 html {
-  margin: 20px;
+  margin-left: 40px;
+  margin-right: 40px;
+  /*background-color: blue;*/
   /*padding: 10px;*/  
 }
 
@@ -14,20 +16,33 @@ body {
 }
 
 .mainBody {
-  margin-top: 5%;
+  /*margin-top: 5%;*/
 }
 
 .container {
   /*width: 90%;*/
 }
 
+nav {
+  background-color: #F5F5F5;
+}
+
 .main_container {
-  height: 220px;
+  height: 225px;
   /*background-color: rgb(254,254,254, 0.9);*/
   background-color: #fefefe;
+  border-bottom: 5px solid #F5F5F5;
+/*  -webkit-box-shadow: 0 5px 0 rgba(0, 0, 0, .3);
+  box-shadow: 0 5px 0 rgba(0, 0, 0, .3);*/
+
+
+
+  /*background-color: #F5F5F5;*/
   /*background-color: blue;*/
   /*border-radius: 10px;*/
-  margin-bottom: 20px;
+/*  margin-left: 5%;
+  margin-right: 5%;*/
+  margin-bottom: 50px;
 }
 
 .top_container {
@@ -36,10 +51,14 @@ body {
   /*height: 263px;*/
   overflow: hidden;
   background-color: #fefefe;
+  /*background-color: #F5F5F5;*/
+
+
   /*opacity: 0.5;*/
 }
 
 .inside_container .list-item {
+  /*background-color: #F5F5F5;*/
   background-color: #F5F5F5;
   /*opacity: 0.8;*/
   /*background-color: gray;*/
@@ -57,7 +76,7 @@ body {
   position: sticky;
   /*padding-top: 50px;*/
   top: 40px;
-  margin-top: 60px;
+  /*margin-top: 60px;*/
   /*background-color: white;*/
   z-index: 3;
   /*height: 200px;*/

@@ -28,7 +28,7 @@
 
     </header>
 
-    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light">
       <a class="navbar-brand" href="#">Degreezy</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -49,12 +49,12 @@
     <div class="mainBody">
       <div ng-controller="ctrl" ng-init="run()"> 
         <div class="sticky main_container">
-          <div class="searchAndShow top_container">
+          <div class="searchAndShow container top_container">
             <br/>
-            <div class="container search_sticky">
+            <div class="search_sticky">
               <input type="text" id="myInput" onkeyup="searchFunction()" placeholder="Search for classes" title="Search for classes">
             </div>
-            <div class="lists container inside_container">
+            <div class="lists inside_container">
               <div class="row">
                 <ul class="col-md-auto list" id="queue">
                   <li ng-repeat="i in courses" class="list-item" id="{{i.name}}">{{i.name}}</li>  
