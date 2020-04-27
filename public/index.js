@@ -271,8 +271,13 @@ app.controller('ctrl', function ($scope, $http) {
       $('.sem_col').removeClass('col-sm-6');
       $('.sem_col').removeClass('col-xs-6');
 
+
+      // $('.sem').css('padding-left', '20px');
+      // $('.sem').css('padding-right', '20px');
+      // $('.sem').css('border', 'none');
+      // $('.sem').css('border-bottom', '10px solid #F1F1F1');
       $('.sem').css('border-radius', 0);
-      $('.sem').css('min-height', '30rem');
+      $('.sem').css('min-height', '37rem');
 
       $('.carousel-indicators').show();
       $('.carousel-control-prev').show();
@@ -287,6 +292,8 @@ app.controller('ctrl', function ($scope, $http) {
       $('.sem_col').addClass('col-sm-6');
       $('.sem_col').addClass('col-xs-6');
 
+      // $('.sem').css('padding', '10px');
+      // $('.sem').css('border', '5px solid #F5F5F5');
       $('.sem').css('border-radius', 10);
       $('.sem').css('min-height', '400px');
 
@@ -300,7 +307,24 @@ app.controller('ctrl', function ($scope, $http) {
     }
   });
 
+  $(window).on('beforeprint', function() {
+    $('.sem_col').removeClass('carousel-item');
+    $('.sem_col').addClass('col-md-6');
+    $('.sem_col').addClass('col-sm-6');
+    $('.sem_col').addClass('col-xs-6');
 
+    // $('.sem').css('padding', '10px');
+    // $('.sem').css('border', '5px solid #F5F5F5');
+    $('.sem').css('border-radius', 10);
+    $('.sem').css('min-height', '400px');
+
+    $('.carousel-indicators').hide();
+    $('.carousel-control-prev').hide();
+    $('.carousel-control-next').hide();
+
+    $('.outside').removeClass('carousel-inner');
+    $('.outside').addClass('row');
+  });
 
   var drake = dragula([
     document.getElementById("queue"),

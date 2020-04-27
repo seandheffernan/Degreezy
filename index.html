@@ -28,7 +28,7 @@
 
     </header>
 
-    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light">
       <a class="navbar-brand" href="#">Degreezy</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -48,16 +48,18 @@
 
     <div class="mainBody">
       <div ng-controller="ctrl" ng-init="run()"> 
-        <div class="searchAndShow sticky top_container">
-          <br/>
-          <div class="container search_sticky">
-            <input type="text" id="myInput" onkeyup="searchFunction()" placeholder="Search for classes" title="Search for classes">
-          </div>
-          <div class="lists container inside_container">
-            <div class="row justify-content-center">
-              <ul class="col-md-auto list" id="queue">
-                <li ng-repeat="i in courses" class="list-item" id="{{i.name}}">{{i.name}}</li>  
-              </ul>
+        <div class="sticky main_container">
+          <div class="searchAndShow container top_container">
+            <br/>
+            <div class="search_sticky">
+              <input type="text" id="myInput" onkeyup="searchFunction()" placeholder="Search for classes" title="Search for classes">
+            </div>
+            <div class="lists inside_container">
+              <div class="row">
+                <ul class="col-md-auto list" id="queue">
+                  <li ng-repeat="i in courses" class="list-item" id="{{i.name}}">{{i.name}}</li>  
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -157,7 +159,21 @@
           </div>
         </div>
 
-        <div class="infoTable container">        
+        <div class="infoTable container">
+          <h1 id="print_rcs">{{userObj.usertoken}}</h1>
+
+          <h5 id="print_year">{{userObj.semesterAdmitted}} — {{userObj.expectedGraduation}}</h5>
+
+          <div class="print_major" ng-repeat='i in require'>
+            <h7>{{i.concentration | limitTo: 4}} : {{i.concentration.substring(6)}}</h7>
+          </div>
+
+          <h5 id="print_name">{{userObj.first_name}} {{userObj.last_name}}</h5>
+
+
+        </div>
+
+        <!-- <div class="infoTable container">        
           <table class="tableNoBS table-bordered">
             <thead>
               <tr>
@@ -207,7 +223,7 @@
               </tr>
             </tbody>
           </table>
-        </div>
+        </div> -->
 
 <!-- ORIGINAL FOR REFERENCE -->
 <!--         <div class="lists container">
@@ -289,65 +305,65 @@
               <ul class="sem" id="sem1">
                 <li ng-repeat="i in sem_content[0]" class="list-item" id="{{i}}">{{i}}</li>
               </ul>
-              <div class="semTitle">Year 1 Semester 1</div>
+              <div class="semTitle">YEAR 1 SEMESTER 1</div>
             </div>
             <div class="sem_col col-md-6 col-sm-6 col-xs-6" id="sem_hide2">
               <ul class="sem" id="sem2">
                 <li ng-repeat="i in sem_content[1]" class="list-item" id="{{i}}">{{i}}</li>
               </ul>
-              <div class="semTitle">Year 1 Semester 2</div>
+              <div class="semTitle">YEAR 1 SEMESTER 2</div>
             </div>
 
             <div class="sem_col col-md-6 col-sm-6 col-xs-6" id="sem_hide3">
               <ul class="sem" id="sem3">
                 <li ng-repeat="i in sem_content[2]" class="list-item" id="{{i}}">{{i}}</li>
               </ul>
-              <div class="semTitle">Year 2 Semester 1</div>
+              <div class="semTitle">YEAR 2 SEMESTER 1</div>
             </div>
             <div class="sem_col col-md-6 col-sm-6 col-xs-6" id="sem_hide4">
               <ul class="sem" id="sem4">
                 <li ng-repeat="i in sem_content[3]" class="list-item" id="{{i}}">{{i}}</li>
               </ul>
-              <div class="semTitle">Year 2 Semester 2</div>
+              <div class="semTitle">YEAR 2 SEMESTER 2</div>
             </div>
 
             <div class="sem_col col-md-6 col-sm-6 col-xs-6" id="sem_hide5">
               <ul class="sem" id="sem5">
                 <li ng-repeat="i in sem_content[4]" class="list-item" id="{{i}}">{{i}}</li>
               </ul>
-              <div class="semTitle">Year 3 Semester 1</div>
+              <div class="semTitle">YEAR 3 SEMESTER 1</div>
             </div>
             <div class="sem_col col-md-6 col-sm-6 col-xs-6" id="sem_hide6">
               <ul class="sem" id="sem6">
                 <li ng-repeat="i in sem_content[5]" class="list-item" id="{{i}}">{{i}}</li>
               </ul>
-              <div class="semTitle">Year 3 Semester 2</div>
+              <div class="semTitle">YEAR 3 SEMESTER 2</div>
             </div>
 
             <div class="sem_col col-md-6 col-sm-6 col-xs-6" id="sem_hide7">
               <ul class="sem" id="sem7">
                 <li ng-repeat="i in sem_content[6]" class="list-item" id="{{i}}">{{i}}</li>
               </ul>
-              <div class="semTitle">Year 4 Semester 1</div>
+              <div class="semTitle">YEAR 4 SEMESTER 1</div>
             </div>
             <div class="sem_col col-md-6 col-sm-6 col-xs-6" id="sem_hide8">
               <ul class="sem" id="sem8">
                 <li ng-repeat="i in sem_content[7]" class="list-item" id="{{i}}">{{i}}</li>
               </ul>
-              <div class="semTitle">Year 4 Semester 2</div>
+              <div class="semTitle">YEAR 4 SEMESTER 2</div>
             </div>
 
             <div class="sem_col col-md-6 col-sm-6 col-xs-6" id="sem_hide9">
               <ul class="sem" id="sem9">
                 <li ng-repeat="i in sem_content[8]" class="list-item" id="{{i}}">{{i}}</li>
               </ul>
-              <div class="semTitle">Year 5 Semester 1</div>
+              <div class="semTitle">YEAR 5 SEMESTER 1</div>
             </div>
             <div class="sem_col col-md-6 col-sm-6 col-xs-6" id="sem_hide10">
               <ul class="sem" id="sem10">
                 <li ng-repeat="i in sem_content[9]" class="list-item" id="{{i}}">{{i}}</li>
               </ul>
-              <div class="semTitle">Year 5 Semester 2</div>
+              <div class="semTitle">YEAR 5 SEMESTER 2</div>
             </div>
           </div>
 
@@ -385,12 +401,12 @@
         <!--   // Tab -->
           <div id="slideOutTab2">
             <div>
-              <p> Check Requirements </p>
+              <p> Degree Progress </p>
             </div>
           </div>
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title"> Requirements </h4> 
+              <h4 class="modal-title"> Progress </h4> 
             </div>
             <div class="modal-body">
               <div ng-repeat='i in require'>
