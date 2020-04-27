@@ -378,21 +378,21 @@
 
         </div>
 
-        <form id="semester_edits">
-          <button type="button" class="btn btn-secondary" id="csv" onclick="window.print()" >
-            <i class="fas fa-print fa-large"></i>
-          </button>
+        <form id="exportAccess">
           <button type="button" class="btn btn-secondary" id="print" onclick="window.print()" >
             <i class="fas fa-print fa-large"></i>
           </button>
+          <button type="button" class="btn btn-secondary" id="export" ng-click="export()">
+            <i class="fas fa-file-csv"></i>
+          </button>
+        </form>
+
+        <form id="semester_edits2">
           <button type="button" class="btn btn-secondary" id="sub" ng-click="sub()">
             <i class="fas fa-minus fa-large"></i>
           </button>
           <button type="button" class="btn btn-secondary" id="add" ng-click="add()">
             <i class="fas fa-plus fa-large"></i>
-          </button>
-          <button type="button" class="btn btn-secondary btn-success" id="export" ng-click="export()">
-            <i class="fas fa-file-csv"></i>
           </button>
         </form>
 
@@ -423,8 +423,7 @@
           </div>
           <div class="modal-footer"> </div>
         </div>
-    
-    
+
       </div>
     </div>
       <script src="index.js"></script>
