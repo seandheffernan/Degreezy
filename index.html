@@ -160,14 +160,17 @@
         </div>
 
         <div class="infoTable container">
-          <h4 id="print_rcs">{{userObj.usertoken}}</h4>
-          <h4 id="print_name">{{userObj.last_name}}, {{userObj.first_name}}</h4>
+          <h1 id="print_rcs">{{userObj.usertoken}}</h1>
 
-          <p id="print_year">{{userObj.semesterAdmitted}} - {{userObj.expectedGraduation}}</p>
-<!--           <div id="print_major" ng-repeat='i in require'>
-            <h6>Major: {{i.concentration | limitTo: 4}}</h6>
-            <p>Concentration: {{i.concentration.substring(6)}}</p>
-          </div> -->
+          <h5 id="print_year">{{userObj.semesterAdmitted}} — {{userObj.expectedGraduation}}</h5>
+
+          <div class="print_major" ng-repeat='i in require'>
+            <h7>{{i.concentration | limitTo: 4}} : {{i.concentration.substring(6)}}</h7>
+          </div>
+
+          <h5 id="print_name">{{userObj.first_name}} {{userObj.last_name}}</h5>
+
+
         </div>
 
         <!-- <div class="infoTable container">        

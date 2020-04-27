@@ -307,7 +307,24 @@ app.controller('ctrl', function ($scope, $http) {
     }
   });
 
+  $(window).on('beforeprint', function() {
+    $('.sem_col').removeClass('carousel-item');
+    $('.sem_col').addClass('col-md-6');
+    $('.sem_col').addClass('col-sm-6');
+    $('.sem_col').addClass('col-xs-6');
 
+    // $('.sem').css('padding', '10px');
+    // $('.sem').css('border', '5px solid #F5F5F5');
+    $('.sem').css('border-radius', 10);
+    $('.sem').css('min-height', '400px');
+
+    $('.carousel-indicators').hide();
+    $('.carousel-control-prev').hide();
+    $('.carousel-control-next').hide();
+
+    $('.outside').removeClass('carousel-inner');
+    $('.outside').addClass('row');
+  });
 
   var drake = dragula([
     document.getElementById("queue"),
