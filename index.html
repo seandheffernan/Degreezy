@@ -170,7 +170,18 @@
           </div>
         </div>
 
-        <div class="infoTable container">        
+        <div class="infoTable container">
+          <h4>{{userObj.usertoken}}</h4>
+          <h4>{{userObj.last_name}}, {{userObj.first_name}}</h4>
+
+          <p>{{userObj.semesterAdmitted}} - {{userObj.expectedGraduation}}</p>
+          <div ng-repeat='i in require'>
+            <h6>Major: {{i.concentration | limitTo: 4}}</h6>
+            <p>Concentration: {{i.concentration.substring(6)}}</p>
+          </div>
+        </div>
+
+        <!-- <div class="infoTable container">        
           <table class="tableNoBS table-bordered">
             <thead>
               <tr>
@@ -220,7 +231,7 @@
               </tr>
             </tbody>
           </table>
-        </div>
+        </div> -->
 
 <!-- ORIGINAL FOR REFERENCE -->
 <!--         <div class="lists container">
