@@ -197,6 +197,7 @@ app.controller('ctrl', function ($scope, $http) {
         dataType: 'JSON',
         data: updateProfile
     }).then(function successCallback(response) {
+        $scope.reqCheck();
         console.log("Profile updated"); 
     }, function errorCallback(response) {
         console.log("HELP!!!");
