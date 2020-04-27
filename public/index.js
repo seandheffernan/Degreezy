@@ -74,6 +74,7 @@ app.controller('ctrl', function ($scope, $http) {
           update_semesters();
           $scope.reqCheck();
           
+          
 
       }, function errorCallback(response) {
           console.log(response.data);
