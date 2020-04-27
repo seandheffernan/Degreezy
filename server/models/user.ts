@@ -272,11 +272,15 @@ export async function buildCSV(token, callback) {
     //     return;
     // }
     // console.log('ey');
-    for (let i = 0; i < user.schedule.length; i++) {
+    for (let i = 0; i < user_model.semesterCount; i++) {
         let semester = await semester_model.findOne({_id: user.schedule[i]});
         csv += i + ', ';
         for (let j = 0; j < semester.courses.length - 1; j++) {
-            csv += semester.courses[j] + ', ';
+            if (semester.courses[j] == null) {
+                csv += ' , ';
+            } else {
+                csv += semester.courses[j] + ', ';
+            }
         }
         csv += semester.courses[semester.courses.length - 1] + '\n';
     }
