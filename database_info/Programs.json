@@ -1,6 +1,6 @@
 [
 	{
-		"name":"CSCI; Theory and Algorithms",
+		"name":"CSCI: Theory and Algorithms",
 		"major_courses": [
 			"COMPUTER SCIENCE I",
 			"DATA STRUCTURES",
@@ -136,7 +136,7 @@
 		]
 	},
 	{
-		"name":"CSCI; Systems and Software",
+		"name":"CSCI: Systems and Software",
 		"major_courses": [
 			"COMPUTER SCIENCE I",
 			"DATA STRUCTURES",
@@ -253,7 +253,7 @@
 		]
 	},
 	{
-		"name":"CSCI; Artifical Intelligence and Data",
+		"name":"CSCI: Artifical Intelligence and Data",
 		"major_courses": [
 			"COMPUTER SCIENCE I",
 			"DATA STRUCTURES",
@@ -383,7 +383,7 @@
 		]
 	},
 	{
-		"name":"CSCI; Vision, Graphics, Robotics, and Games",
+		"name":"CSCI: Vision, Graphics, Robotics, and Games",
 		"major_courses": [
 			"COMPUTER SCIENCE I",
 			"DATA STRUCTURES",
@@ -491,7 +491,7 @@
 		]
 	},
 	{
-		"name":"ITWS; Computer Networking",
+		"name":"ITWS: Computer Networking",
 		"major_courses": [
 			"INTRO TO IT & WEB SCIENCE",
 			"WEB SYSTEMS DEVELOPMENT",
@@ -568,7 +568,7 @@
 		]
 	},
 	{
-		"name":"ITWS; Data Science",
+		"name":"ITWS: Data Science",
 		"major_courses": [
 			"INTRO TO IT & WEB SCIENCE",
 			"WEB SYSTEMS DEVELOPMENT",
@@ -647,7 +647,7 @@
 		]
 	},
 	{
-		"name":"ITWS; Web Technologies",
+		"name":"ITWS: Web Technologies",
 		"major_courses": [
 			"INTRO TO IT & WEB SCIENCE",
 			"WEB SYSTEMS DEVELOPMENT",
@@ -775,7 +775,7 @@
 		]
 	},
 	{
-		"name":"ITWS; ",
+		"name":"ITWS: ",
 		"major_courses": [
 			"INTRO TO IT & WEB SCIENCE",
 			"WEB SYSTEMS DEVELOPMENT",
