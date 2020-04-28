@@ -24,7 +24,7 @@ passport.use(new casStrategy({
 
 const app = express();
 
-app.use(session({secret: "Kuzmin"})); // TODO: Need a better secret
+app.use(session({secret: "Kuzmin"}));
 app.use(passport.initialize());
 app.use(passport.session());
 

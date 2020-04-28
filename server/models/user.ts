@@ -50,7 +50,7 @@ export function fetch_create_user(req, res) {
                 // Send this version to the browser
                 let newUserSend = JSON.parse(JSON.stringify(newUser));
                 console.log(newUser);
-                for (let i = 0; i < 10; i++) { // TODO: Tie Loop Duration to a Variable
+                for (let i = 0; i < 10; i++) {
                     let newSemester = new semesterModel({name: token + "_sem" + (i + 1).toString()});
                     newUser.schedule[i] = newSemester._id;
                     // Adds semester objects instead of just ID
