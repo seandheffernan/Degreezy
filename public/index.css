@@ -11,6 +11,7 @@
 
 body {
   background-color: #fefefe;
+  margin-bottom: 25px;
 }
 
 .mainBody {
@@ -495,7 +496,7 @@ input[type=text] {
     display: none;
   }*/
 
-  .navbar, .searchAndShow, #slider, #slider2, #semester_edits, .main_container {
+  .navbar, .searchAndShow, #slider, #slider2, #semester_edits2, #exportAccess, .main_container {
     display: none;
   }
 
@@ -509,16 +510,22 @@ input[type=text] {
     position: fixed;
     font-size: 3em;
     margin-left: -4px;
+    color: #ff934f;
   }
 
   #print_year {
     float: right;
+    color: black;
+
   }
 
   #print_name {
     /*clear: both;*/
-    margin-top: 1.5em;
+    /*display: block;*/
+    margin-top: 2.8em;
     float: left;
+    color: black;
+
 /*    float: right;
     clear: right;*/
   }
@@ -527,6 +534,8 @@ input[type=text] {
   .print_major {
     float: right;
     clear: right;
+    color: black;
+
   }
 
   #carousel {
@@ -541,7 +550,7 @@ input[type=text] {
   }
 
   .sem {
-    border: 5px solid #F2F2F2;
+    border: 5px solid #ff934f;
     background-color: white;
     /*margin: 0;*/
     /*page-break-before: always;*/
@@ -560,6 +569,7 @@ input[type=text] {
     /*color: #ededed;*/
     /*border-bottom: 5px solid #ededed;*/
     background-color: white;
+    color: #ff934f;
   }
 
   .list-item {
@@ -572,6 +582,7 @@ input[type=text] {
     display: table;
     /*display: inline;*/
     text-align: left;
+    color: black;
     /*color: #ededed;*/
     /*-webkit-print-color-adjust: exact;*/
   }
